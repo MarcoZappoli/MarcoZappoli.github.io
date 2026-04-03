@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "👋🏻 Hello there, I'm Marco!"
+title: "Homepage"
 excerpt: "About me"
 author_profile: true
 redirect_from: 
@@ -8,13 +8,14 @@ redirect_from:
   - /about.html
 ---
 
+## 👋🏻 Hello there, I'm Marco!
+
 👨🏻‍🎓 MSc in Aeronautical Engineering, Politecnico di Milano 
 
 🔬 Research interests: turbulence, multiphase flows, and computational fluid dynamics (CFD)
 
 📍 Based in Verbania, Italy
 
----
 
 ## 🎓 Background & Thesis Work
 
@@ -22,7 +23,6 @@ I graduated in Aeronautical Engineering from Politecnico di Milano, building a s
 
 My Master's thesis focused on inertial particles in homogeneous shear turbulence. Using direct numerical simulations (DNS) with one-way coupled point-particle models, I studied clustering dynamics and preferential sampling in turbulent flows.
 
----
 
 ## ⚡ Outside academia
 
