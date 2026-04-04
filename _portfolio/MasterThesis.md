@@ -56,7 +56,7 @@ author_profile: false
 }
 
 .project-hero-image img {
-  max-width: 280px;
+  max-width: 400px;
   width: 100%;
   border-radius: 4px;
 }
@@ -68,7 +68,10 @@ author_profile: false
 }
 
 .project-body {
-  max-width: 820px;
+  max-width: 800px;
+
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .project-body h2 {
@@ -82,10 +85,12 @@ author_profile: false
 
 .project-meta {
   display: flex;
-  gap: 32px;
+  justify-content: center; /* This centers the items horizontally */
+  align-items: center;    /* This centers them vertically (optional) */
+  gap: 100px;
   flex-wrap: wrap;
   margin-bottom: 36px;
-  padding: 20px 0;
+  padding: 20px 0;         /* I reduced the 100px padding so it doesn't conflict with centering */
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
 }
@@ -93,6 +98,7 @@ author_profile: false
 .project-meta-item {
   display: flex;
   flex-direction: column;
+  text-align: center;      /* Ensures the text lines themselves are centered */
   gap: 4px;
 }
 
@@ -100,13 +106,13 @@ author_profile: false
   font-size: 0.75em;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #888;
-  font-weight: 600;
+  color: #ff6600;
+  font-weight: 650;
 }
 
 .project-meta-item span:last-child {
   font-size: 0.95em;
-  font-weight: 500;
+  font-weight: 650;
 }
 </style>
 
@@ -138,7 +144,7 @@ author_profile: false
     </div>
     <div class="project-meta-item">
       <span>Tools</span>
-      <span>DNS</span>
+      <span>DNS/HPC</span>
     </div>
     <div class="project-meta-item">
       <span>Year</span>
@@ -157,7 +163,6 @@ author_profile: false
   Moreover, all existing numerical HST studies to date neglect the Basset history force, which accounts for the unsteady diffusion of vorticity in the particle boundary layer and introduces a non-local time convolution over the particle’s past motion. 
   While often omitted due to its substantial computational and memory cost, recent investigations in HIT have demonstrated that the Basset history force can contribute a non-negligible fraction of the particle acceleration (particularly for particles with sizes on the order of the Kolmogorov length scale) and can significantly modify clustering statistics \citep{OlivieriPicano2014PF, Daitche2015JFM}.
   The absence of this force in previous HST studies therefore leaves open fundamental questions regarding its impact on anisotropic clustering, preferential sampling, and the validity of reduced-force models in shear-dominated turbulent flows.
-
 
 
   ## Methodology
