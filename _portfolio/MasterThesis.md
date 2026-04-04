@@ -313,10 +313,27 @@ figure.zoomable img {
 
 <div class="project-body">
 
-  <h1>Introduction: particles in turbulence 🌊</h1>
+  <h1>The problem: particles in turbulence 🌊</h1>
 
   <p>
-    The transport of inertial particles in turbulent flows plays a central role in a wide range of natural and engineering processes, including plankton encounters and ecological interactions in the ocean, droplet growth and collision dynamics in clouds, dust aggregation and the early stages of planetesimal formation in protoplanetary disks, as well as spray formation and combustion processes. In all these systems, a turbulent carrier flow interacts with a dispersed solid or liquid phase, producing highly non-uniform particle distributions. These spatial inhomogeneities have profound implications for collision rates, mixing efficiency, and effective transport properties. A key challenge is therefore to understand where, and under which conditions, particles preferentially accumulate and to identify the physical mechanisms responsible for this behavior.
+    Turbulent flows do not simply transport particles &#8594; they actively <strong>reorganize them in space</strong>.
+    Instead of remaining uniformly distributed, inertial particles spontaneously form
+    <strong>clusters and voids</strong>, leading to highly intermittent concentration fields.
+  </p>
+
+  <p>
+    This phenomenon, known as <strong>preferential concentration</strong>, plays a central role in:
+  </p>
+
+  <ul>
+    <li>cloud droplet growth and collision rates</li>
+    <li>dust aggregation in astrophysical environments</li>
+    <li>mixing and reaction efficiency in combustion systems</li>
+  </ul>
+
+  <p>
+    Understanding <em>where particles accumulate</em>, and more importantly <em>why</em>,
+    is a key challenge in turbulence research.
   </p>
 
   <figure class="zoomable">
@@ -324,15 +341,64 @@ figure.zoomable img {
     <figcaption>Figure 1: Volumetric rendering of an instantaneous flow field. Flow structures are visualized using the \(Q\)-criterion, with darker shades corresponding to lower \(Q\) values. Dark orange markers indicate particle positions, highlighting their preferential concentration in low-\(Q\) regions. Image Credit: Marco Zappoli</figcaption>
   </figure>
 
-  <h1>Methodology 🖥️</h1>
+  <h2>Physical mechanisms 📚</h2>
 
   <p>
-    Differently from the general Rogallo scheme used in previous studies, we performed <strong>Direct Numerical Simulations (DNS)</strong> in a fixed reference frame following the scheme proposed by <a href="https://doi.org/10.1063/1.4942496" target="_blank" rel="noopener">Sekimoto <em>et al.</em> (2016)</a>.
-    A one-way coupled point-particle model based on the <strong>Maxey–Riley–Gatignol (MRG) equation</strong> is considered. To account for the Basset history term, which describes the unsteady diffusion of vorticity in the boundary layer, we implemented and verified an efficient second-order scheme proposed by <a href="https://doi.org/10.1016/j.jcp.2010.11.014" target="_blank" rel="noopener">Van Hinsberg <em>et al.</em> (2011)</a>.
+    Particle clustering is not random &#8594; it emerges from well-defined physical mechanisms
+    arising from the interaction between particle inertia and turbulent structures.
   </p>
 
   <p>
-    Denoting by \(\rho_p\) the particle density, \(V_p\) its volume, \(d_p\) its diameter, and by \(\rho_f\) and \(\nu\) the density and kinematic viscosity of the fluid, respectively, the particle momentum equation reads:
+    Inertial particles tend to:
+  </p>
+
+  <ul>
+    <li>be expelled from rotating regions (vortices)</li>
+    <li>accumulate in strain-dominated regions</li>
+  </ul>
+
+  <p>
+    This leads to the formation of coherent structures of cigar-like shape which evolve dynamically with the underlying turbulence.
+  </p>
+
+  <p>
+    In the presence of <strong>mean shear</strong>, this process becomes even richer:
+    clustering is no longer isotropic, but develops <strong>preferred orientations</strong>,
+    reflecting the anisotropy of the flow.
+  </p>
+
+  <hr>
+
+  <h1>Methodology 🖥️</h1>
+
+  <p>
+    To investigate these mechanisms, we performed <strong>Direct Numerical Simulations (DNS)</strong>
+    of homogeneous shear turbulence, resolving all relevant flow scales without modeling assumptions.
+  </p>
+
+  <p>
+    Particle dynamics are described using a one-way coupled point-particle approach based on the
+    <strong>Maxey–Riley–Gatignol (MRG) equation</strong>.
+  </p>
+
+  <p>
+    Unlike many previous studies, the model includes the <strong>Basset history force</strong>,
+    which accounts for the cumulative effect of past particle–fluid interactions.
+    This term introduces a <em>memory effect</em>, making particle dynamics inherently non-local in time.
+  </p>
+
+  <p>
+    The numerical implementation follows:
+  </p>
+
+  <ul>
+    <li><a href="https://doi.org/10.1063/1.4942496" target="_blank" rel="noopener">Sekimoto <em>et al.</em> (2016)</a> for the shear flow configuration</li>
+    <li><a href="https://doi.org/10.1016/j.jcp.2010.11.014" target="_blank" rel="noopener">Van Hinsberg <em>et al.</em> (2011)</a> for efficient evaluation of the history term</li>
+  </ul>
+
+  <p>
+    Denoting by \(\rho_p\) the particle density, \(V_p\) its volume, and \(\boldsymbol{U}_p\) its velocity,
+    the governing equation reads:
   </p>
 
   <div class="equation-block">
@@ -361,10 +427,22 @@ figure.zoomable img {
     Here \(\boldsymbol{U}\) denotes the undisturbed fluid velocity evaluated at the particle position, \(\boldsymbol{U}_p\) is the particle velocity, and \(D/Dt\) denotes the material derivative.
   </p>
 
+  <p>
+    We analyze particle dynamics across different regimes by varying the Stokes number \(St\)
+    and density ratio \(\rho_p / \rho_f\), focusing on how inertia and memory effects
+    shape clustering and force balance.
+  </p>
+
+  <hr>
+
   <h1>Results 📊</h1>
 
+  <h2>Force balance and memory effects</h2>
+
   <p>
-    The Basset history force relative importance increases as particle size increases.
+    The relative importance of the different forces strongly depends on particle inertia.
+    In particular, the contribution of the <strong>Basset history force</strong> increases
+    with particle size and response time.
   </p>
 
   <figure class="zoomable">
@@ -376,7 +454,16 @@ figure.zoomable img {
   </figure>
 
   <p>
-    The particle distribution shows high dependency on the particle Stokes number \(St\), which measures how quickly the particle responds to the surrounding flow.
+    A key effect of the history force is to <strong>smooth particle dynamics</strong>,
+    reducing extreme fluctuations and limiting strong accelerations.
+    As a result, clustering intensity is modulated and particle distributions become less intermittent.
+  </p>
+
+  <h2>Clustering and preferential sampling</h2>
+
+  <p>
+    Particle spatial organization is strongly controlled by the Stokes number \(St\),
+    which determines how quickly particles respond to the surrounding flow.
   </p>
 
   <figure class="zoomable">
@@ -387,10 +474,51 @@ figure.zoomable img {
     <figcaption>Figure 3: Instantaneous particle configurations for \(\rho_p/\rho_f=10\) (white dots) in the \(x\)&ndash;\(z\) plane, superimposed on the modulus of the vorticity component normal to the plane (lighter regions correspond to higher vorticity). From left to right: \(St=0.1\) and \(St=1\). Image Credit: Marco Zappoli</figcaption>
   </figure>
 
-  <h2>Conclusions</h2>
+  <p>
+    At low \(St\), particles closely follow the fluid motion and remain relatively dispersed.
+    At higher \(St\), inertia dominates, leading to strong segregation and the formation of
+    highly concentrated clusters.
+  </p>
 
   <p>
-    Summarize what was learned and what comes next.
+    Cluster topology shows very high universality acroos all cases studied and also with Homogeneous Isotropic Turbulence.
+    This means that 
+  </p>
+
+  <figure class="zoomable">
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <img src="/images/ClusterPlot.png" alt="St=0.1" style="width: 48%; border-radius: 4px;">
+      <div style="display: flex; flex-direction: column; gap: 12px; width: 48%;">
+        <img src="/images/Cluster_Asphericity.png" alt="St=1 top" style="width: 100%; border-radius: 4px;">
+        <img src="/images/Cluster_Asphericity.png" alt="St=2 bottom" style="width: 100%; border-radius: 4px;">
+      </div>
+    </div>
+    <figcaption>Figure 4: Left: a single coherent cluster, with primary, secondary, and tertiary axes. Right: probability density functions of (top) normalized asphericity and (bottom) normalized acylindricity. Illustrations below each x-axis indicate the typical cluster shape corresponding to the variable’s value. Image Credit: Marco Zappoli</figcaption>
+  </figure>
+
+  <p>
+    These results highlight a fundamental balance:
+  </p>
+
+  <ul>
+    <li><strong>fluid dynamics</strong> drives structure formation</li>
+   <li><strong>particle inertia</strong> controls how strongly particles respond</li>
+   <li><strong>memory effects</strong> modulate and redistribute clustering</li>
+  </ul>
+
+  <hr>
+
+  <h1>Takeaway 🚀</h1>
+
+  <p>
+    Clustering in turbulent shear flows is a robust but highly structured phenomenon,
+    emerging from the interplay between turbulence, inertia, and memory effects.
+  </p>
+
+  <p>
+    Rather than being random, particle distributions exhibit
+    <strong>organized, scale-dependent, and anisotropic patterns</strong>
+    that can significantly impact transport and collision processes.
   </p>
 
   <hr>
