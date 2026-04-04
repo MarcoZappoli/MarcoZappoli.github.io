@@ -14,6 +14,9 @@ main:
   - title: "Publications"
     url: /publications/
 
+  - title: "CV"
+    url: /files/CV_Marco_Zappoli.pdf
+
   #- title: "Talks"
   #  url: /talks/    
 
@@ -22,9 +25,6 @@ main:
         
   #- title: "Blog Posts"
   #  url: /year-archive/
-    
-  - title: "CV"
-    url: /files/CV_Marco_Zappoli.pdf
     
   # - title: "CV"
   #   url: /cv-json/
