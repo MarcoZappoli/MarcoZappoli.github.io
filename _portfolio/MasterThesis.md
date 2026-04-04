@@ -13,6 +13,9 @@ author_profile: false
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/basiclightbox@5/dist/basicLightbox.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basiclightbox@5/dist/basicLightbox.min.css">
+
 <style>
   html, body {
   overflow-x: hidden;
@@ -101,7 +104,7 @@ author_profile: false
   max-width: 500px;
   width: 100%;
   border-radius: 4px;
-  opacity: 0.95;
+  opacity: 1.0;
 }
 
 .project-hero-image p {
@@ -236,7 +239,7 @@ author_profile: false
     The transport of inertial particles in turbulent flows plays a central role in a wide range of natural and engineering processes, including plankton encounters and ecological interactions in the ocean, droplet growth and collision dynamics in clouds, dust aggregation and the early stages of planetesimal formation in protoplanetary disks, as well as spray formation and combustion processes. In all these systems, a turbulent carrier flow interacts with a dispersed solid or liquid phase, producing highly non-uniform particle distributions. These spatial inhomogeneities have profound implications for collision rates, mixing efficiency, and effective transport properties. A key challenge is therefore to understand where, and under which conditions, particles preferentially accumulate and to identify the physical mechanisms responsible for this behavior.
   </p>
 
-  <figure>
+  <figure class="zoomable">
     <img src="/images/Render.png" alt="Result figure" style="max-width: 100%; border-radius: 4px; margin: 20px 0;">
     <figcaption>Figure 1: Volumetric rendering of an instantaneous flow field. Flow structures are visualized using the \(Q\)-criterion, with darker shades corresponding to lower \(Q\) values. Dark orange markers indicate particle positions, highlighting their preferential concentration in low-\(Q\) regions. Image Credit: Marco Zappoli</figcaption>
   </figure>
@@ -289,3 +292,12 @@ author_profile: false
   </p>
 
 </div>
+
+<script>
+  document.querySelectorAll('figure.zoomable img').forEach(img => {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', () => {
+      basicLightbox.create(`<img src="${img.src}" style="max-width:90vw; max-height:90vh;">`).show();
+    });
+  });
+</script>
