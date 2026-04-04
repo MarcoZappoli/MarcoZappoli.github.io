@@ -36,26 +36,24 @@ author_profile: false
   padding: 60px 48px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0;
-  flex-wrap: wrap;
+  position: relative;       /* needed for absolute image */
+  overflow: hidden;         /* clip image if it bleeds out */
   box-sizing: border-box;
   margin-top: 20px;
   margin-bottom: 40px;
+  min-height: 300px;
 
   /* --- BREAKOUT FIX --- */
   width: 100vw;
-  position: relative;
   left: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  /* -------------------- */
 }
 
 .project-hero-text {
   flex: 1;
-  min-width: 280px;
-  max-width: 820px;
+  min-width: 0;             /* allows flex child to shrink below content size */
+  max-width: 60%;           /* never let text go wider than 60% */
   position: relative;
   z-index: 2;
 }
@@ -76,17 +74,24 @@ author_profile: false
 }
 
 .project-hero-image {
-  flex-shrink: 0;
-  text-align: center;
-  position: relative;
+  position: absolute;       /* taken out of flow — no longer competes with text */
+  right: 0;
+  top: 0;
+  height: 100%;
   z-index: 1;
-  margin-left: -60px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding-right: 48px;
 }
 
 .project-hero-image img {
-  max-width: 600px;
+  max-width: 400px;
   width: 100%;
   border-radius: 4px;
+  opacity: 0.85;            /* slight fade so text contrast stays strong */
 }
 
 .project-hero-image p {
