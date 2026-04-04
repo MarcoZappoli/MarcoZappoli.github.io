@@ -190,7 +190,7 @@ html, body {
   border-radius: 0 4px 4px 0;
   font-size: 1.05em;
   background-color: #f8f8f8;
-  color: #111;
+  color: #4f4f4f;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -289,7 +289,7 @@ figure.zoomable img {
   </div>
   <div class="project-hero-image">
     <img src="/images/R10St1_XZ_2083.png" alt="Particle clustering visualization">
-    <p>Image Credit: Marco Zappoli</p>
+    <p><b>Image Credit: Marco Zappoli</b></p>
   </div>
 </div>
 
