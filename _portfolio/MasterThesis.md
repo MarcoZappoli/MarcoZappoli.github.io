@@ -48,7 +48,7 @@ author_profile: false
   box-sizing: border-box;
   margin-top: 20px;
   margin-bottom: 40px;
-  min-height: 300px;
+  min-height: 400px;
 
   /* --- BREAKOUT FIX --- */
   width: 100vw;
@@ -87,7 +87,7 @@ author_profile: false
   right: 0;
   top: 0;
   height: 100%;
-  z-index: 1;
+  z-index: 2;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -184,10 +184,13 @@ author_profile: false
   overflow-x: auto;
   margin: 24px 0;
   padding: 20px 24px;
-  background: #f8f8f8;
   border-left: 3px solid #ff6600;
   border-radius: 0 4px 4px 0;
   font-size: 1.05em;
+
+  /* light mode */
+  background-color: #f8f8f8;
+  color: #111;
 }
 </style>
 
@@ -236,19 +239,31 @@ author_profile: false
   <h1>Methodology</h1>
 
   <p>
-    Differently from the general Rogallo scheme used in previous studies, we performed Direct Numerical Simulations (DNS) in a fixed reference frame following the scheme proposed by <a href="https://doi.org/10.1063/1.4942496" target="_blank" rel="noopener">Sekimoto <em>et al.</em> (2016)</a>. 
-    A one-way coupled point-particle model based on the Maxey-Riley-Gatignol (MRG) equation is considered. To account for the Basset history term, which describes the unsteady diffusion of vorticity in the boundary layer, we implemented and verified an efficient second-order scheme proposed by <a href="https://doi.org/10.1016/j.jcp.2010.11.014" target="_blank" rel="noopener">van Hinsberg <em>et al.</em> (2014)</a>.
+    Differently from the general Rogallo scheme used in previous studies, we performed <b>Direct Numerical Simulations (DNS)</b> in a fixed reference frame following the scheme proposed by <a href="https://doi.org/10.1063/1.4942496" target="_blank" rel="noopener">Sekimoto <em>et al.</em> (2016)</a>. 
+    A one-way coupled point-particle model based on the <b>Maxey-Riley-Gatignol (MRG) equation</b> is considered. To account for the Basset history term, which describes the unsteady diffusion of vorticity in the boundary layer, we implemented and verified an efficient second-order scheme proposed by <a href="https://doi.org/10.1016/j.jcp.2010.11.014" target="_blank" rel="noopener">Van Hinsberg <em>et al.</em> (2011)</a>.
   </p>
 
   <p>The MRG equation governing the particle motion reads:</p>
 
   <div class="equation-block">
   $$
-    m_p \frac{\mathrm{d}\mathbf{v}}{\mathrm{d}t}
-    = \underbrace{m_f \frac{\mathrm{D}\mathbf{u}}{\mathrm{D}t}}_{\text{pressure/added mass}}
-    + \underbrace{6\pi\mu a\left(\mathbf{u} - \mathbf{v}\right)}_{\text{Stokes drag}}
-    + \underbrace{\frac{1}{2}m_f\left(\frac{\mathrm{D}\mathbf{u}}{\mathrm{D}t} - \frac{\mathrm{d}\mathbf{v}}{\mathrm{d}t}\right)}_{\text{added mass}}
-    + \underbrace{6\pi\mu a^2 \int_{t_0}^{t} \frac{\dot{\mathbf{u}} - \dot{\mathbf{v}}}{\sqrt{\pi\nu(t-s)}}\,\mathrm{d}s}_{\text{Basset history force}}
+  \begin{equation}
+  \begin{split}
+  \rho_pV_p\frac{d\boldsymbol{U_p}}{dt} 
+  &= \underbrace{3\pi d_p \rho_f \nu 
+  \left( \boldsymbol{U}-\boldsymbol{U_p} + \frac{1}{6} \left(\frac{d_p}{2}\right)^2 \nabla^2\boldsymbol{U} \right)}_{\textit{Stokes drag}} + \underbrace{\rho_fV_p\frac{D\boldsymbol{U}}{Dt}}_{\textit{Pressure gradient}} \\[3pt]
+  &\quad + \underbrace{\frac{\rho_fV_p}{2}
+  \left( \frac{D\boldsymbol{U}}{Dt}
+  - \frac{d\boldsymbol{U_p}}{dt}
+  + \frac{1}{10}\left(\frac{d_p}{2}\right)^2
+  \frac{d}{dt}\big(\nabla^2\boldsymbol{U}\big) \right)}_{\textit{Added mass}} \\[3pt]
+  &\quad + \underbrace{\frac{3}{2}d_p^2\rho_f\sqrt{\pi\nu}
+  \int_{-\infty}^t K_B(t-\tau)
+  \left( \frac{d\boldsymbol{U}}{d\tau}-\frac{d\boldsymbol{U_p}}{d\tau}
+  + \frac{1}{6}\left(\frac{d_p}{2}\right)^2
+  \frac{d}{d\tau}\left(\nabla^2\boldsymbol{U}\right) \right) d\tau}_{\textit{Basset history force}}
+  \end{split}
+  \end{equation}
   $$
   </div>
 
