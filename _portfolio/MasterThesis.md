@@ -108,6 +108,28 @@ author_profile: false
   padding-bottom: 6px;
 }
 
+.project-body h1 {
+  font-size: 1.8em;
+  font-weight: 700;
+  margin-top: 40px;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 6px;
+}
+
+.project-body p {
+  font-size: 1.05em;
+  line-height: 1.8;
+  margin-bottom: 1.2em;
+}
+
+.project-body img {
+  max-width: 100%;
+  border-radius: 4px;
+  margin: 20px 0;
+  display: block;
+}
+
 .project-meta {
   display: flex;
   justify-content: center; /* This centers the items horizontally */
@@ -157,6 +179,7 @@ author_profile: false
 </div>
 
 <div class="project-body">
+
   <div class="project-meta">
     <div class="project-meta-item">
       <span>Type</span>
@@ -175,32 +198,58 @@ author_profile: false
       <span>2026</span>
     </div>
   </div>
+
+  <h1>Introduction: particles in turbulence 💨</h1>
+
+  <p>
+    The transport of inertial particles in turbulent flows plays a central role in a wide range
+    of natural and engineering processes, including plankton encounters and ecological interactions
+    in the ocean, droplet growth and collision dynamics in clouds, dust aggregation and the early
+    stages of planetesimal formation in protoplanetary disks, as well as spray formation and
+    combustion processes. In all these systems, a turbulent carrier flow interacts with a dispersed
+    solid or liquid phase, producing highly non-uniform particle distributions. These spatial
+    inhomogeneities have profound implications for collision rates, mixing efficiency, and effective
+    transport properties. A key challenge is therefore to understand where, and under which
+    conditions, particles preferentially accumulate and to identify the physical mechanisms
+    responsible for this behavior.
+  </p>
+
+  <h2>Our specific case</h2>
+
+  <p>
+    In this work, we focus on inertial-particle clustering in homogeneous shear turbulence (HST),
+    aiming to isolate the influence of mean shear on clustering mechanisms and anisotropic spatial
+    distributions. Moreover, all existing numerical HST studies to date neglect the Basset history
+    force, which accounts for the unsteady diffusion of vorticity in the particle boundary layer
+    and introduces a non-local time convolution over the particle's past motion.
+  </p>
+
+  <p>
+    While often omitted due to its substantial computational and memory cost, recent investigations
+    in HIT have demonstrated that the Basset history force can contribute a non-negligible fraction
+    of the particle acceleration (particularly for particles with sizes on the order of the
+    Kolmogorov length scale) and can significantly modify clustering statistics. The absence of
+    this force in previous HST studies therefore leaves open fundamental questions regarding its
+    impact on anisotropic clustering, preferential sampling, and the validity of reduced-force
+    models in shear-dominated turbulent flows.
+  </p>
+
+  <h2>Methodology</h2>
+
+  <p>
+    Describe the technical approach — simulation setup, numerical methods, mesh generation, etc.
+  </p>
+
+  <h2>Results</h2>
+
+  <p>Share key findings. You can embed figures here:</p>
+
+  <img src="/images/R10St1_XZ_2083.png" alt="Result figure" style="max-width: 100%; border-radius: 4px; margin: 20px 0;">
+
+  <h2>Conclusions</h2>
+
+  <p>
+    Summarize what was learned and what comes next.
+  </p>
+
 </div>
-
-
-  # Introduction: particles in turbulence 💨
-
-  The transport of inertial particles in turbulent flows plays a central role in a wide range of natural and engineering processes, including plankton encounters and ecological interactions in the ocean, droplet growth and collision dynamics in clouds, dust aggregation and the early stages of planetesimal formation in protoplanetary disks, as well as spray formation and combustion processes.
-  In all these systems, a turbulent carrier flow interacts with a dispersed solid or liquid phase, producing highly non-uniform particle distributions. These spatial inhomogeneities have profound implications for collision rates, mixing efficiency, and effective transport properties. A key challenge is therefore to understand where, and under which conditions, particles preferentially accumulate and to identify the physical mechanisms responsible for this behavior.
-
-  ## Our specific case
-
-  In this work, we focus on inertial-particle clustering in homogeneous shear turbulence (HST), aiming to isolate the influence of mean shear on clustering mechanisms and anisotropic spatial distributions.
-  Moreover, all existing numerical HST studies to date neglect the Basset history force, which accounts for the unsteady diffusion of vorticity in the particle boundary layer and introduces a non-local time convolution over the particle’s past motion. 
-  While often omitted due to its substantial computational and memory cost, recent investigations in HIT have demonstrated that the Basset history force can contribute a non-negligible fraction of the particle acceleration (particularly for particles with sizes on the order of the Kolmogorov length scale) and can significantly modify clustering statistics \citep{OlivieriPicano2014PF, Daitche2015JFM}.
-  The absence of this force in previous HST studies therefore leaves open fundamental questions regarding its impact on anisotropic clustering, preferential sampling, and the validity of reduced-force models in shear-dominated turbulent flows.
-
-
-  ## Methodology
-
-  Describe the technical approach — simulation setup, numerical methods, mesh generation, etc.
-
-  ## Results
-
-  Share key findings. You can embed figures here:
-
-  ![Result figure](/images/R10St1_XZ_2083.png)
-
-  ## Conclusions
-
-  Summarize what was learned and what comes next.
