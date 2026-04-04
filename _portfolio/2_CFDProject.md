@@ -310,13 +310,6 @@ figure.zoomable img {
   </div>
 </div>
 
-  <nav class="pagination">
-    <a class="pagination--pager disabled">Previous</a>
-    <a class="pagination--pager disabled">Next</a>
-  </nav>
-
-</div>
-
 <script>
   const zoomableImages = [];
 
