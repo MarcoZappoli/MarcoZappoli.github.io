@@ -24,6 +24,9 @@ author_profile: false
     float: none !important;
     padding-right: 0 !important;
   }
+  .page__title {
+  display: none !important;
+  }
 </style>
 
 <style>
@@ -54,7 +57,7 @@ author_profile: false
   min-width: 280px;
   max-width: 820px;
   position: relative;
-  z-index: 2;              /* text sits above the overlapping image */
+  z-index: 2;
 }
 
 .project-hero-text h1 {
@@ -77,11 +80,11 @@ author_profile: false
   text-align: center;
   position: relative;
   z-index: 1;
-  margin-left: -60px;      /* pulls image left, overlapping the text */
+  margin-left: -60px;
 }
 
 .project-hero-image img {
-  max-width: 400px;
+  max-width: 600px;
   width: 100%;
   border-radius: 4px;
 }
@@ -93,32 +96,32 @@ author_profile: false
 }
 
 .project-body {
-  max-width: 800px;
+  max-width: 1000px;
 
   margin-left: auto;
   margin-right: auto;
 }
 
-.project-body h2 {
-  font-size: 1.4em;
+.project-body h1 {
+  font-size: 2em;
   font-weight: 700;
   margin-top: 40px;
   margin-bottom: 12px;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid #888;
   padding-bottom: 6px;
 }
 
-.project-body h1 {
-  font-size: 1.8em;
+.project-body h2 {
+  font-size: 1.5em;
   font-weight: 700;
   margin-top: 40px;
   margin-bottom: 12px;
-  border-bottom: 2px solid #000;
+  border-bottom: 1px solid #888;
   padding-bottom: 6px;
 }
 
 .project-body p {
-  font-size: 1.05em;
+  font-size: 1.0em;
   line-height: 1.8;
   margin-bottom: 1.2em;
 }
@@ -132,20 +135,20 @@ author_profile: false
 
 .project-meta {
   display: flex;
-  justify-content: center; /* This centers the items horizontally */
-  align-items: center;    /* This centers them vertically (optional) */
-  gap: 100px;
+  justify-content: center;
+  align-items: center;
+  gap: 130px;
   flex-wrap: wrap;
   margin-bottom: 36px;
-  padding: 20px 0;         /* I reduced the 100px padding so it doesn't conflict with centering */
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  padding: 20px 0;
+  border-top: 2px solid #888;
+  border-bottom: 2px solid #888;
 }
 
 .project-meta-item {
   display: flex;
   flex-direction: column;
-  text-align: center;      /* Ensures the text lines themselves are centered */
+  text-align: center;
   gap: 4px;
 }
 
