@@ -195,7 +195,7 @@ html, body {
 
 @media (prefers-color-scheme: dark) {
   .equation-block {
-    background-color: #1e1e1e;
+    background-color: #4f4f4f;
     color: #e8e8e8;
   }
 }

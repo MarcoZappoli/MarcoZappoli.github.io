@@ -230,6 +230,7 @@ collections:
   portfolio:
     output: true
     permalink: /:collection/:path/
+    pagination: true
   talks:
     output: true
     permalink: /:collection/:path/
@@ -282,6 +283,7 @@ defaults:
       author_profile: true
       share: true
       comment: true
+      pagination: true
   # _talks
   - scope:
       path: ""
