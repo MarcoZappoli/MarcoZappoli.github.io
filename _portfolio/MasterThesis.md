@@ -258,6 +258,23 @@ figure.zoomable img {
     width: 100% !important;
   }
 }
+
+.notice--warning p,
+.notice--info p,
+.notice--danger p,
+.notice--success p {
+  font-size: 0.9em;
+  line-height: 1.5;
+  margin-bottom: 0.5em;
+}
+
+.notice--warning h4,
+.notice--info h4,
+.notice--danger h4,
+.notice--success h4 {
+  margin-top: 0;
+  margin-bottom: 6px;
+}
 </style>
 
 <div class="project-hero">
