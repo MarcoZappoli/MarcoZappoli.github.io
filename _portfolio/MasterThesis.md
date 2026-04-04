@@ -49,7 +49,7 @@ author_profile: false
   align-items: center;
   position: relative;       /* needed for absolute image */
   box-sizing: border-box;
-  margin-top: 20px;
+  margin-top: 0px;
   margin-bottom: 40px;
   min-height: 400px;
 
@@ -251,7 +251,9 @@ author_profile: false
     A one-way coupled point-particle model based on the <b>Maxey-Riley-Gatignol (MRG) equation</b> is considered. To account for the Basset history term, which describes the unsteady diffusion of vorticity in the boundary layer, we implemented and verified an efficient second-order scheme proposed by <a href="https://doi.org/10.1016/j.jcp.2010.11.014" target="_blank" rel="noopener">Van Hinsberg <em>et al.</em> (2011)</a>.
   </p>
 
-  <p>The MRG equation governing the particle motion reads:</p>
+  <p>
+    Denoting by \(\rho_p\) the particle density, \(V_p\) its volume, \(d_p\) its diameter, and by \(\rho_f\) and \(\nu\) the density and kinematic viscosity of the fluid, respectively, the particle momentum equation reads:
+  </p>
 
   <div class="equation-block">
   $$
@@ -279,9 +281,29 @@ author_profile: false
     Here \(\boldsymbol{U}\) denotes the undisturbed fluid velocity evaluated at the particle position, \(\boldsymbol{U}_p\) is the particle velocity, and \(D/Dt\) denotes the material derivative.
   </p>  
 
-  <h1>Particle distribution and cluster topology 📊</h1>
+  <h1>Results 📊</h1>
 
-  <p></p>
+  <p>
+    The Basset history force relative importance increases as particle size increases.
+  </p>
+
+  <figure class="zoomable">
+    <div style="display: flex; gap: 12px; align-items: flex-start;">
+      <div style="position: relative; width: 50%;">
+        <embed src="/files/MRG_R100St0dot1.pdf" type="application/pdf" 
+             style="width: 100%; height: 400px; border-radius: 4px;">
+      </div>
+      <div style="position: relative; width: 50%;">
+        <embed src="/files/MRG_R10St1.pdf" type="application/pdf" 
+             style="width: 100%; height: 400px; border-radius: 4px;">
+      </div>
+    </div>
+    <figcaption>Figure 2: Your caption here.</figcaption>
+  </figure>
+
+  <p>
+    The particle distribution shows high dependency on the particle Stokes number \(St\), which measure how quickly the particle responds to the sorrounding flow.
+  </p>
 
   <img src="/images/R10St1_XZ_2083.png" alt="Result figure" style="max-width: 100%; border-radius: 4px; margin: 20px 0;">
 
@@ -294,10 +316,31 @@ author_profile: false
 </div>
 
 <script>
+  // Zoomable images
   document.querySelectorAll('figure.zoomable img').forEach(img => {
     img.style.cursor = 'zoom-in';
     img.addEventListener('click', () => {
       basicLightbox.create(`<img src="${img.src}" style="max-width:90vw; max-height:90vh;">`).show();
+    });
+  });
+
+  // Zoomable PDF embeds
+  document.querySelectorAll('figure.zoomable embed').forEach(embed => {
+    embed.style.cursor = 'zoom-in';
+    embed.parentElement.style.position = 'relative';
+
+    // overlay a transparent div to capture the click (embed swallows events)
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:absolute; top:0; left:0; width:100%; height:100%; cursor:zoom-in; z-index:10;';
+    embed.parentElement.appendChild(overlay);
+
+    overlay.addEventListener('click', () => {
+      basicLightbox.create(`
+        <iframe 
+          src="${embed.src}" 
+          style="width:90vw; height:90vh; border:none; border-radius:4px;">
+        </iframe>
+      `).show();
     });
   });
 </script>
