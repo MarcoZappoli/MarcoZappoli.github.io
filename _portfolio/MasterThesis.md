@@ -171,7 +171,7 @@ html, body {
   font-weight: 700;
   margin-top: 40px;
   margin-bottom: 12px;
-  border-bottom: 1px solid #888;
+  border-bottom: 1 solid #888;
   padding-bottom: 6px;
 }
 
@@ -263,7 +263,7 @@ figure.zoomable img {
 .notice--info p,
 .notice--danger p,
 .notice--success p {
-  font-size: 0.9em;
+  font-size: 1.1em;
   line-height: 1.5;
   margin-bottom: 0.5em;
 }
@@ -272,6 +272,7 @@ figure.zoomable img {
 .notice--info h4,
 .notice--danger h4,
 .notice--success h4 {
+  font-size: 1.3em;
   margin-top: 0;
   margin-bottom: 6px;
 }
@@ -313,12 +314,11 @@ figure.zoomable img {
 
 <div class="project-body">
 
-  <h1>The problem: particles in turbulence 🌊</h1>
+  <h1>The problem: inertial particles in turbulence 🌊</h1>
 
   <p>
-    Turbulent flows do not simply transport particles &#8594; they actively <strong>reorganize them in space</strong>.
-    Instead of remaining uniformly distributed, inertial particles spontaneously form
-    <strong>clusters and voids</strong>, leading to highly intermittent concentration fields.
+    Unlike passive Lagrangian tracers, inertial particles do not exactly follow the fluid flow.
+    Rather than remaining uniformly distributed, they spontaneously form <strong>clusters and voids</strong>, leading to highly intermittent concentration fields.
   </p>
 
   <p>
@@ -333,19 +333,18 @@ figure.zoomable img {
 
   <p>
     Understanding <em>where particles accumulate</em>, and more importantly <em>why</em>,
-    is a key challenge in turbulence research.
+    remains a key challenge in turbulence research.
   </p>
 
   <figure class="zoomable">
     <img src="/images/Render.png" alt="Volumetric rendering" style="max-width: 100%;">
-    <figcaption>Figure 1: Volumetric rendering of an instantaneous flow field. Flow structures are visualized using the \(Q\)-criterion, with darker shades corresponding to lower \(Q\) values. Dark orange markers indicate particle positions, highlighting their preferential concentration in low-\(Q\) regions. Image Credit: Marco Zappoli</figcaption>
+    <figcaption>Figure 1: Volumetric rendering of an instantaneous flow field. Coherent structures are identified using the \(Q\)-criterion, with darker shades indicating lower \(Q\) values. Dark orange markers denote particle positions, highlighting their preferential accumulation in low-\(Q\) regions (strain-dominated zones). <b>Image Credit: Marco Zappoli</b></figcaption>
   </figure>
 
-  <h2>Physical mechanisms 📚</h2>
+  <h2>Physical mechanisms ⚙️</h2>
 
   <p>
-    Particle clustering is not random &#8594; it emerges from well-defined physical mechanisms
-    arising from the interaction between particle inertia and turbulent structures.
+    Particle clustering is not random; it arises from well-defined mechanisms driven by the interaction between particle inertia and turbulent structures.
   </p>
 
   <p>
@@ -353,18 +352,14 @@ figure.zoomable img {
   </p>
 
   <ul>
-    <li>be expelled from rotating regions (vortices)</li>
+    <li>be expelled from rotating regions (<b>centrifugal mechanism</b>)</li>
     <li>accumulate in strain-dominated regions</li>
+    <li>accumulate in regions of weak fluid acceleration (<b>sweep-stick mechanism</b>)</li>
   </ul>
 
   <p>
-    This leads to the formation of coherent structures of cigar-like shape which evolve dynamically with the underlying turbulence.
-  </p>
-
-  <p>
-    In the presence of <strong>mean shear</strong>, this process becomes even richer:
-    clustering is no longer isotropic, but develops <strong>preferred orientations</strong>,
-    reflecting the anisotropy of the flow.
+    This results in dynamically evolving, cigar-shaped coherent structures. 
+    In the presence of <strong>mean shear</strong>, the distribution becomes anisotropic, developing <strong>preferred orientations</strong> that reflect the flow structure.
   </p>
 
   <hr>
@@ -372,19 +367,17 @@ figure.zoomable img {
   <h1>Methodology 🖥️</h1>
 
   <p>
-    To investigate these mechanisms, we performed <strong>Direct Numerical Simulations (DNS)</strong>
-    of homogeneous shear turbulence, resolving all relevant flow scales without modeling assumptions.
+    To investigate these mechanisms, we perform <strong>Direct Numerical Simulations (DNS)</strong> of <strong>homogeneous shear turbulence</strong>, resolving all relevant scales without modeling assumptions.
   </p>
 
   <p>
-    Particle dynamics are described using a one-way coupled point-particle approach based on the
+    Particle motion is described using a one-way coupled point-particle approach based on the
     <strong>Maxey–Riley–Gatignol (MRG) equation</strong>.
   </p>
 
   <p>
-    Unlike many previous studies, the model includes the <strong>Basset history force</strong>,
-    which accounts for the cumulative effect of past particle–fluid interactions.
-    This term introduces a <em>memory effect</em>, making particle dynamics inherently non-local in time.
+    Unlike many previous studies, our model includes the <strong>Basset history force</strong>, which accounts for unsteady vorticity diffusion in the particle boundary layer.
+    This introduces a <em>memory effect</em>, making the dynamics inherently non-local in time.
   </p>
 
   <p>
@@ -392,8 +385,8 @@ figure.zoomable img {
   </p>
 
   <ul>
-    <li><a href="https://doi.org/10.1063/1.4942496" target="_blank" rel="noopener">Sekimoto <em>et al.</em> (2016)</a> for the shear flow configuration</li>
-    <li><a href="https://doi.org/10.1016/j.jcp.2010.11.014" target="_blank" rel="noopener">Van Hinsberg <em>et al.</em> (2011)</a> for efficient evaluation of the history term</li>
+    <li><a href="https://doi.org/10.1063/1.4942496" target="_blank" rel="noopener">Sekimoto <em>et al.</em> (2016)</a> for the DNS reference frame</li>
+    <li><a href="https://doi.org/10.1016/j.jcp.2010.11.014" target="_blank" rel="noopener">Van Hinsberg <em>et al.</em> (2011)</a> for efficient evaluation of the Basset term</li>
   </ul>
 
   <p>
@@ -428,21 +421,18 @@ figure.zoomable img {
   </p>
 
   <p>
-    We analyze particle dynamics across different regimes by varying the Stokes number \(St\)
-    and density ratio \(\rho_p / \rho_f\), focusing on how inertia and memory effects
-    shape clustering and force balance.
+    We explore different regimes by varying the Stokes number \(St\) and density ratio \(\rho_p / \rho_f\), focusing on how inertia and memory effects influence clustering and force balance.
   </p>
 
   <hr>
 
   <h1>Results 📊</h1>
 
-  <h2>Force balance and memory effects</h2>
+  <h2>Force balance</h2>
 
   <p>
-    The relative importance of the different forces strongly depends on particle inertia.
-    In particular, the contribution of the <strong>Basset history force</strong> increases
-    with particle size and response time.
+    The relative importance of the forces strongly depends on particle parameters.
+    In particular, the contribution of the <strong>Basset history force</strong> increases with particle size.
   </p>
 
   <figure class="zoomable">
@@ -450,92 +440,73 @@ figure.zoomable img {
       <img src="/images/MRG_R100St0dot1.png" alt="MRG R100 St0.1" style="width: 48%; border-radius: 4px;">
       <img src="/images/MRG_R10St1.png" alt="MRG R10 St1" style="width: 48%; border-radius: 4px;">
     </div>
-    <figcaption>Figure 2: Probability density functions of the normalized force contributions \(a_i/a_p\). Main panels use linear&ndash;linear scales, while insets use linear&ndash;logarithmic scales to emphasize distribution tails. Left: \((St=0.1,\,\rho_p/\rho_f=100)\). Right: \((St=1,\,\rho_p/\rho_f=10)\). Image Credit: Marco Zappoli</figcaption>
+    <figcaption>Figure 2: Probability density functions of normalized force contributions \(a_i/a_p\). Main panels use linear–linear scales; insets use linear–logarithmic scales to emphasize rare, intense events. Left: \((St=0.1,\,\rho_p/\rho_f=100)\). Right: \((St=1,\,\rho_p/\rho_f=10)\). <b>Image Credit: Marco Zappoli</b></figcaption>
   </figure>
 
-  <p>
-    A key effect of the history force is to <strong>smooth particle dynamics</strong>,
-    reducing extreme fluctuations and limiting strong accelerations.
-    As a result, clustering intensity is modulated and particle distributions become less intermittent.
-  </p>
-
-  <h2>Clustering and preferential sampling</h2>
+  <h2>Spatial distribution and cluster topology</h2>
 
   <p>
-    Particle spatial organization is strongly controlled by the Stokes number \(St\),
-    which determines how quickly particles respond to the surrounding flow.
+    Particle organization is largely controlled by the Stokes number \(St\), which sets the response time to the flow.
   </p>
 
   <figure class="zoomable">
     <div style="display: flex; gap: 12px; align-items: center;">
-      <img src="/images/R10St0dot1_XZ_2083.png" alt="St=0.1" style="width: 48%; border-radius: 4px;">
-      <img src="/images/R10St1_XZ_2083.png" alt="St=1" style="width: 48%; border-radius: 4px;">
+      <img src="/images/R10St0dot1_XZ_2083.png" alt="R10St0dot1_XZ_2083" style="width: 48%; border-radius: 4px;">
+      <img src="/images/R10St1_XZ_2083.png" alt="R10St1_XZ_2083" style="width: 48%; border-radius: 4px;">
     </div>
-    <figcaption>Figure 3: Instantaneous particle configurations for \(\rho_p/\rho_f=10\) (white dots) in the \(x\)&ndash;\(z\) plane, superimposed on the modulus of the vorticity component normal to the plane (lighter regions correspond to higher vorticity). From left to right: \(St=0.1\) and \(St=1\). Image Credit: Marco Zappoli</figcaption>
+    <figcaption>Figure 3: Instantaneous particle distributions for \(\rho_p/\rho_f=10\) (white dots) in the \(x\)–\(z\) plane, overlaid on the magnitude of the vorticity component normal to the plane (lighter regions indicate higher vorticity). Left: \(St=0.1\); right: \(St=1\), illustrating the transition from near-homogeneous dispersion to pronounced clustering. <b>Image Credit: Marco Zappoli</b></figcaption>
   </figure>
 
   <p>
-    At low \(St\), particles closely follow the fluid motion and remain relatively dispersed.
-    At higher \(St\), inertia dominates, leading to strong segregation and the formation of
-    highly concentrated clusters.
+    At low \(St\), particles closely follow the flow and remain relatively homogeneous.
+    At higher \(St\), they deviate more, leading to strong segregation and concentrated clusters.
   </p>
 
   <p>
-    Cluster topology shows very high universality acroos all cases studied and also with Homogeneous Isotropic Turbulence.
-    This means that 
+    Cluster topology shows remarkable universality across all cases studied, as well as in homogeneous isotropic turbulence.
   </p>
 
   <figure class="zoomable">
     <div style="display: flex; gap: 12px; align-items: center;">
-      <img src="/images/ClusterPlot.png" alt="St=0.1" style="width: 48%; border-radius: 4px;">
-      <div style="display: flex; flex-direction: column; gap: 12px; width: 48%;">
-        <img src="/images/Cluster_Asphericity.png" alt="St=1 top" style="width: 100%; border-radius: 4px;">
-        <img src="/images/Cluster_Asphericity.png" alt="St=2 bottom" style="width: 100%; border-radius: 4px;">
+      <img src="/images/ClusterPlot.png" alt="ClusterPlot" style="width: 55%; border-radius: 4px;">
+      <div style="display: flex; flex-direction: column; gap: 12px; width: 40%;">
+        <img src="/images/Cluster_Asphericity.png" alt="Cluster_Asphericity" style="width: 100%; border-radius: 4px;">
+        <img src="/images/Cluster_Acylindricity.png" alt="Cluster_Acylindricity" style="width: 100%; border-radius: 4px;">
       </div>
     </div>
-    <figcaption>Figure 4: Left: a single coherent cluster, with primary, secondary, and tertiary axes. Right: probability density functions of (top) normalized asphericity and (bottom) normalized acylindricity. Illustrations below each x-axis indicate the typical cluster shape corresponding to the variable’s value. Image Credit: Marco Zappoli</figcaption>
+    <figcaption>Figure 4: Left: example of a coherent particle cluster with its principal axes (primary, secondary, tertiary). Right: probability density functions of normalized asphericity (top) and acylindricity (bottom), quantifying cluster shape. Illustrations below each axis indicate representative geometries associated with the corresponding values. <b>Image Credit: Marco Zappoli</b></figcaption>
   </figure>
-
-  <p>
-    These results highlight a fundamental balance:
-  </p>
-
-  <ul>
-    <li><strong>fluid dynamics</strong> drives structure formation</li>
-   <li><strong>particle inertia</strong> controls how strongly particles respond</li>
-   <li><strong>memory effects</strong> modulate and redistribute clustering</li>
-  </ul>
 
   <hr>
 
-  <h1>Takeaway 🚀</h1>
+  <h1>Takeaway 🎯</h1>
 
   <p>
-    Clustering in turbulent shear flows is a robust but highly structured phenomenon,
+    Clustering in turbulent shear flows is a robust yet highly structured phenomenon,
     emerging from the interplay between turbulence, inertia, and memory effects.
   </p>
 
   <p>
-    Rather than being random, particle distributions exhibit
+    Particle distributions are not random but exhibit
     <strong>organized, scale-dependent, and anisotropic patterns</strong>
-    that can significantly impact transport and collision processes.
+    that significantly influence transport and collision processes.
   </p>
 
   <hr>
 
   <div class="notice--info">
-    <h4>💻 Computational Scope</h4>
+    <h4>🖥️ Computational Scope</h4>
     <p>
-      This thesis required extensive HPC resources. Only general methodology
-      and qualitative results are presented here.
+      This work relies on extensive High-Performance Computing (HPC) resources.
+      Only a subset of the methodology and selected results are presented here.
     </p>
   </div>
 
   <div class="notice--warning">
-    <h4>⚠️ Copyright</h4>
+    <h4>📜 Copyright & Publication Status</h4>
     <p>
-      All simulations, images, and results presented on this page are part of an ongoing manuscript preparation for JFM.
-      All content is <strong>Copyright © Marco Zappoli</strong>. All rights reserved.
+      The simulations, figures, and results shown are part of an ongoing manuscript under preparation for the <em>Journal of Fluid Mechanics (JFM)</em>.
+      <strong>Copyright © Marco Zappoli.</strong> All rights reserved.
     </p>
   </div>
 
