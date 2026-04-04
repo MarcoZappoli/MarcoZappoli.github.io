@@ -195,7 +195,7 @@ html, body {
 
 @media (prefers-color-scheme: dark) {
   .equation-block {
-    background-color: #4f4f4f;
+    background-color: #1e1e1e;
     color: #e8e8e8;
   }
 }
@@ -509,6 +509,13 @@ figure.zoomable img {
       <strong>Copyright © Marco Zappoli.</strong> All rights reserved.
     </p>
   </div>
+
+  <hr>
+
+  <nav class="pagination">
+    <a class="pagination--pager disabled">Previous</a>
+    <a class="pagination--pager disabled">Next</a>
+  </nav>
 
 </div>
 
