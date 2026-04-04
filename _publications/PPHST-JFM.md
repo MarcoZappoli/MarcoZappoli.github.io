@@ -8,4 +8,10 @@ date: 2026-12-12
 venue: "Manuscript in preparation — Journal of Fluid Mechanics"
 ---
 
-Manuscript in preparation. More details available in the <a href="/portfolio/MasterThesis/">Master's thesis portfolio page</a>.
+<style>
+.page__share {
+    display: none !important;
+}
+</style>    
+
+More details available in the <a href="/portfolio/1_MasterThesis">Master's thesis portfolio page</a>.
