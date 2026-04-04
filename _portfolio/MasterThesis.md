@@ -25,7 +25,18 @@ author_profile: false
   align-items: center;
   justify-content: space-between;
   gap: 40px;
-  margin: 20px -52px 40px -52px;
+  
+  /* --- BREAKOUT FIX --- */
+  width: 100vw;           /* Make it as wide as the viewport */
+  position: relative;
+  left: 50%;              /* Move it to the center of the screen */
+  right: 50%;
+  margin-left: -50vw;     /* Pull it back by half the screen width */
+  margin-right: -50vw;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  /* -------------------- */
+
   flex-wrap: wrap;
 }
 
