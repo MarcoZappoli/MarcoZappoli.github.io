@@ -24,29 +24,33 @@ author_profile: false
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
-  flex-wrap: wrap;
-
-  /* Improved Breakout Fix */
-  width: 100vw;
+  gap: 0;
+  
+  /* --- BREAKOUT FIX (no horizontal scroll) --- */
+  width: 100%;
+  box-sizing: border-box;
   position: relative;
   left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  
-  /* Prevent horizontal overflow scrollbar */
-  box-sizing: border-box; 
+  transform: translateX(-50%);
+  margin-left: 0;          /* remove the old -50vw margins */
+  margin-right: 0;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  /* ------------------------------------------ */
+
+  flex-wrap: wrap;
 }
 
 .project-hero-text {
   flex: 1;
   min-width: 280px;
-  max-width: 620px;
+  max-width: 820px;
+  position: relative;
+  z-index: 2;              /* text sits above the overlapping image */
 }
 
 .project-hero-text h1 {
-  font-size: 2.4em;
+  font-size: 2.5em;
   font-weight: 700;
   line-height: 1.2;
   margin: 0 0 20px 0;
@@ -56,13 +60,16 @@ author_profile: false
 .project-hero-text p {
   font-size: 1.1em;
   line-height: 1.7;
-  color: #ccc;
+  color: #cccccc;
   margin: 0;
 }
 
 .project-hero-image {
   flex-shrink: 0;
   text-align: center;
+  position: relative;
+  z-index: 1;
+  margin-left: -60px;      /* pulls image left, overlapping the text */
 }
 
 .project-hero-image img {
@@ -141,7 +148,7 @@ author_profile: false
   </div>
 </div>
 
-<div class="project-body">
+<div class="project-body" markdown="1">
 
   <div class="project-meta">
     <div class="project-meta-item">
