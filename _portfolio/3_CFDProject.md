@@ -286,7 +286,7 @@ figure.zoomable img {
     </p>
   </div>
   <div class="project-hero-image">
-    <img src="/images/bubble_251_nuova.png" alt="Particle clustering visualization">
+    <img src="/images/bubble_251_nuova.png" alt="Streamlines Case 251">
     <p><b>Image Credit: Marco Zappoli</b></p>
   </div>
 </div>
