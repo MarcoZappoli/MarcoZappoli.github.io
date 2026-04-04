@@ -289,8 +289,8 @@ author_profile: false
 
   <figure class="zoomable">
     <div style="display: flex; gap: 12px; align-items: flex-start;">
-      <img src="/images/MRG_R100St0dot1.png" alt="Description 1" style="width: 50%; border-radius: 4px;">
-      <img src="/images/MRG_R10St1.png" alt="Description 2" style="width: 50%; border-radius: 4px;">
+      <img src="/images/MRG_R100St0dot1.png" alt="MRG_R100St0dot1" style="width: 50%; height: 300px; object-fit: cover; border-radius: 4px;">
+      <img src="/images/MRG_R10St1.png" alt="MRG_R10St1" style="width: 50%; height: 300px; object-fit: cover; border-radius: 4px;">
     </div>
     <figcaption>Figure 2: Probability density functions of the normalized force contributions \(a_i/a_p\). Main panels use linear&ndash;linear scales, while insets use linear&ndash;logarithmic scales to emphasize distribution tails. Left: \((St=0.1, \rho_p/\rho_f=100)\). Right: \((St=1, \rho_p/\rho_f=10)\). Image Credit: Marco Zappoli</figcaption>
   </figure>
@@ -301,8 +301,8 @@ author_profile: false
 
   <figure class="zoomable">
     <div style="display: flex; gap: 12px; align-items: flex-start;">
-      <img src="/images/R10St0dot1_XZ_2083.png" alt="Description 1" style="width: 50%; border-radius: 4px;">
-      <img src="/images/R10St1_XZ_2083.png" alt="Description 2" style="width: 50%; border-radius: 4px;">
+      <img src="/images/R10St0dot1_XZ_2083.png" alt="R10St0dot1_XZ_2083" style="width: 50%; height: 300px; object-fit: cover; border-radius: 4px;">
+      <img src="/images/R10St1_XZ_2083.png" alt="R10St1_XZ_2083" style="width: 50%; height: 300px; object-fit: cover; border-radius: 4px;">
     </div>
     <figcaption>Figure 3: Instantaneous particle configurations for \(\rho_p/\rho_f=10\) (white dots) in the \(x\)&ndash;\(z\) plane, superimposed on the modulus of the vorticity component normal to the plane (lighter regions correspond to higher vorticity). From left to right: \(St=0.1\) and \(St=1\). Image Credit: Marco Zappoli</figcaption>
   </figure>
@@ -316,10 +316,65 @@ author_profile: false
 </div>
 
 <script>
+  const zoomableImages = [];
+
   document.querySelectorAll('figure.zoomable img').forEach(img => {
     img.style.cursor = 'zoom-in';
-    img.addEventListener('click', () => {
-      basicLightbox.create(`<img src="${img.src}" style="max-width:90vw; max-height:90vh;">`).show();
-    });
+    zoomableImages.push(img);
+  });
+
+  function openLightbox(index) {
+    const img = zoomableImages[index];
+    const total = zoomableImages.length;
+
+    const instance = basicLightbox.create(`
+      <div style="position: relative; display: flex; align-items: center; justify-content: center;">
+        
+        <button onclick="navigateLightbox(${index - 1})" 
+          style="position: fixed; left: 24px; top: 50%; transform: translateY(-50%);
+                 background: rgba(255,255,255,0.15); border: none; color: white;
+                 font-size: 2em; width: 48px; height: 48px; border-radius: 50%;
+                 cursor: pointer; display: ${index === 0 ? 'none' : 'flex'};
+                 align-items: center; justify-content: center;">
+          &#8249;
+        </button>
+
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+          <img src="${img.src}" style="max-width: 90vw; max-height: 85vh; border-radius: 4px;">
+          <span style="color: #aaa; font-size: 0.85em;">${index + 1} / ${total}</span>
+        </div>
+
+        <button onclick="navigateLightbox(${index + 1})"
+          style="position: fixed; right: 24px; top: 50%; transform: translateY(-50%);
+                 background: rgba(255,255,255,0.15); border: none; color: white;
+                 font-size: 2em; width: 48px; height: 48px; border-radius: 50%;
+                 cursor: pointer; display: ${index === total - 1 ? 'none' : 'flex'};
+                 align-items: center; justify-content: center;">
+          &#8250;
+        </button>
+
+      </div>
+    `);
+
+    window._currentLightbox = instance;
+    instance.show();
+  }
+
+  function navigateLightbox(index) {
+    if (index < 0 || index >= zoomableImages.length) return;
+    if (window._currentLightbox) window._currentLightbox.close();
+    openLightbox(index);
+  }
+
+  zoomableImages.forEach((img, index) => {
+    img.addEventListener('click', () => openLightbox(index));
+  });
+
+  // keyboard navigation
+  document.addEventListener('keydown', e => {
+    if (!window._currentLightbox || !window._currentLightbox.visible()) return;
+    if (e.key === 'ArrowRight') navigateLightbox(window._currentLightbox._index + 1);
+    if (e.key === 'ArrowLeft')  navigateLightbox(window._currentLightbox._index - 1);
+    if (e.key === 'Escape')     window._currentLightbox.close();
   });
 </script>
