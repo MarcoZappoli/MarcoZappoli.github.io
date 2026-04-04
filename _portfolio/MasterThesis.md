@@ -52,8 +52,8 @@ author_profile: false
 
 .project-hero-text {
   flex: 1;
-  min-width: 0;             /* allows flex child to shrink below content size */
-  max-width: 60%;           /* never let text go wider than 60% */
+  min-width: 0;
+  max-width: 60%;
   position: relative;
   z-index: 2;
 }
@@ -62,6 +62,7 @@ author_profile: false
   font-size: 2.5em;
   font-weight: 700;
   line-height: 1.2;
+  max-width: 70%;
   margin: 0 0 20px 0;
   border: none;
 }
@@ -74,7 +75,7 @@ author_profile: false
 }
 
 .project-hero-image {
-  position: absolute;       /* taken out of flow — no longer competes with text */
+  position: absolute;
   right: 0;
   top: 0;
   height: 100%;
@@ -85,13 +86,14 @@ author_profile: false
   align-items: flex-end;
   justify-content: center;
   padding-right: 48px;
+  padding-top: 20px;
 }
 
 .project-hero-image img {
-  max-width: 400px;
+  max-width: 500px;
   width: 100%;
   border-radius: 4px;
-  opacity: 0.85;            /* slight fade so text contrast stays strong */
+  opacity: 0.95;
 }
 
 .project-hero-image p {
