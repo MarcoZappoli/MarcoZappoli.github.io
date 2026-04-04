@@ -288,9 +288,9 @@ author_profile: false
   </p>
 
   <figure class="zoomable">
-    <div style="display: flex; gap: 12px; align-items: flex-start;">
-      <img src="/images/MRG_R100St0dot1.png" alt="MRG_R100St0dot1" style="width: 50%; height: 300px; object-fit: cover; border-radius: 4px;">
-      <img src="/images/MRG_R10St1.png" alt="MRG_R10St1" style="width: 50%; height: 300px; object-fit: cover; border-radius: 4px;">
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <img src="/images/MRG_R100St0dot1.png" alt="MRG_R100St0dot1" style="width: 48%; border-radius: 4px;">
+      <img src="/images/MRG_R10St1.png" alt="MRG_R10St1" style="width: 48%; border-radius: 4px;">
     </div>
     <figcaption>Figure 2: Probability density functions of the normalized force contributions \(a_i/a_p\). Main panels use linear&ndash;linear scales, while insets use linear&ndash;logarithmic scales to emphasize distribution tails. Left: \((St=0.1, \rho_p/\rho_f=100)\). Right: \((St=1, \rho_p/\rho_f=10)\). Image Credit: Marco Zappoli</figcaption>
   </figure>
@@ -300,9 +300,9 @@ author_profile: false
   </p>
 
   <figure class="zoomable">
-    <div style="display: flex; gap: 12px; align-items: flex-start;">
-      <img src="/images/R10St0dot1_XZ_2083.png" alt="R10St0dot1_XZ_2083" style="width: 50%; height: 300px; object-fit: cover; border-radius: 4px;">
-      <img src="/images/R10St1_XZ_2083.png" alt="R10St1_XZ_2083" style="width: 50%; height: 300px; object-fit: cover; border-radius: 4px;">
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <img src="/images/R10St0dot1_XZ_2083.png" alt="R10St0dot1_XZ_2083" style="width: 48%; border-radius: 4px;">
+      <img src="/images/R10St1_XZ_2083.png" alt="R10St1_XZ_2083" style="width: 48%; border-radius: 4px;">
     </div>
     <figcaption>Figure 3: Instantaneous particle configurations for \(\rho_p/\rho_f=10\) (white dots) in the \(x\)&ndash;\(z\) plane, superimposed on the modulus of the vorticity component normal to the plane (lighter regions correspond to higher vorticity). From left to right: \(St=0.1\) and \(St=1\). Image Credit: Marco Zappoli</figcaption>
   </figure>
