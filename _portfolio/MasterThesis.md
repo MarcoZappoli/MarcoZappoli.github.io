@@ -328,33 +328,40 @@ author_profile: false
     const total = zoomableImages.length;
 
     const instance = basicLightbox.create(`
-      <div style="position: relative; display: flex; align-items: center; justify-content: center;">
+      <div style="position: relative; display: flex; align-items: center; justify-content: center; max-width: 95vw;">
 
+        <!-- Left Arrow -->
         <button onclick="navigateLightbox(${index - 1})"
-          style="position: fixed; left: 0; top: 50%; transform: translateY(-50%);
-                 background: rgba(0,0,0,0.4); border: none; color: white;
-                 font-size: 2em; width: 48px; height: 80px;
-                 border-radius: 0 6px 6px 0;
-                 cursor: pointer; display: ${index === 0 ? 'none' : 'flex'};
+          style="position: absolute; left: -60px; top: 50%; transform: translateY(-50%);
+                 background: #111; border: 1px solid #444; color: #fff;
+                 font-size: 2.5em; width: 44px; height: 44px;
+                 border-radius: 6px; cursor: pointer; 
+                 display: ${index === 0 ? 'none' : 'flex'};
                  align-items: center; justify-content: center;
-                 z-index: 9999;">
-          &#8249;
+                 z-index: 9999; transition: background 0.2s;"
+          onmouseover="this.style.background='#333'" onmouseout="this.style.background='#111'">
+          <span style="margin-top: -4px;">&#8249;</span>
         </button>
 
+        <!-- Image Container -->
         <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
-          <img src="${img.src}" style="max-width: 90vw; max-height: 85vh; border-radius: 4px;">
-          <span style="color: #aaa; font-size: 0.85em;">${index + 1} / ${total}</span>
+          <img src="${img.src}" style="max-width: 80vw; max-height: 80vh; border-radius: 4px; box-shadow: 0 0 20px rgba(0,0,0,0.5);">
+          <span style="color: #ccc; font-size: 0.9em; font-weight: 500; background: rgba(0,0,0,0.6); padding: 2px 10px; border-radius: 10px;">
+            ${index + 1} / ${total}
+          </span>
         </div>
 
+        <!-- Right Arrow -->
         <button onclick="navigateLightbox(${index + 1})"
-          style="position: fixed; right: 0; top: 50%; transform: translateY(-50%);
-                 background: rgba(0,0,0,0.4); border: none; color: white;
-                 font-size: 2em; width: 48px; height: 80px;
-                 border-radius: 6px 0 0 6px;
-                 cursor: pointer; display: ${index === total - 1 ? 'none' : 'flex'};
+          style="position: absolute; right: -60px; top: 50%; transform: translateY(-50%);
+                 background: #111; border: 1px solid #444; color: #fff;
+                 font-size: 2.5em; width: 44px; height: 44px;
+                 border-radius: 6px; cursor: pointer; 
+                 display: ${index === total - 1 ? 'none' : 'flex'};
                  align-items: center; justify-content: center;
-                 z-index: 9999;">
-          &#8250;
+                 z-index: 9999; transition: background 0.2s;"
+          onmouseover="this.style.background='#333'" onmouseout="this.style.background='#111'">
+          <span style="margin-top: -4px;">&#8250;</span>
         </button>
 
       </div>
