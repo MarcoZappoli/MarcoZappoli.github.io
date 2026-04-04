@@ -14,4 +14,4 @@ venue: "Manuscript in preparation — Journal of Fluid Mechanics"
 }
 </style>    
 
-More details available in the <a href="{{ '/projects/1_MasterThesis' | relative_url }}">Master's thesis project page</a>.
+More details available in the <a href="/projects/1_MasterThesis">Master's thesis project page</a>.
