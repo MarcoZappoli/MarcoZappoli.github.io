@@ -35,4 +35,15 @@
 </script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
 
+<script>
+  document.querySelectorAll('.greedy-nav a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      if (this.href === window.location.href) {
+        e.preventDefault();
+        window.location.reload();
+      }
+    });
+  });
+</script>
+
 <!-- end custom head snippets -->
