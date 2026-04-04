@@ -289,23 +289,23 @@ author_profile: false
 
   <figure class="zoomable">
     <div style="display: flex; gap: 12px; align-items: flex-start;">
-      <div style="position: relative; width: 50%;">
-        <embed src="/files/MRG_R100St0dot1.pdf" type="application/pdf" 
-             style="width: 100%; height: 400px; border-radius: 4px;">
-      </div>
-      <div style="position: relative; width: 50%;">
-        <embed src="/files/MRG_R10St1.pdf" type="application/pdf" 
-             style="width: 100%; height: 400px; border-radius: 4px;">
-      </div>
+      <img src="/images/MRG_R100St0dot1.png" alt="Description 1" style="width: 50%; border-radius: 4px;">
+      <img src="/images/MRG_R10St1.png" alt="Description 2" style="width: 50%; border-radius: 4px;">
     </div>
-    <figcaption>Figure 2: Your caption here.</figcaption>
+    <figcaption>Figure 2: Probability density functions of the normalized force contributions \(a_i/a_p\). Main panels use linear&ndash;linear scales, while insets use linear&ndash;logarithmic scales to emphasize distribution tails. Left: \((St=0.1, \rho_p/\rho_f=100)\). Right: \((St=1, \rho_p/\rho_f=10)\). Image Credit: Marco Zappoli</figcaption>
   </figure>
 
   <p>
     The particle distribution shows high dependency on the particle Stokes number \(St\), which measure how quickly the particle responds to the sorrounding flow.
   </p>
 
-  <img src="/images/R10St1_XZ_2083.png" alt="Result figure" style="max-width: 100%; border-radius: 4px; margin: 20px 0;">
+  <figure class="zoomable">
+    <div style="display: flex; gap: 12px; align-items: flex-start;">
+      <img src="/images/R10St0dot1_XZ_2083.png" alt="Description 1" style="width: 50%; border-radius: 4px;">
+      <img src="/images/R10St1_XZ_2083.png" alt="Description 2" style="width: 50%; border-radius: 4px;">
+    </div>
+    <figcaption>Figure 3: Instantaneous particle configurations for \(\rho_p/\rho_f=10\) (white dots) in the \(x\)&ndash;\(z\) plane, superimposed on the modulus of the vorticity component normal to the plane (lighter regions correspond to higher vorticity). From left to right: \(St=0.1\) and \(St=1\). Image Credit: Marco Zappoli</figcaption>
+  </figure>
 
   <h2>Conclusions</h2>
 
@@ -316,31 +316,10 @@ author_profile: false
 </div>
 
 <script>
-  // Zoomable images
   document.querySelectorAll('figure.zoomable img').forEach(img => {
     img.style.cursor = 'zoom-in';
     img.addEventListener('click', () => {
       basicLightbox.create(`<img src="${img.src}" style="max-width:90vw; max-height:90vh;">`).show();
-    });
-  });
-
-  // Zoomable PDF embeds
-  document.querySelectorAll('figure.zoomable embed').forEach(embed => {
-    embed.style.cursor = 'zoom-in';
-    embed.parentElement.style.position = 'relative';
-
-    // overlay a transparent div to capture the click (embed swallows events)
-    const overlay = document.createElement('div');
-    overlay.style.cssText = 'position:absolute; top:0; left:0; width:100%; height:100%; cursor:zoom-in; z-index:10;';
-    embed.parentElement.appendChild(overlay);
-
-    overlay.addEventListener('click', () => {
-      basicLightbox.create(`
-        <iframe 
-          src="${embed.src}" 
-          style="width:90vw; height:90vh; border:none; border-radius:4px;">
-        </iframe>
-      `).show();
     });
   });
 </script>
