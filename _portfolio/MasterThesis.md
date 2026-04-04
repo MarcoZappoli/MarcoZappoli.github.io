@@ -6,6 +6,17 @@ author_profile: false
 ---
 
 <style>
+  .sidebar, .author__urls-wrapper, .author__avatar, .author__content {
+    display: none !important;
+  }
+  .page {
+    width: 100% !important;
+    float: none !important;
+    padding-right: 0 !important;
+  }
+</style>
+
+<style>
 .project-hero {
   background-color: #000;
   color: white;
