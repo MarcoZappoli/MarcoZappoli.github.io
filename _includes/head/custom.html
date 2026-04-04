@@ -36,12 +36,15 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
 
 <script>
-  document.querySelectorAll('.greedy-nav a').forEach(link => {
-    link.addEventListener('click', function(e) {
-      if (this.href === window.location.href) {
-        e.preventDefault();
-        window.location.reload();
-      }
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.greedy-nav .visible-links a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        if (this.href === window.location.href || 
+            this.href === window.location.href + '/') {
+          e.preventDefault();
+          window.location.href = this.href;
+        }
+      });
     });
   });
 </script>
