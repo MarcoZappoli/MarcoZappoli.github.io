@@ -38,13 +38,12 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.greedy-nav .visible-links a').forEach(link => {
-      link.addEventListener('click', function(e) {
-        if (this.href === window.location.href || 
-            this.href === window.location.href + '/') {
-          e.preventDefault();
-          window.location.href = this.href;
-        }
-      });
+      const linkPath = new URL(link.href).pathname.replace(/\/$/, '');
+      const currentPath = window.location.pathname.replace(/\/$/, '');
+      
+      if (currentPath !== linkPath) {
+        link.classList.remove('active');
+      }
     });
   });
 </script>
