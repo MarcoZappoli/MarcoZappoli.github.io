@@ -1,6 +1,6 @@
 ---
 title: "Clustering and preferential sampling in homogeneous shear turbulence"
-excerpt: "Master's thesis project on one-way coupled point-particle simulations of inertial particles in homogeneous shear turbulence, using direct numerical simulation (DNS) to quantify clustering and preferential concentration mechanisms.<br/><img src='/images/Render.png'>"
+excerpt: "Master's thesis project on one-way coupled point-particle simulations of inertial particles in homogeneous shear turbulence, using direct numerical simulation (DNS) to quantify clustering and preferential concentration mechanisms."
 collection: portfolio
 author_profile: false
 ---
@@ -230,13 +230,18 @@ author_profile: false
     </div>
   </div>
 
-  <h1>Introduction: particles in turbulence 💨</h1>
+  <h1>Introduction: particles in turbulence 🌊</h1>
 
   <p>
     The transport of inertial particles in turbulent flows plays a central role in a wide range of natural and engineering processes, including plankton encounters and ecological interactions in the ocean, droplet growth and collision dynamics in clouds, dust aggregation and the early stages of planetesimal formation in protoplanetary disks, as well as spray formation and combustion processes. In all these systems, a turbulent carrier flow interacts with a dispersed solid or liquid phase, producing highly non-uniform particle distributions. These spatial inhomogeneities have profound implications for collision rates, mixing efficiency, and effective transport properties. A key challenge is therefore to understand where, and under which conditions, particles preferentially accumulate and to identify the physical mechanisms responsible for this behavior.
   </p>
 
-  <h1>Methodology</h1>
+  <figure>
+    <img src="/images/Render.png" alt="Result figure" style="max-width: 100%; border-radius: 4px; margin: 20px 0;">
+    <figcaption>Figure 1: Volumetric rendering of an instantaneous flow field. Flow structures are visualized using the \(Q\)-criterion, with darker shades corresponding to lower \(Q\) values. Dark orange markers indicate particle positions, highlighting their preferential concentration in low-\(Q\) regions. Image Credit: Marco Zappoli</figcaption>
+  </figure>
+
+  <h1>Methodology 🖥️</h1>
 
   <p>
     Differently from the general Rogallo scheme used in previous studies, we performed <b>Direct Numerical Simulations (DNS)</b> in a fixed reference frame following the scheme proposed by <a href="https://doi.org/10.1063/1.4942496" target="_blank" rel="noopener">Sekimoto <em>et al.</em> (2016)</a>. 
@@ -267,9 +272,13 @@ author_profile: false
   $$
   </div>
 
-  <h2>Results</h2>
+  <p>
+    Here \(\boldsymbol{U}\) denotes the undisturbed fluid velocity evaluated at the particle position, \(\boldsymbol{U}_p\) is the particle velocity, and \(D/Dt\) denotes the material derivative.
+  </p>  
 
-  <p>Share key findings. You can embed figures here:</p>
+  <h1>Particle distribution and cluster topology 📊</h1>
+
+  <p></p>
 
   <img src="/images/R10St1_XZ_2083.png" alt="Result figure" style="max-width: 100%; border-radius: 4px; margin: 20px 0;">
 
