@@ -340,7 +340,7 @@ author_profile: false
                  align-items: center; justify-content: center;
                  z-index: 9999; transition: background 0.2s;"
           onmouseover="this.style.background='#333'" onmouseout="this.style.background='#111'">
-          <span style="margin-top: -4px;">&#8249;</span>
+          &#8249;
         </button>
 
         <!-- Image Container -->
@@ -361,7 +361,7 @@ author_profile: false
                  align-items: center; justify-content: center;
                  z-index: 9999; transition: background 0.2s;"
           onmouseover="this.style.background='#333'" onmouseout="this.style.background='#111'">
-          <span style="margin-top: -4px;">&#8250;</span>
+          &#8250;
         </button>
 
       </div>
