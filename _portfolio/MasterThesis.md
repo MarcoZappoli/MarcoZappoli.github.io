@@ -70,6 +70,7 @@ author_profile: false
 .project-hero-text p {
   font-size: 1.1em;
   line-height: 1.7;
+  max-width: 70%;
   color: #cccccc;
   margin: 0;
 }
