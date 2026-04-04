@@ -53,7 +53,7 @@ author_profile: false
 .project-hero-text {
   flex: 1;
   min-width: 0;
-  max-width: 60%;
+  max-width: 80%;
   position: relative;
   z-index: 2;
 }
@@ -232,9 +232,6 @@ author_profile: false
     distributions. Moreover, all existing numerical HST studies to date neglect the Basset history
     force, which accounts for the unsteady diffusion of vorticity in the particle boundary layer
     and introduces a non-local time convolution over the particle's past motion.
-  </p>
-
-  <p>
     While often omitted due to its substantial computational and memory cost, recent investigations
     in HIT have demonstrated that the Basset history force can contribute a non-negligible fraction
     of the particle acceleration (particularly for particles with sizes on the order of the
