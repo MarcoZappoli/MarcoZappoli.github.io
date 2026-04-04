@@ -5,6 +5,14 @@ collection: portfolio
 author_profile: false
 ---
 
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
 <style>
   html, body {
   overflow-x: hidden;
@@ -37,7 +45,6 @@ author_profile: false
   display: flex;
   align-items: center;
   position: relative;       /* needed for absolute image */
-  overflow: hidden;         /* clip image if it bleeds out */
   box-sizing: border-box;
   margin-top: 20px;
   margin-bottom: 40px;
@@ -172,6 +179,16 @@ author_profile: false
   font-size: 0.95em;
   font-weight: 650;
 }
+
+.equation-block {
+  overflow-x: auto;
+  margin: 24px 0;
+  padding: 20px 24px;
+  background: #f8f8f8;
+  border-left: 3px solid #ff6600;
+  border-radius: 0 4px 4px 0;
+  font-size: 1.05em;
+}
 </style>
 
 <div class="project-hero">
@@ -213,40 +230,27 @@ author_profile: false
   <h1>Introduction: particles in turbulence 💨</h1>
 
   <p>
-    The transport of inertial particles in turbulent flows plays a central role in a wide range
-    of natural and engineering processes, including plankton encounters and ecological interactions
-    in the ocean, droplet growth and collision dynamics in clouds, dust aggregation and the early
-    stages of planetesimal formation in protoplanetary disks, as well as spray formation and
-    combustion processes. In all these systems, a turbulent carrier flow interacts with a dispersed
-    solid or liquid phase, producing highly non-uniform particle distributions. These spatial
-    inhomogeneities have profound implications for collision rates, mixing efficiency, and effective
-    transport properties. A key challenge is therefore to understand where, and under which
-    conditions, particles preferentially accumulate and to identify the physical mechanisms
-    responsible for this behavior.
+    The transport of inertial particles in turbulent flows plays a central role in a wide range of natural and engineering processes, including plankton encounters and ecological interactions in the ocean, droplet growth and collision dynamics in clouds, dust aggregation and the early stages of planetesimal formation in protoplanetary disks, as well as spray formation and combustion processes. In all these systems, a turbulent carrier flow interacts with a dispersed solid or liquid phase, producing highly non-uniform particle distributions. These spatial inhomogeneities have profound implications for collision rates, mixing efficiency, and effective transport properties. A key challenge is therefore to understand where, and under which conditions, particles preferentially accumulate and to identify the physical mechanisms responsible for this behavior.
   </p>
 
-  <h2>Our specific case</h2>
+  <h1>Methodology</h1>
 
   <p>
-    In this work, we focus on inertial-particle clustering in homogeneous shear turbulence (HST),
-    aiming to isolate the influence of mean shear on clustering mechanisms and anisotropic spatial
-    distributions. Moreover, all existing numerical HST studies to date neglect the Basset history
-    force, which accounts for the unsteady diffusion of vorticity in the particle boundary layer
-    and introduces a non-local time convolution over the particle's past motion.
-    While often omitted due to its substantial computational and memory cost, recent investigations
-    in HIT have demonstrated that the Basset history force can contribute a non-negligible fraction
-    of the particle acceleration (particularly for particles with sizes on the order of the
-    Kolmogorov length scale) and can significantly modify clustering statistics. The absence of
-    this force in previous HST studies therefore leaves open fundamental questions regarding its
-    impact on anisotropic clustering, preferential sampling, and the validity of reduced-force
-    models in shear-dominated turbulent flows.
+    Differently from the general Rogallo scheme used in previous studies, we performed Direct Numerical Simulations (DNS) in a fixed reference frame following the scheme proposed by <a href="https://doi.org/10.1063/1.4942496" target="_blank" rel="noopener">Sekimoto <em>et al.</em> (2016)</a>. 
+    A one-way coupled point-particle model based on the Maxey-Riley-Gatignol (MRG) equation is considered. To account for the Basset history term, which describes the unsteady diffusion of vorticity in the boundary layer, we implemented and verified an efficient second-order scheme proposed by <a href="https://doi.org/10.1016/j.jcp.2010.11.014" target="_blank" rel="noopener">van Hinsberg <em>et al.</em> (2014)</a>.
   </p>
 
-  <h2>Methodology</h2>
+  <p>The MRG equation governing the particle motion reads:</p>
 
-  <p>
-    Describe the technical approach — simulation setup, numerical methods, mesh generation, etc.
-  </p>
+  <div class="equation-block">
+  $$
+    m_p \frac{\mathrm{d}\mathbf{v}}{\mathrm{d}t}
+    = \underbrace{m_f \frac{\mathrm{D}\mathbf{u}}{\mathrm{D}t}}_{\text{pressure/added mass}}
+    + \underbrace{6\pi\mu a\left(\mathbf{u} - \mathbf{v}\right)}_{\text{Stokes drag}}
+    + \underbrace{\frac{1}{2}m_f\left(\frac{\mathrm{D}\mathbf{u}}{\mathrm{D}t} - \frac{\mathrm{d}\mathbf{v}}{\mathrm{d}t}\right)}_{\text{added mass}}
+    + \underbrace{6\pi\mu a^2 \int_{t_0}^{t} \frac{\dot{\mathbf{u}} - \dot{\mathbf{v}}}{\sqrt{\pi\nu(t-s)}}\,\mathrm{d}s}_{\text{Basset history force}}
+  $$
+  </div>
 
   <h2>Results</h2>
 
