@@ -6,6 +6,9 @@ author_profile: false
 ---
 
 <style>
+  html, body {
+    overflow-x: hidden;
+  }
   .sidebar, .author__urls-wrapper, .author__avatar, .author__content {
     display: none !important;
   }
@@ -25,20 +28,18 @@ author_profile: false
   align-items: center;
   justify-content: space-between;
   gap: 0;
-  
-  /* --- BREAKOUT FIX (no horizontal scroll) --- */
-  width: 100%;
+  flex-wrap: wrap;
   box-sizing: border-box;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-left: 0;          /* remove the old -50vw margins */
-  margin-right: 0;
   margin-top: 20px;
   margin-bottom: 40px;
-  /* ------------------------------------------ */
 
-  flex-wrap: wrap;
+  /* --- BREAKOUT FIX --- */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  /* -------------------- */
 }
 
 .project-hero-text {
@@ -169,7 +170,8 @@ author_profile: false
     </div>
   </div>
 
-  <br>
+<div>
+
 
   # Introduction: particles in turbulence 💨
 
@@ -197,5 +199,3 @@ author_profile: false
   ## Conclusions
 
   Summarize what was learned and what comes next.
-
-</div>
