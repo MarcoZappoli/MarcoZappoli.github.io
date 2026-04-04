@@ -329,13 +329,15 @@ author_profile: false
 
     const instance = basicLightbox.create(`
       <div style="position: relative; display: flex; align-items: center; justify-content: center;">
-        
-        <button onclick="navigateLightbox(${index - 1})" 
-          style="position: fixed; left: 24px; top: 50%; transform: translateY(-50%);
-                 background: rgba(255,255,255,0.15); border: none; color: white;
-                 font-size: 2em; width: 48px; height: 48px; border-radius: 50%;
+
+        <button onclick="navigateLightbox(${index - 1})"
+          style="position: fixed; left: 0; top: 50%; transform: translateY(-50%);
+                 background: rgba(0,0,0,0.4); border: none; color: white;
+                 font-size: 2em; width: 48px; height: 80px;
+                 border-radius: 0 6px 6px 0;
                  cursor: pointer; display: ${index === 0 ? 'none' : 'flex'};
-                 align-items: center; justify-content: center;">
+                 align-items: center; justify-content: center;
+                 z-index: 9999;">
           &#8249;
         </button>
 
@@ -345,11 +347,13 @@ author_profile: false
         </div>
 
         <button onclick="navigateLightbox(${index + 1})"
-          style="position: fixed; right: 24px; top: 50%; transform: translateY(-50%);
-                 background: rgba(255,255,255,0.15); border: none; color: white;
-                 font-size: 2em; width: 48px; height: 48px; border-radius: 50%;
+          style="position: fixed; right: 0; top: 50%; transform: translateY(-50%);
+                 background: rgba(0,0,0,0.4); border: none; color: white;
+                 font-size: 2em; width: 48px; height: 80px;
+                 border-radius: 6px 0 0 6px;
                  cursor: pointer; display: ${index === total - 1 ? 'none' : 'flex'};
-                 align-items: center; justify-content: center;">
+                 align-items: center; justify-content: center;
+                 z-index: 9999;">
           &#8250;
         </button>
 
@@ -357,6 +361,7 @@ author_profile: false
     `);
 
     window._currentLightbox = instance;
+    window._currentLightbox._index = index;
     instance.show();
   }
 
