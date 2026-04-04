@@ -41,6 +41,10 @@ html, body {
   display: none !important;
 }
 
+.page__share {
+  display: none !important;
+}
+
 /* ── Hero ── */
 .project-hero {
   background-color: #000;
@@ -94,6 +98,7 @@ html, body {
   align-items: flex-end;
   justify-content: center;
   padding-right: 48px;
+  padding-top: 20px;
 }
 
 .project-hero-image img {
@@ -116,7 +121,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 80px;
+  gap: 140px;
   flex-wrap: wrap;
   margin: 36px auto;
   padding: 20px 0;
@@ -137,12 +142,12 @@ html, body {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #ff6600;
-  font-weight: 650;
+  font-weight: 700;
 }
 
 .project-meta-item span:last-child {
   font-size: 0.95em;
-  font-weight: 650;
+  font-weight: 700;
 }
 
 /* ── Body ── */
@@ -370,6 +375,24 @@ figure.zoomable img {
   <p>
     Summarize what was learned and what comes next.
   </p>
+
+  <hr>
+
+  <div class="notice--info">
+    <h4>💻 Computational Scope</h4>
+    <p>
+      This thesis required extensive HPC resources. Only general methodology
+      and qualitative results are presented here.
+    </p>
+  </div>
+
+  <div class="notice--warning">
+    <h4>⚠️ Copyright</h4>
+    <p>
+      All simulations, images, and results presented on this page are part of an ongoing manuscript preparation for JFM.
+      All content is <strong>Copyright © Marco Zappoli</strong>. All rights reserved.
+    </p>
+  </div>
 
 </div>
 
