@@ -333,14 +333,19 @@ author_profile: false
         <!-- Left Arrow -->
         <button onclick="navigateLightbox(${index - 1})"
           style="position: absolute; left: -60px; top: 50%; transform: translateY(-50%);
-                 background: #111; border: 1px solid #444; color: #fff;
-                 font-size: 2.5em; width: 44px; height: 44px;
-                 border-radius: 6px; cursor: pointer; 
-                 display: ${index === 0 ? 'none' : 'flex'};
-                 align-items: center; justify-content: center;
-                 z-index: 9999; transition: background 0.2s;"
+          background: #111; border: 1px solid #444;
+          width: 44px; height: 44px;
+          border-radius: 6px; cursor: pointer; 
+          display: ${index === 0 ? 'none' : 'flex'};
+          align-items: center; justify-content: center;
+          z-index: 9999; transition: background 0.2s; padding: 0;"
           onmouseover="this.style.background='#333'" onmouseout="this.style.background='#111'">
-          &#8249;
+          <div style="width: 0; height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-right: 12px solid white;
+            margin-right: 2px;">
+          </div>
         </button>
 
         <!-- Image Container -->
@@ -354,14 +359,19 @@ author_profile: false
         <!-- Right Arrow -->
         <button onclick="navigateLightbox(${index + 1})"
           style="position: absolute; right: -60px; top: 50%; transform: translateY(-50%);
-                 background: #111; border: 1px solid #444; color: #fff;
-                 font-size: 2.5em; width: 44px; height: 44px;
-                 border-radius: 6px; cursor: pointer; 
-                 display: ${index === total - 1 ? 'none' : 'flex'};
-                 align-items: center; justify-content: center;
-                 z-index: 9999; transition: background 0.2s;"
+          background: #111; border: 1px solid #444;
+          width: 44px; height: 44px;
+          border-radius: 6px; cursor: pointer;
+          display: ${index === total - 1 ? 'none' : 'flex'};
+          align-items: center; justify-content: center;
+          z-index: 9999; transition: background 0.2s; padding: 0;"
           onmouseover="this.style.background='#333'" onmouseout="this.style.background='#111'">
-          &#8250;
+          <div style="width: 0; height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-left: 12px solid white;
+            margin-left: 2px;">
+          </div>
         </button>
 
       </div>
