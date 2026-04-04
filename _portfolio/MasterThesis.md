@@ -7,7 +7,14 @@ author_profile: false
 
 <style>
   html, body {
-    overflow-x: hidden;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  }
+  .page__inner-wrap,
+  .page {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
   }
   .sidebar, .author__urls-wrapper, .author__avatar, .author__content {
     display: none !important;
@@ -149,8 +156,7 @@ author_profile: false
   </div>
 </div>
 
-<div class="project-body" markdown="1">
-
+<div class="project-body">
   <div class="project-meta">
     <div class="project-meta-item">
       <span>Type</span>
@@ -169,8 +175,7 @@ author_profile: false
       <span>2026</span>
     </div>
   </div>
-
-<div>
+</div>
 
 
   # Introduction: particles in turbulence 💨
