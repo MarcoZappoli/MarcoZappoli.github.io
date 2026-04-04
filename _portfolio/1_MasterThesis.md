@@ -397,7 +397,7 @@ figure.zoomable img {
 
   <div class="equation-block">
   $$
-  \begin{equation}
+  \begin{equation*}
   \begin{split}
   \rho_pV_p\frac{d\boldsymbol{U_p}}{dt} 
   &= \underbrace{3\pi d_p \rho_f \nu 
@@ -413,7 +413,7 @@ figure.zoomable img {
   + \frac{1}{6}\left(\frac{d_p}{2}\right)^2
   \frac{d}{d\tau}\left(\nabla^2\boldsymbol{U}\right) \right) d\tau}_{\textit{Basset history force}}
   \end{split}
-  \end{equation}
+  \end{equation*}
   $$
   </div>
 
