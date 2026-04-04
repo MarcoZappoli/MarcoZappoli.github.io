@@ -2,6 +2,7 @@
 title: "Impact of Ice Formation on the Aerodynamic Performance of the NACA 23012 Airfoil"
 excerpt: "Steady RANS simulations were conducted to compare a clean configuration against three iced geometries, specifically investigating how complex ice shapes trigger premature flow separation and stall."
 collection: portfolio
+permalink: /projects/3_CFDProject
 author_profile: false
 ---
 

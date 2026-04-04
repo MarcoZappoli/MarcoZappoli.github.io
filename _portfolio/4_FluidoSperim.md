@@ -2,6 +2,7 @@
 title: "Experimental Wind Tunnel Testing: Advanced Measurement and Flow Characterization"
 excerpt: "This project presents three wind tunnel studies: force measurements on a NACA 0015 airfoil, pressure and wake analysis on a NACA 23012 airfoil, and PIV-based flow characterization of a side-by-side eVTOL propeller system."
 collection: portfolio
+permalink: /projects/4_FluidoSperim
 author_profile: false
 ---
 

@@ -2,6 +2,7 @@
 title: "FOSSER: Formation-flight Optimization for a SubSonic mission with Extended Range"
 excerpt: "This study analyzes aerodynamic efficiency in two-ship fighter formations, combining the Vortex Lattice Method with optimization techniques (PSO and Kriging) to reduce induced drag and identify optimal configurations."
 collection: portfolio
+permalink: /projects/2_ProgettoAero
 author_profile: false
 ---
 
