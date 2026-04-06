@@ -339,7 +339,7 @@ figure.zoomable img {
 
   <figure class="zoomable">
     <img src="/images/Render.png" alt="Volumetric rendering" style="max-width: 100%;">
-    <figcaption>Figure 1: Volumetric rendering of an instantaneous flow field. Coherent structures are identified using the \(Q\)-criterion, with darker shades indicating lower \(Q\) values. Dark orange markers denote particle positions, highlighting their preferential accumulation in low-\(Q\) regions (strain-dominated zones). <b>Image Credit: Marco Zappoli</b></figcaption>
+    <figcaption>Figure 1: Volumetric rendering of an instantaneous flow field. Coherent structures are visualized using the \(Q\)-criterion, with shading representing qualitative variations. Dark orange markers denote particle positions, illustrating their preferential localization within strain-dominated regions. <b>Image Credit: Marco Zappoli</b></figcaption>
   </figure>
 
   <h2>Physical mechanisms ⚙️</h2>
@@ -441,7 +441,7 @@ figure.zoomable img {
       <img src="/images/MRG_R100St0dot1.png" alt="MRG R100 St0.1" style="width: 48%; border-radius: 4px;">
       <img src="/images/MRG_R10St1.png" alt="MRG R10 St1" style="width: 48%; border-radius: 4px;">
     </div>
-    <figcaption>Figure 2: Probability density functions of normalized force contributions \(a_i/a_p\). Main panels use linear–linear scales; insets use linear–logarithmic scales to emphasize rare, intense events. Left: \((St=0.1,\,\rho_p/\rho_f=100)\). Right: \((St=1,\,\rho_p/\rho_f=10)\). <b>Image Credit: Marco Zappoli</b></figcaption>
+    <figcaption>Figure 2: Probability density functions of normalized force contributions \(a_i/a_p\). The main panels are shown on linear scales, while linear–logarithmic insets highlight the tails of the distributions. The left panel corresponds to smaller particles, illustrating qualitative differences in the statistics across cases. <b>Image Credit: Marco Zappoli</b></figcaption>
   </figure>
 
   <h2>Spatial distribution and cluster topology</h2>
@@ -455,7 +455,7 @@ figure.zoomable img {
       <img src="/images/R10St0dot1_XZ_2083.png" alt="R10St0dot1_XZ_2083" style="width: 48%; border-radius: 4px;">
       <img src="/images/R10St1_XZ_2083.png" alt="R10St1_XZ_2083" style="width: 48%; border-radius: 4px;">
     </div>
-    <figcaption>Figure 3: Instantaneous particle distributions for \(\rho_p/\rho_f=10\) (white dots) in the \(x\)–\(z\) plane, overlaid on the magnitude of the vorticity component normal to the plane (lighter regions indicate higher vorticity). Left: \(St=0.1\); right: \(St=1\), illustrating the transition from near-homogeneous dispersion to pronounced clustering. <b>Image Credit: Marco Zappoli</b></figcaption>
+    <figcaption>Figure 3: Instantaneous particle distributions (white dots) in the \(x\)–\(z\) plane, overlaid on the magnitude of the vorticity component normal to the plane (lighter regions indicate higher vorticity). The left panel corresponds to lower Stokes numbers, while the right corresponds to higher Stokes numbers, illustrating the transition from near-homogeneous dispersion to enhanced clustering. <b>Image Credit: Marco Zappoli</b></figcaption>
   </figure>
 
   <p>
@@ -507,6 +507,7 @@ figure.zoomable img {
     <h4>📜 Copyright & Publication Status</h4>
     <p>
       The simulations, figures, and results shown are part of an ongoing manuscript under preparation for the <em>Journal of Fluid Mechanics (JFM)</em>.
+      The material presented here is intended for <strong>qualitative illustration only</strong>; quantitative data, scales, and parameters have been intentionally omitted or modified.
       <strong>Copyright © Marco Zappoli.</strong> All rights reserved.
     </p>
   </div>
