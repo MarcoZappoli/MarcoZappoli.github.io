@@ -8,26 +8,14 @@ redirect_from:
   - /about.html
 ---
 
-<div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
+![Illustration of combining vision and language modalities](/images/Render.png){: .align-right width="300px"}
+## 👋🏻 Hello, I'm Marco
 
-  <!-- TEXT -->
-  <div style="flex: 1; min-width: 250px;">
-    <h2>👋🏻 Hello, I'm Marco</h2>
-    <p>
-      👨🏻‍🎓 MSc in Aeronautical Engineering &ndash; Politecnico di Milano <br><br>
-      🔬 Focus: turbulence, multiphase flows, and CFD <br><br>
-      📍 Based in Verbania, Italy
-    </p>
-  </div>
+👨🏻‍🎓 MSc in Aeronautical Engineering &ndash; Politecnico di Milano 
 
-  <!-- IMAGE -->
-  <div style="flex: 0 0 280px; text-align: center;">
-    <img src="/images/Render.png" 
-         alt="Render" 
-         style="width: 100%; max-width: 280px; border-radius: 10px;">
-  </div>
+🔬 Focus: turbulence, multiphase flows, and CFD
 
-</div>
+📍 Based in Verbania, Italy
 
 ---
 
