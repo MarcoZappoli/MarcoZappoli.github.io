@@ -8,6 +8,27 @@ redirect_from:
   - /about.html
 ---
 
+<div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
+
+  <!-- TEXT -->
+  <div style="flex: 1; min-width: 250px;">
+    <h2>👋🏻 Hello, I'm Marco</h2>
+    <p>
+      👨🏻‍🎓 MSc in Aeronautical Engineering — Politecnico di Milano <br>
+      🔬 Focus: turbulence, multiphase flows, and CFD <br>
+      📍 Based in Verbania, Italy
+    </p>
+  </div>
+
+  <!-- IMAGE -->
+  <div style="flex: 0 0 220px; text-align: center;">
+    <img src="/images/Render.png" 
+         alt="Render" 
+         style="width: 100%; max-width: 220px; border-radius: 10px;">
+  </div>
+
+</div>
+
 ## 👋🏻 Hello, I'm Marco
 
 👨🏻‍🎓 MSc in Aeronautical Engineering — Politecnico di Milano 
@@ -50,7 +71,7 @@ Explore my projects:
 - CFD analysis of <b>ice accretion on airfoils</b>     
 - <b>Wind tunnel experiments</b> (forces, wake, PIV)  
 
-➡️ [Go to Projects](/projects/)
+➡️ [Go to Portfolio](/portfolio/)
 
 ---
 
