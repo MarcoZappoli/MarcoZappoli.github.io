@@ -14,8 +14,8 @@ redirect_from:
   <div style="flex: 1; min-width: 250px;">
     <h2>👋🏻 Hello, I'm Marco</h2>
     <p>
-      👨🏻‍🎓 MSc in Aeronautical Engineering &ndash; Politecnico di Milano <br>
-      🔬 Focus: turbulence, multiphase flows, and CFD <br>
+      👨🏻‍🎓 MSc in Aeronautical Engineering &ndash; Politecnico di Milano <br><br>
+      🔬 Focus: turbulence, multiphase flows, and CFD <br><br>
       📍 Based in Verbania, Italy
     </p>
   </div>
