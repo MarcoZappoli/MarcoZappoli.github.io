@@ -413,7 +413,7 @@ figure.zoomable img {
   <ul>
     <li>
       <b>Rime ice (Case-241):</b> Moderate impact, primarily increasing the effective chord and inducing localized separation. 
-      <br>\(\leftarrow\) Stall angle reduced from \(\approx 15^\circ\) to \(\approx 12^\circ\).
+      <br>\(\rightarrow\) Stall angle reduced from \(\approx 15^\circ\) to \(\approx 12^\circ\).
     </li>
     <li>
       <b>Glaze ice (Case-242, Case-251):</b> Severe degradation due to <b>horn-shaped leading-edge formations</b>.
