@@ -322,6 +322,17 @@ figure.zoomable img {
   transform: scale(1.01);
 }
 
+/* Fine vertical alignment correction */
+.hover-fade .hover {
+  transform: translateY(6px); /* adjust this value */
+}
+
+/* Keep hover animation */
+.hover-fade:hover .hover {
+  opacity: 1;
+  transform: translateY(6px) scale(1.01);
+}
+
 /* ── Overlay label (caption-style) ── */
 .label {
   position: absolute;
@@ -381,6 +392,49 @@ figure.zoomable img {
 @media (max-width: 768px) {
   .hover-grid {
     flex-direction: column;
+  }
+}
+
+/* ── Clickable PDF box ── */
+.notice--pdf {
+  display: block;
+  margin-top: 40px;
+  padding: 18px 22px;
+  border-left: 4px solid #ff6600;
+  background: #f8f8f8;
+  border-radius: 4px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+.notice--pdf:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.notice--pdf h4 {
+  margin: 0 0 6px 0;
+}
+
+.notice--pdf p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #555;
+}
+
+@media (prefers-color-scheme: dark) {
+  .notice--pdf {
+    background: #1e1e1e;
+  }
+
+  .notice--pdf:hover {
+    background: #2a2a2a;
+  }
+
+  .notice--pdf p {
+    color: #aaa;
   }
 }
 </style>
@@ -591,6 +645,11 @@ figure.zoomable img {
 
   <hr>
 
+  <a href="/files/Report Progetto Aerodinamico.pdf" target="_blank" class="notice--pdf">
+  <div class="notice-content">
+    <h4>📄 Download the full-text PDF</h4>
+  </div>
+</a>
 
 </div>
 
