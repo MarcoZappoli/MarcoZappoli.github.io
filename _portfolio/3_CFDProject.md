@@ -277,6 +277,45 @@ figure.zoomable img {
   margin-top: 0;
   margin-bottom: 6px;
 }
+
+/* ── PDF Button ── */
+.pdf-button {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  
+  background: #8c8c8c; /* grey tone */
+  color: #fff;
+  
+  padding: 14px 22px;
+  margin: 40px 0;
+  
+  border-radius: 6px;
+  font-size: 1.1em;
+  font-weight: 700;
+  
+  text-decoration: none;
+  
+  transition: all 0.2s ease;
+}
+
+/* Hover effect */
+.pdf-button:hover {
+  background: #5f666b;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .pdf-button {
+    background: #8c8c8c;
+  }
+
+  .pdf-button:hover {
+    background: #5f666b;
+  }
+}
 </style>
 
 <div class="project-hero">
@@ -309,6 +348,113 @@ figure.zoomable img {
     <span>Year</span>
     <span>2024</span>
   </div>
+</div>
+
+<div class="project-body">
+
+  <h1>The problem: ice accretion on airfoil ❄️</h1>
+
+  <p>
+    This project investigates the aerodynamic consequences of ice accretion on the NACA 23012 airfoil through high-fidelity Computational Fluid Dynamics (CFD) simulations. Ice formation alters the airfoil geometry, particularly at the leading edge, introducing complex flow phenomena that significantly degrade aerodynamic performance.
+  </p>
+
+  <figure class="zoomable">
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <img src="/images/collage_geometrie.png" alt="Iced Geometries" style="width: 100%; border-radius: 4px;">
+    </div>
+    <figcaption>Figure 1: Comparison between the different iced geometries: Case-241 on the left, Case-242 in the center, Case-251 on the right. <b>Image Credit: Marco Zappoli</b></figcaption>
+  </figure>
+
+  <p>
+    The study focuses on quantifying variations in lift, drag, and pitching moment across multiple iced configurations, representative of both rime and glaze ice conditions.
+  </p>
+
+  <hr>
+
+  <h1>Methodology 🖥️</h2>
+
+  <p>
+    The analysis was carried out using steady, compressible RANS simulations with the SU2 solver, under representative flight conditions (\(M=0.325\), \(Re=3.8 \cdot 10^6\)).
+  </p>
+
+  <p>
+    A hybrid meshing strategy was adopted to ensure accurate boundary layer resolution (\(y^+ \approx 1 \)), combining structured layers near the wall with unstructured elements in the far field. Mesh generation was performed using Gmsh and Pointwise, with additional development of a custom MATLAB-based workflow to handle complex iced geometries.
+  </p>
+
+  <figure class="zoomable">
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <img src="/images/MESH251_TREX.png" alt="MESH251 TREX" style="width: 48%; border-radius: 4px;">
+      <img src="/images/MESH251.png" alt="MESH251 CLOSE UP" style="width: 48%; border-radius: 4px;">
+    </div>
+    <figcaption>Figure 2: Left: A view of the mesh near the profile generated using the T-Rex algorithm. Right: An up-close view of the mesh in a region with complex geometry. <b>Image Credit: Marco Zappoli</b></figcaption>
+  </figure>
+
+  <p>Two turbulence models were considered:</p>
+
+  <ul>
+    <li>Spalart--Almaras (SA)</li>
+    <li>\(k-\omega\) SST</li>
+  </ul>
+
+  <p>
+    Transition modeling and grid convergence studies were conducted to assess numerical reliability, with validation against experimental wind tunnel data confirming the accuracy of the approach.
+  </p>
+
+  <hr>
+
+  <h1>Results 📊</h1>
+
+  <p>
+    The presence of ice leads to substantial aerodynamic degradation, with severity strongly dependent on ice morphology:
+  </p>
+
+  <ul>
+    <li><b>Rime ice (Case-241):</b> Moderate impact, primarily affecting effective chord length and inducing localized separation. Stall angle reduced from \(\approx 15^\circ\) to \(\approx 12^\circ\).</li>
+    <li><b>Glaze ice (Case-242, Case-251):</b> Severe performance loss due to horn-shaped formations at the leading edge.</li>
+    <ul>
+      <li>Stall angle reduced below \(5^\circ\) (Case-242)</li>
+      <li>Significant decrease in lift slope and increase in drag</li>
+      <li>Early onset of large-scale flow separation and recirculation</li>
+    </ul>
+  </ul>
+
+  <p>Surface roughness effects further amplify drag, with skin friction contributions increasing by approximately 30%.</p>
+
+  <figure class="zoomable">
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <img src="/images/confronto_CL.png" alt="CL comparison" style="width: 48%; border-radius: 4px;">
+      <img src="/images/CDP_CDSFC_241_rough.png" alt="Roughness effect" style="width: 48%; border-radius: 4px;">
+    </div>
+    <figcaption>Figure 3: Left: Comparison among lift curves of all investigated airfoils obtained with SA turbulence model. Right: Decomposition of drag components into pressure-related (\(C_{D,P}\)) and friction-related (\(C_{D,SFC}\)) of Case-241 with and without surface roughness applied, using the SA turbulence model. <b>Image Credit: Marco Zappoli</b></figcaption>
+  </figure>
+
+  <hr>
+
+  <h1>Takeaway 🚀</h1>
+
+  <ul>
+    <li>Ice accretion fundamentally alters boundary layer behavior, promoting separation and turbulent transition.</li>
+    <li>Glaze ice configurations produce the most critical degradation due to strong geometric discontinuities.</li>
+    <li>The aerodynamic center shifts toward the leading edge in iced conditions, affecting pitching moment characteristics and longitudinal stability.</li>
+    <li>Turbulence model selection significantly influences post-stall predictions, especially in separated flow regimes.</li>
+  </ul>
+
+  <p>
+    The study highlights the critical impact of ice accretion on aerodynamic performance, demonstrating substantial reductions in lift capability, increased drag, and altered stability characteristics. These findings underline the importance of accurate CFD modeling and mesh generation techniques for predicting icing effects in aeronautical applications.
+  </p>  
+
+  <hr>
+
+  <h1>Technical report 📄</h1>
+
+  <p>
+    The complete report provides a detailed description of the methodology, modeling assumptions, and verification analyses supporting this project.
+  </p>
+
+  <a href="/files/CFD_Project.pdf" target="_blank" class="pdf-button">
+    View or download the full technical report (PDF)
+  </a>
+
 </div>
 
 <script>
