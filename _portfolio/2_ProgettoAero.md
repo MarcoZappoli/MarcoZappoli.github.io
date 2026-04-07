@@ -447,10 +447,19 @@ figure.zoomable img {
         <td style="padding: 8px;">Lockheed Martin/Boeing F-22A Raptor</td>
       </tr>
     </tbody>
+    <caption>
+    Table 1: Representative aircraft selected across different generations.
+    </caption>
   </table>
 
   <p style="font-size: 0.85em; color: #666;">
-    Table: Representative aircraft selected across different generations.
+    Table 1: Representative aircraft selected across different generations.
+  </p>
+
+  <p>
+    To ensure a consistent basis for comparison among different aircraft and formation configurations, a common flight condition was defined, corresponding to a Mach number \(M=0.56\) at a flight altitude of \(25000\) ft.
+    The AOA of an aircraft flying solo was trivially obtained by setting up a simulation in AVL with \(C_L\) constrained to the value for steady flight.
+    This method cannot be applied in the case of formation flight, since AVL does not natively support the computation of loads of independent subsets of surfaces. Therefore, a particle swarm optimization was set up to identify the (different) AOAs at which both vehicles in a two-aircraft formation achieved the expected \(C_L\) for the trim condition to be satisfied
   </p>
 
 
