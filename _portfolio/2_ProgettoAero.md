@@ -324,13 +324,13 @@ figure.zoomable img {
 
 /* Fine vertical alignment correction */
 .hover-fade .hover {
-  transform: translateY(25px); /* adjust this value */
+  transform: translateY(31px); /* adjust this value */
 }
 
 /* Keep hover animation */
 .hover-fade:hover .hover {
   opacity: 1;
-  transform: translateY(25px) scale(1);
+  transform: translateY(31px) scale(1);
 }
 
 /* ── Overlay label (caption-style) ── */
@@ -426,11 +426,11 @@ figure.zoomable img {
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
   .pdf-button {
-    background: #444;
+    background: #8c8c8c;
   }
 
   .pdf-button:hover {
-    background: #555;
+    background: #5f666b;
   }
 }
 </style>
