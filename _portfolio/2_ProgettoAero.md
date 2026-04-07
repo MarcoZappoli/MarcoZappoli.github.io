@@ -472,42 +472,41 @@ figure.zoomable img {
   <h1>The problem: formation flight ✈️</h1>
 
   <p>
-    Formation flight offers a way to <strong>reduce aerodynamic drag</strong> by exploiting the interaction between aircraft wakes. A trailing aircraft flying in the upwash of a leader’s wingtip vortex requires less lift, and therefore less thrust, to maintain flight.
+    Formation flight enables <b>aerodynamic drag reduction</b> by exploiting the interaction between aircraft wakes. A trailing aircraft positioned within the <b>upwash region of a wingtip vortex</b> requires less lift to sustain flight, resulting in reduced thrust demand.
   </p>
 
   <p>
-    Experimental and theoretical studies show that this mechanism can significantly reduce induced drag and fuel consumption, especially in <strong>subsonic cruise</strong>, where induced drag is dominant.
+    Both experimental and theoretical studies demonstrate that this mechanism can significantly decrease <b>induced drag</b> and <b>fuel consumption</b>, particularly in <b>subsonic cruise conditions</b>, where induced drag is a dominant contribution.
   </p>
 
   <p>
-    However, for fighter aircraft (characterized by <strong>low-aspect-ratio, swept wings</strong>) the effectiveness of formation flight is still not well understood and depends strongly on:
-  </p>
-
-  <ul>
-    <li>aircraft geometry</li>
-    <li>relative positioning in formation</li>
-    <li>wake interaction structure</li>
-  </ul>
-
-
-  <h2>What this work does 🎯</h2>
-
-  <p>
-    This project investigates how different fighter aircraft benefit from formation flight, and whether <strong>aerodynamic optimization</strong> can enhance these effects.
-  </p>
-
-  <p>
-    The study is structured in three main steps:
+    However, for fighter aircraft—characterized by <b>low aspect ratio</b> and <b>swept wings</b>—the effectiveness of formation flight remains less understood and strongly dependent on:
   </p>
 
   <ul>
-    <li>comparison of multiple aircraft across generations</li>
-    <li>optimization of wing planforms for selected configurations</li>
-    <li>analysis of optimal relative positioning in formation</li>
+    <li><b>aircraft geometry</b></li>
+    <li><b>relative positioning</b> within the formation</li>
+    <li><b>wake interaction structure</b></li>
+  </ul>
+
+  <h2>Objective 🎯</h2>
+
+  <p>
+    This project evaluates how different fighter aircraft configurations benefit from formation flight, and whether <b>aerodynamic optimization</b> can enhance these effects.
+  </p>
+
+  <p>
+    The analysis is structured into three main stages:
+  </p>
+
+  <ul>
+    <li><b>Comparative analysis</b> across multiple aircraft generations</li>
+    <li><b>Wing planform optimization</b> for selected configurations</li>
+    <li><b>Assessment of optimal relative positioning</b> within the formation</li>
   </ul>
 
   <p>
-    The final goal is to quantify how formation flight can improve <strong>drag, efficiency, and operational range</strong>.
+    The ultimate goal is to quantify improvements in <b>drag reduction</b>, <b>aerodynamic efficiency</b>, and <b>operational range</b>.
   </p>
 
   <figure class="zoomable">
@@ -515,7 +514,7 @@ figure.zoomable img {
       <img src="/images/F-18_top.png" alt="MRG R100 St0.1" style="width: 48%; border-radius: 4px;">
       <img src="/images/F-18_side.png" alt="MRG R10 St1" style="width: 48%; border-radius: 4px;">
     </div>
-    <figcaption><b>Figure 1:</b> Aircraft configurations are reconstructed from three-view drawings and implemented in AVL. 
+    <figcaption><b>Figure 1:</b> Aircraft geometries reconstructed from three-view drawings and implemented in <b>AVL</b> for aerodynamic analysis. 
     <br><b>Image Credit:</b> Marco Zappoli</figcaption>
   </figure>
 
@@ -523,43 +522,38 @@ figure.zoomable img {
 
   <h1>Key findings 📊</h1>
 
-  <h2>1. Formation flight reduces drag (but not equally)</h2>
+  <h2>1. Drag reduction is significant, but configuration-dependent</h2>
 
   <p>
-    Trailing aircraft experience significant induced drag reduction, typically in the range of <strong>20–60%</strong>, depending on configuration and spacing.
-    Leader aircraft instead see only minor benefits, or even slight penalties.
+    Trailing aircraft experience substantial reductions in induced drag, typically in the range of <b>20–60%</b>, depending on geometry and spacing.
   </p>
 
   <p>
-    The effectiveness strongly depends on wing geometry,
-    confirming that <strong>not all fighter designs benefit equally</strong>.
+    In contrast, the leading aircraft shows negligible benefits or slight penalties. The results highlight that <b>aerodynamic gains are highly configuration-dependent</b>.
   </p>
 
-  <h2>2. Positioning is critical</h2>
+  <h2>2. Relative positioning is critical</h2>
 
   <p>
-    Maximum benefit occurs when aircraft are positioned such that their <strong>wingtip vortices interact</strong>, typically with aligned wingtips.
-  </p>
-
-  <p>
-    Even small deviations from the optimal position can significantly reduce the advantage,
-    making formation flight a <strong>highly sensitive configuration</strong>.
-  </p>
-
-  <h2>3. Optimization enhances and stabilizes benefits</h2>
-
-  <p>
-    Wing optimization (via particle swarm algorithms) produces non-intuitive geometries that improve lift-to-drag performance.
+    Maximum benefit is achieved when aircraft are positioned such that their <b>wingtip vortices interact constructively</b>, typically with aligned wingtips.
   </p>
 
   <p>
-    These optimized configurations:
+    Even small deviations from the optimal configuration lead to a rapid loss of benefit, making formation flight a <b>highly sensitive aerodynamic condition</b>.
   </p>
+
+  <h2>3. Optimization enhances robustness and performance</h2>
+
+  <p>
+    Wing optimization, performed using <b>particle swarm algorithms</b>, produces non-intuitive geometries that improve overall <b>lift-to-drag performance</b>.
+  </p>
+
+  <p>Optimized configurations:</p>
 
   <ul>
     <li>increase drag reduction for trailing aircraft</li>
     <li>reduce sensitivity to positioning errors</li>
-    <li>expand the region of beneficial interaction</li>
+    <li>expand the region of beneficial wake interaction</li>
   </ul>
 
   <div class="hover-grid">
@@ -590,25 +584,24 @@ figure.zoomable img {
   </div>
 
   <p style="text-align:left; font-size:0.85em; color:#888;">
-    <b>Figure 2:</b> Hover to compare baseline and optimized configurations. 
-    \(\Delta C_{D,i}\) is defined as the difference between the induced drag coefficient of the trailer in formation and the induced drag coefficient of the same aircraft in solo flight with the original wing geometry. Contour slices indicate regions where \(\Delta C_{D,i} < 0\). The floor projection shows the filled contour in the X-Y plane at the optimal Z-position. The black dots represent the Latin Hypercube Sampling studied point, while the red one the reference configuration.
-    <br><b>Image Credit:</b> Marco Zappoli
+    <b>Figure 2:</b> Comparison between <b>baseline</b> and <b>optimized configurations</b>. The quantity \(\Delta C_{D,i}\) represents the variation in induced drag coefficient of the trailing aircraft relative to isolated flight. Contour regions indicate \(\Delta C_{D,i} < 0\), corresponding to beneficial wake interaction. The floor projection shows the X–Y distribution at optimal vertical positioning. Black markers denote sampled configurations (Latin Hypercube Sampling), while the red marker identifies the reference case.
+    <br><b>Image credit:</b> Marco Zappoli
   </p>
 
-  <h2>4. Real operational impact: range extension</h2>
+  <h2>4. Impact on operational range</h2>
 
   <p>
-    Formation flight translates directly into <strong>increased mission range</strong>.
+    The reduction in drag directly translates into an increase in <b>mission range</b>.
   </p>
 
   <p>
-    Using the Breguet equation, the study shows that:
+    Using the <b>Breguet range equation</b>, the study shows that:
   </p>
 
   <ul>
     <li>two-aircraft formations significantly extend ferry range</li>
-    <li>optimized geometries further amplify this effect</li>
-    <li>some missions become feasible without aerial refueling</li>
+    <li>aerodynamic optimization further amplifies this effect</li>
+    <li>some missions become feasible without <b>aerial refueling</b></li>
   </ul>
 
   <figure class="zoomable">
@@ -616,16 +609,16 @@ figure.zoomable img {
       <img src="/images/F18_Range.png" alt="F18 Range" style="width: 48%; border-radius: 4px;">
       <img src="/images/F22_Range.png" alt="F22 Range" style="width: 48%; border-radius: 4px;">
     </div>
-    <figcaption><b>Figure 3:</b> Ferry range comparison for (left) F-22A and (right) F/A-18C. Range contours are computed with the Breguet equation at cruise conditions (\(M=0.56\) at \(25000\) ft), using dry thrust-specific fuel consumption values and a 20% fuel reserve for safe landing. Formation denotes the range when the trailer benefits from wake-induced drag reduction. 
-    <br><b>Image Credit:</b> Marco Zappoli</figcaption>
+    <figcaption><b>Figure 3:</b> Ferry range comparison for the <b>F-22A</b> (left) and <b>F/A-18C</b> (right). Range contours are computed using the Breguet equation under cruise conditions (\(M=0.56\), 25,000 ft), assuming dry thrust-specific fuel consumption and a 20% fuel reserve. “Formation” denotes conditions where the trailing aircraft benefits from wake-induced drag reduction.
+    <br><b>Image credit:</b> Marco Zappoli</figcaption>
   </figure>
 
   <hr>
 
-  <h1>Takeaway 🚀</h1>
+  <h1>Key Takeaways 🚀</h1>
 
   <p>
-    Formation flight is a powerful but sensitive mechanism for improving aerodynamic efficiency.
+    Formation flight is a <b>powerful yet highly sensitive mechanism</b> for improving aerodynamic efficiency.
   </p>
 
   <p>
@@ -633,13 +626,13 @@ figure.zoomable img {
   </p>
 
   <ul>
-    <li>aircraft design</li>
-    <li>relative positioning</li>
-    <li>wake interactions</li>
+    <li><b>aircraft design</b></li>
+    <li><b>relative positioning</b></li>
+    <li><b>wake interaction dynamics</b></li>
   </ul>
 
   <p>
-    Coupling formation flight with aerodynamic optimization offers a promising pathway to <strong>extend range, reduce fuel consumption, and enhance mission flexibility</strong>.
+    Coupling formation flight with <b>aerodynamic optimization</b> provides a promising pathway to <b>extend range</b>, <b>reduce fuel consumption</b>, and <b>enhance mission flexibility</b>.
   </p>
 
   <hr>
@@ -647,10 +640,10 @@ figure.zoomable img {
   <h1>Technical report 📄</h1>
 
   <p>
-    The complete report provides a detailed description of the methodology, modeling assumptions, and verification analyses supporting this project.
+    The complete report provides a detailed description of the <b>methodology</b>, <b>modeling assumptions</b>, and <b>validation analyses</b> supporting this work.
   </p>
 
-  <a href="/files/Report Progetto Aerodinamico.pdf" target="_blank" class="pdf-button">
+  <a href="/files/Report_Progetto_Aerodinamico.pdf" target="_blank" class="pdf-button">
     View or download the full technical report (PDF)
   </a>
 

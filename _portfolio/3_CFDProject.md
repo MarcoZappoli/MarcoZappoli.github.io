@@ -431,8 +431,8 @@ figure.zoomable img {
 
   <figure class="zoomable">
     <div style="display: flex; gap: 12px; align-items: center;">
-      <img src="/images/confronto_cl.png" alt="CL comparison" style="width: 48%; border-radius: 4px;">
-      <img src="/images/CDP_CDSFC_241_rough.png" alt="Roughness effect" style="width: 48%; border-radius: 4px;">
+      <img src="/images/confronto_cl.png" alt="CL comparison" style="width: 46%; border-radius: 4px;">
+      <img src="/images/CDP_CDSFC_241_rough.png" alt="Roughness effect" style="width: 50%; border-radius: 4px;">
     </div>
     <figcaption><b>Figure 3:</b> Left: comparison of lift curves for all configurations using the SA turbulence model. Right: decomposition of drag into <b>pressure</b> (\(C_{D,P}\)) and <b>skin-friction</b> (\(C_{D,SFC}\)) components for Case-241, with and without surface roughness.
     <br><b>Image credit:</b> Marco Zappoli</figcaption>
@@ -440,7 +440,7 @@ figure.zoomable img {
 
   <hr>
 
-  <h1>Key Takeaway 🚀</h1>
+  <h1>Key Takeaways 🚀</h1>
 
   <ul>
     <li><b>Ice accretion alters boundary layer physics</b>, promoting early separation and forced transition.</li>
@@ -458,7 +458,7 @@ figure.zoomable img {
   <h1>Technical report 📄</h1>
 
   <p>
-    The complete report provides a detailed description of the methodology, modeling assumptions, and verification analyses supporting this project.
+    The complete report provides a detailed description of the <b>methodology</b>, <b>modeling assumptions</b>, and <b>validation analyses</b> supporting this work.
   </p>
 
   <a href="/files/CFD_Project.pdf" target="_blank" class="pdf-button">
