@@ -324,13 +324,13 @@ figure.zoomable img {
 
 /* Fine vertical alignment correction */
 .hover-fade .hover {
-  transform: translateY(6px); /* adjust this value */
+  transform: translateY(15px); /* adjust this value */
 }
 
 /* Keep hover animation */
 .hover-fade:hover .hover {
   opacity: 1;
-  transform: translateY(6px) scale(1.01);
+  transform: translateY(15px) scale(1.01);
 }
 
 /* ── Overlay label (caption-style) ── */
@@ -395,46 +395,42 @@ figure.zoomable img {
   }
 }
 
-/* ── Clickable PDF box ── */
-.notice--pdf {
+/* ── PDF Button ── */
+.pdf-button {
   display: block;
-  margin-top: 40px;
-  padding: 18px 22px;
-  border-left: 4px solid #ff6600;
-  background: #f8f8f8;
-  border-radius: 4px;
+  width: fit-content;
+  max-width: 100%;
+  
+  background: #6f767b; /* grey tone */
+  color: #fff;
+  
+  padding: 14px 22px;
+  margin: 40px 0;
+  
+  border-radius: 6px;
+  font-size: 1.1em;
+  font-weight: 700;
+  
   text-decoration: none;
-  color: inherit;
+  
   transition: all 0.2s ease;
 }
 
-.notice--pdf:hover {
-  background: #f0f0f0;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+/* Hover effect */
+.pdf-button:hover {
+  background: #5f666b;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
 }
 
-.notice--pdf h4 {
-  margin: 0 0 6px 0;
-}
-
-.notice--pdf p {
-  margin: 0;
-  font-size: 0.9em;
-  color: #555;
-}
-
+/* Dark mode */
 @media (prefers-color-scheme: dark) {
-  .notice--pdf {
-    background: #1e1e1e;
+  .pdf-button {
+    background: #444;
   }
 
-  .notice--pdf:hover {
-    background: #2a2a2a;
-  }
-
-  .notice--pdf p {
-    color: #aaa;
+  .pdf-button:hover {
+    background: #555;
   }
 }
 </style>
@@ -645,11 +641,9 @@ figure.zoomable img {
 
   <hr>
 
-  <a href="/files/Report Progetto Aerodinamico.pdf" target="_blank" class="notice--pdf">
-  <div class="notice-content">
-    <h4>📄 Download the full-text PDF</h4>
-  </div>
-</a>
+  <a href="/files/Report Progetto Aerodinamico.pdf" target="_blank" class="pdf-button">
+    📄 Download Full Technical Report (PDF)
+  </a>
 
 </div>
 
