@@ -354,9 +354,62 @@ figure.zoomable img {
 
   <h1>Lab 1 &mdash; Force Measurements</h1>
 
+  <p>
+    To calibrate a strain-gauge balance system and measure aerodynamic forces and moments acting on an airfoil model in a wind tunnel.
+    The experiment aimed to determine lift, drag, and pitching moment coefficients and compare them with theoretical expectations.
+  </p>
+
+  <p><b>Methodology:</b></p>
+    
+  <ul>
+    <li>Calibration of the balance using known loads to obtain a calibration matrix</li>
+    <li>Decoupling of force and moment components from sensor signals</li>
+    <li>Measurement of aerodynamic forces at different angles of attack</li>
+    <li>Application of corrections (e.g., blockage and buoyancy effects)</li>
+    <li>Computation of aerodynamic coefficients (CL, CD, CM)</li>
+  </ul>
+
+  <figure class="zoomable">
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <img src="/images/carico_13_rit_ps1.png" alt="SetupLab1" style="width: 45%; border-radius: 4px;">
+      <div style="display: flex; flex-direction: column; gap: 12px; width: 50%;">
+        <img src="/images/portanza_xfoil.png" alt="CL Lab1" style="width: 100%; border-radius: 4px;">
+        <img src="/images/momento_xfoil.png" alt="Cm Lab1" style="width: 100%; border-radius: 4px;">
+      </div>
+    </div>
+    <figcaption><b>Figure 1:</b> Left: Strain gauge balance calibration process. Right: Experimantal point comparison with XFOIL results for (top) lift and (bottom) moment. 
+    <br><b>Image Credit:</b> Marco Zappoli</figcaption>
+  </figure>
+
   <hr>
 
-  <h1>Lab 2 &mdash; Preassure Measurements and Hot-Wire</h1> 
+  <h1>Lab 2 &mdash; Preassure Measurements and Hot-Wire</h1>
+
+  <p>
+    To investigate the development of the pressure coefficient over a flat plate using pressure measurements and hot-wire anemometry.
+    The experiment aimed to determine aerodynamic characteristics, velocity deficit in the wake, and turbulence characteristics.
+  </p>
+
+  <p><b>Methodology:</b></p>
+
+  <ul>
+    <li>Measurement of static and total pressure to determine velocity distribution</li>
+    <li>Reconstruction of the pressure coefficient profiles at different streamwise locations</li>
+    <li>Use of hot-wire anemometry to capture velocity deficit in the wake</li>
+    <li>Statistical and spectral analysis of turbulence data in the wake</li>
+  </ul>
+
+  <figure class="zoomable">
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <img src="/images/Cp6.png" alt="-Cp @ 6" style="width: 45%; border-radius: 4px;">
+      <div style="display: flex; flex-direction: column; gap: 12px; width: 50%;">
+        <img src="/images/U_scia2_2.png" alt="U scia" style="width: 100%; border-radius: 4px;">
+        <img src="/images/FFT 110.png" alt="FFT scia" style="width: 100%; border-radius: 4px;">
+      </div>
+    </div>
+    <figcaption><b>Figure 2:</b> Left: Strain gauge balance calibration process. Right: Experimantal point comparison with XFOIL results for (top) lift and (bottom) moment. 
+    <br><b>Image Credit:</b> Marco Zappoli</figcaption>
+  </figure>
 
   <hr>
 
@@ -387,11 +440,11 @@ figure.zoomable img {
     </ul>
 
   <figure class="zoomable">
-    <div style="display: flex; flex-direction: column; gap: 12px; width: 40%;">
+    <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
       <img src="/images/background.png" alt="PIVbackground" style="width: 100%; border-radius: 4px;">
       <img src="/images/PIV_12ms.png" alt="PIV12ms" style="width: 100%; border-radius: 4px;">
     </div>
-    <figcaption><b>Figure 1:</b> Top: Mean background obtained from all the pair images acquired. Bottom: Mean flow field obtained at 12 m/s using FFT-based algorithm. 
+    <figcaption><b>Figure 3:</b> Top: Mean background obtained from all the pair images acquired. Bottom: Mean flow field obtained at 12 m/s using FFT-based algorithm. 
     <br><b>Image Credit:</b> Marco Zappoli</figcaption>
   </figure>
 
