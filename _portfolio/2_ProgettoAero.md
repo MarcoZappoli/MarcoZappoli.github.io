@@ -316,220 +316,135 @@ figure.zoomable img {
   <h1>The problem: formation flight ✈️</h1>
 
   <p>
-    Fighter aircraft consume significant fuel during high-speed cruise, making <strong>drag reduction</strong> a key factor for mission range and efficiency.
-    While fuel burn depends on multiple variables (throttle, altitude, Mach), reducing aerodynamic drag directly lowers the required engine thrust.
+    Formation flight offers a way to <strong>reduce aerodynamic drag</strong> by exploiting the interaction between aircraft wakes. A trailing aircraft flying in the upwash of a leader’s wingtip vortex requires less lift, and therefore less thrust, to maintain flight.
   </p>
 
   <p>
-    One effective strategy is <strong>formation flight</strong>, where aircraft exploit aerodynamic interactions to reduce induced drag.
+    Experimental and theoretical studies show that this mechanism can significantly reduce induced drag and fuel consumption, especially in <strong>subsonic cruise</strong>, where induced drag is dominant.
+  </p>
+
+  <p>
+    However, for fighter aircraft, characterized by <strong>low-aspect-ratio, swept wings</strong>, the effectiveness of formation flight is still not well understood and depends strongly on:
   </p>
 
   <ul>
-    <li>wingtip vortices can be used beneficially by trailing aircraft</li>
-    <li>three-aircraft formations were explored in USAF Project <em>Tom Tom</em></li>
-    <li>similar strategies are observed in migratory birds (V-formations)</li>
+    <li>aircraft geometry</li>
+    <li>relative positioning in formation</li>
+    <li>wake interaction structure</li>
   </ul>
 
-  <p>
-    These benefits are strongest in <strong>subsonic cruise</strong>, where induced drag represents a significant portion of total drag.
-  </p>
 
-  <h2>Research goal 🎯</h2>
+  <h2>What this work does 🎯</h2>
 
   <p>
-    This work compares a representative set of fighter aircraft across multiple generations to assess their potential for <strong>drag reduction in formation</strong>.
+    This project investigates how different fighter aircraft benefit from formation flight, and whether <strong>aerodynamic optimization</strong> can enhance these effects.
   </p>
 
   <p>
-    The study combines:
+    The study is structured in three main steps:
   </p>
 
   <ul>
-    <li>potential-flow simulations to evaluate formation effects</li>
-    <li>performance metrics comparison across configurations</li>
-    <li>geometry optimization for selected aircraft</li>
+    <li>comparison of multiple aircraft across generations</li>
+    <li>optimization of wing planforms for selected configurations</li>
+    <li>analysis of optimal relative positioning in formation</li>
   </ul>
 
   <p>
-    The objective is to identify configurations and relative positions that maximize
-    aerodynamic efficiency under realistic constraints.
-  </p>
-
-  <hr>
-
-  <h1>Methodology 🖥️</h1>
-
-  <p>
-    Aircraft geometries were reconstructed from publicly available three-view drawings, combined with basic dimensional data such as wingspan, length, and wing area. The models were implemented in <code>.avl</code> format for aerodynamic analysis.
+    The final goal is to quantify how formation flight can improve <strong>drag, efficiency, and operational range</strong>.
   </p>
 
   <figure class="zoomable">
     <div style="display: flex; gap: 12px; align-items: center;">
-      <img src="/images/F-18_top.png" alt="F18 top view" style="width: 48%; border-radius: 4px;">
-      <img src="/images/F-18_side.png" alt="F18 side view" style="width: 48%; border-radius: 4px;">
+      <img src="/images/F-18_top.png" alt="MRG R100 St0.1" style="width: 48%; border-radius: 4px;">
+      <img src="/images/F-18_side.png" alt="MRG R10 St1" style="width: 48%; border-radius: 4px;">
     </div>
-    <figcaption>Figure 1: AVL-rendered geometry of the McDonnell Douglas F/A-18C fighter. <b>Image Credit: Marco Zappoli</b></figcaption>
-  </figure>
-
-  <p>
-    Aerodynamic calculations were performed using <strong>AVL</strong>, based on the vortex lattice method (VLM). This approach is well suited for thin lifting surfaces at small angles of attack, enabling efficient evaluation of lift, drag, and stability.
-  </p>
-
-  <hr>
-
-  <h1>Results 📊</h1>
-
-  <h2>Aircraft dataset</h2>
-
-  <p>
-    To capture the evolution of fighter design, eleven representative aircraft were selected, spanning from early jet configurations to modern fifth-generation designs.
-  </p>
-
-  <table style="width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 0.95em;">
-    <thead>
-      <tr style="border-bottom: 2px solid #888;">
-        <th style="text-align: left; padding: 8px;">Generation</th>
-        <th style="text-align: left; padding: 8px;">Representative Aircraft</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="background-color:#e6b3b3;">
-        <td style="padding: 8px;"><strong>Trainer</strong></td>
-        <td style="padding: 8px;">Aermacchi MB-339A</td>
-      </tr>
-
-      <tr style="background-color:#c2c2d6;">
-        <td style="padding: 8px;"><strong>1</strong></td>
-        <td style="padding: 8px;">Fiat G.91R</td>
-      </tr>
-
-      <tr style="background-color:#99d6ff;">
-        <td style="padding: 8px;"><strong>2</strong></td>
-        <td style="padding: 8px;">North American F-100 Super Sabre</td>
-      </tr>
-      <tr style="background-color:#99d6ff;">
-        <td style="padding: 8px;"><strong>2</strong></td>
-        <td style="padding: 8px;">McDonnell F-101A Voodoo</td>
-      </tr>
-      <tr style="background-color:#99d6ff;">
-        <td style="padding: 8px;"><strong>2</strong></td>
-        <td style="padding: 8px;">Lockheed F-104G Starfighter</td>
-      </tr>
-
-      <tr style="background-color:#ffcc99;">
-        <td style="padding: 8px;"><strong>3</strong></td>
-        <td style="padding: 8px;">McDonnell Douglas F-4E Phantom II</td>
-      </tr>
-      <tr style="background-color:#ffcc99;">
-        <td style="padding: 8px;"><strong>3</strong></td>
-        <td style="padding: 8px;">Northrop F-5E Tiger II</td>
-      </tr>
-      <tr style="background-color:#ffcc99;">
-        <td style="padding: 8px;"><strong>3</strong></td>
-        <td style="padding: 8px;">Convair F-106 Delta Dart</td>
-      </tr>
-
-      <tr style="background-color:#b3e6b3;">
-        <td style="padding: 8px;"><strong>4</strong></td>
-        <td style="padding: 8px;">McDonnell Douglas F-15A Eagle</td>
-      </tr>
-      <tr style="background-color:#b3e6b3;">
-        <td style="padding: 8px;"><strong>4</strong></td>
-        <td style="padding: 8px;">General Dynamics F-16A Fighting Falcon</td>
-      </tr>
-      <tr style="background-color:#b3e6b3;">
-        <td style="padding: 8px;"><strong>4</strong></td>
-        <td style="padding: 8px;">McDonnell Douglas F/A-18C Hornet</td>
-      </tr>
-
-      <tr style="background-color:#ebadd6;">
-        <td style="padding: 8px;"><strong>5</strong></td>
-        <td style="padding: 8px;">Lockheed Martin/Boeing F-22A Raptor</td>
-      </tr>
-    </tbody>
-    <caption>
-    Table 1: Representative aircraft selected across different generations.
-    </caption>
-  </table>
-
-  <p style="font-size: 0.85em; color: #666;">
-    Table 1: Representative aircraft selected across different generations.
-  </p>
-
-  <p>
-    To ensure a consistent basis for comparison among different aircraft and formation configurations, a common flight condition was defined, corresponding to a Mach number \(M=0.56\) at a flight altitude of \(25000\) ft.
-    The AOA of an aircraft flying solo was trivially obtained by setting up a simulation in AVL with \(C_L\) constrained to the value for steady flight.
-    This method cannot be applied in the case of formation flight, since AVL does not natively support the computation of loads of independent subsets of surfaces. Therefore, a particle swarm optimization was set up to identify the (different) AOAs at which both vehicles in a two-aircraft formation achieved the expected \(C_L\) for the trim condition to be satisfied
-  </p>
-
-
-  <h2>Spatial distribution and cluster topology</h2>
-
-  <p>
-    Particle organization is largely controlled by the Stokes number \(St\), which sets the response time to the flow.
-  </p>
-
-  <figure class="zoomable">
-    <div style="display: flex; gap: 12px; align-items: center;">
-      <img src="/images/R10St0dot1_XZ_2083.png" alt="R10St0dot1_XZ_2083" style="width: 48%; border-radius: 4px;">
-      <img src="/images/R10St1_XZ_2083.png" alt="R10St1_XZ_2083" style="width: 48%; border-radius: 4px;">
-    </div>
-    <figcaption>Figure 3: Instantaneous particle distributions (white dots) in the \(x\)–\(z\) plane, overlaid on the magnitude of the vorticity component normal to the plane (lighter regions indicate higher vorticity). The left panel corresponds to lower Stokes numbers, while the right corresponds to higher Stokes numbers, illustrating the transition from near-homogeneous dispersion to enhanced clustering. <b>Image Credit: Marco Zappoli</b></figcaption>
-  </figure>
-
-  <p>
-    At low \(St\), particles closely follow the flow and remain relatively homogeneous.
-    At higher \(St\), they deviate more, leading to strong segregation and concentrated clusters.
-  </p>
-
-  <p>
-    Cluster topology shows remarkable universality across all cases studied, as well as in homogeneous isotropic turbulence.
-  </p>
-
-  <figure class="zoomable">
-    <div style="display: flex; gap: 12px; align-items: center;">
-      <img src="/images/ClusterPlot.png" alt="ClusterPlot" style="width: 55%; border-radius: 4px;">
-      <div style="display: flex; flex-direction: column; gap: 12px; width: 40%;">
-        <img src="/images/Cluster_Asphericity.png" alt="Cluster_Asphericity" style="width: 100%; border-radius: 4px;">
-        <img src="/images/Cluster_Acylindricity.png" alt="Cluster_Acylindricity" style="width: 100%; border-radius: 4px;">
-      </div>
-    </div>
-    <figcaption>Figure 4: Left: example of a coherent particle cluster with its principal axes (primary, secondary, tertiary). Right: probability density functions of normalized asphericity (top) and acylindricity (bottom), quantifying cluster shape. Illustrations below each axis indicate representative geometries associated with the corresponding values. <b>Image Credit: Marco Zappoli</b></figcaption>
+    <figcaption>Figure 1: Aircraft configurations are reconstructed from three-view drawings and implemented in AVL. <b>Image Credit: Marco Zappoli</b></figcaption>
   </figure>
 
   <hr>
 
-  <h1>Takeaway 🎯</h1>
+  <h1>Key findings 📊</h1>
+
+  <h2>1. Formation flight reduces drag (but not equally)</h2>
 
   <p>
-    Clustering in turbulent shear flows is a robust yet highly structured phenomenon,
-    emerging from the interplay between turbulence, inertia, and memory effects.
+    Trailing aircraft experience significant induced drag reduction, typically in the range of <strong>20–60%</strong>, depending on configuration and spacing.
+    Leader aircraft instead see only minor benefits, or even slight penalties.
   </p>
 
   <p>
-    Particle distributions are not random but exhibit
-    <strong>organized, scale-dependent, and anisotropic patterns</strong>
-    that significantly influence transport and collision processes.
+    The effectiveness strongly depends on wing geometry,
+    confirming that <strong>not all fighter designs benefit equally</strong>.
+  </p>
+
+  <h2>2. Positioning is critical</h2>
+
+  <p>
+    Maximum benefit occurs when aircraft are positioned such that their <strong>wingtip vortices interact</strong>, typically with aligned wingtips.
+  </p>
+
+  <p>
+    Even small deviations from the optimal position can significantly reduce the advantage,
+    making formation flight a <strong>highly sensitive configuration</strong>.
+  </p>
+
+  <h2>3. Optimization enhances and stabilizes benefits</h2>
+
+  <p>
+    Wing optimization (via particle swarm algorithms) produces non-intuitive geometries that improve lift-to-drag performance.
+  </p>
+
+  <p>
+    These optimized configurations:
+  </p>
+
+  <ul>
+    <li>increase drag reduction for trailing aircraft</li>
+    <li>reduce sensitivity to positioning errors</li>
+    <li>expand the region of beneficial interaction</li>
+  </ul>
+
+  <h2>4. Real operational impact: range extension</h2>
+
+  <p>
+    Formation flight translates directly into <strong>increased mission range</strong>.
+  </p>
+
+  <p>
+    Using the Breguet equation, the study shows that:
+  </p>
+
+  <ul>
+    <li>two-aircraft formations significantly extend ferry range</li>
+    <li>optimized geometries further amplify this effect</li>
+    <li>some missions become feasible without aerial refueling</li>
+  </ul>
+
+  <hr>
+
+  <h1>Takeaway 🚀</h1>
+
+  <p>
+    Formation flight is a powerful but sensitive mechanism for improving aerodynamic efficiency.
+  </p>
+
+  <p>
+    Its effectiveness depends on a delicate balance between:
+  </p>
+
+  <ul>
+    <li>aircraft design</li>
+    <li>relative positioning</li>
+    <li>wake interactions</li>
+  </ul>
+
+  <p>
+    Coupling formation flight with aerodynamic optimization offers a promising pathway to <strong>extend range, reduce fuel consumption, and enhance mission flexibility</strong>.
   </p>
 
   <hr>
 
-  <div class="notice--info">
-    <h4>🖥️ Computational Scope</h4>
-    <p>
-      This work relies on extensive High-Performance Computing (HPC) resources.
-      Only a subset of the methodology and selected results are presented here.
-    </p>
-  </div>
-
-  <div class="notice--warning">
-    <h4>📜 Copyright & Publication Status</h4>
-    <p>
-      The simulations, figures, and results shown are part of an ongoing manuscript under preparation for the <em>Journal of Fluid Mechanics (JFM)</em>.
-      The material presented here is intended for <strong>qualitative illustration only</strong>; quantitative data, scales, and parameters have been intentionally omitted or modified.
-      <strong>Copyright © Marco Zappoli.</strong> All rights reserved.
-    </p>
-  </div>
 
 </div>
 
