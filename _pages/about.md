@@ -8,23 +8,55 @@ redirect_from:
   - /about.html
 ---
 
-## 👋🏻 Hello there, I'm Marco!
+## 👋🏻 Hello, I'm Marco
 
-👨🏻‍🎓 MSc in Aeronautical Engineering, Politecnico di Milano 
+👨🏻‍🎓 MSc in Aeronautical Engineering — Politecnico di Milano 
 
-🔬 Research interests: turbulence, multiphase flows, and computational fluid dynamics (CFD)
+🔬 Focus: turbulence, multiphase flows, and computational fluid dynamics
 
 📍 Based in Verbania, Italy
 
+---
 
 ## 🎓 Background & Thesis Work
 
-I graduated in Aeronautical Engineering from Politecnico di Milano, building a strong background in aerodynamics and turbulence, as well as a structured and collaborative approach to problem solving. Outside academics, competitive tennis at Italian second division level helped shape my discipline and consistency.
+I hold a Master’s degree in Aeronautical Engineering from Politecnico di Milano, where I developed a strong foundation in <b>aerodynamics</b>, <b>fluid mechanics</b>, and <b>turbulence</b>.
 
-My Master's thesis focused on inertial particles in homogeneous shear turbulence. Using direct numerical simulations (DNS) with one-way coupled point-particle models, I studied clustering dynamics and preferential sampling in turbulent flows.
+My academic path combined <b>theoretical analysis</b>, <b>numerical simulation</b>, and <b>experimental methods</b>, fostering a structured and problem-oriented approach to engineering challenges.
 
+My Master’s thesis focused on <b>inertial particles in homogeneous shear turbulence</b>.  
+Using <b>Direct Numerical Simulations (DNS)</b> with one-way coupled point-particle models, I investigated:
+- <b>preferential concentration</b>  
+- <b>clustering dynamics</b>  
+- the role of <b>memory effects (Basset force)</b>  
 
-## ⚡ Outside academia
+---
 
-🏃🏻 Sports enthusiast  
-🍿 Passionate about cinema 
+## 🛠️ Technical Skills
+
+- **CFD:** SU2, OpenFOAM (basics) 
+- **Programming:** MATLAB, CPL, Fortran, Python  
+- **Meshing:** Gmsh, Pointwise  
+- **Experimental techniques:** wind tunnel testing, hot-wire anemometry, PIV  
+- **Other:** LaTeX, data analysis, numerical methods  
+
+---
+
+## 🚀 Selected Work
+
+Explore my projects: 
+- <b>Particle-laden turbulence (DNS)</b>
+- <b>Formation flight aerodynamics</b> and optimization  
+- CFD analysis of <b>ice accretion on airfoils</b>     
+- <b>Wind tunnel experiments</b> (forces, wake, PIV)  
+
+➡️ [Go to Projects](/projects/)
+
+---
+
+## ⚡ Outside Academia
+
+🏃🏻 Competitive sports (tennis, former Italian second division)  
+🎬 Cinema enthusiast  
+
+---
