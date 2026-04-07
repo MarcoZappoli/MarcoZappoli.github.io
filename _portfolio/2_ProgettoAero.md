@@ -324,13 +324,13 @@ figure.zoomable img {
 
 /* Fine vertical alignment correction */
 .hover-fade .hover {
-  transform: translateY(31px); /* adjust this value */
+  transform: translateY(28px); /* adjust this value */
 }
 
 /* Keep hover animation */
 .hover-fade:hover .hover {
   opacity: 1;
-  transform: translateY(31px) scale(1);
+  transform: translateY(28px) scale(1);
 }
 
 /* ── Overlay label (caption-style) ── */
