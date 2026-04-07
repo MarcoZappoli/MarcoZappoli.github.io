@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-![Illustration of combining vision and language modalities](/images/Render.png){: .align-right width="300px"}
+<!---![Illustration of Render particle-laden turbulent flow](/images/Render.png){: .align-right width="300px"}--->
 ## 👋🏻 Hello, I'm Marco
 
 👨🏻‍🎓 MSc in Aeronautical Engineering &ndash; Politecnico di Milano 
@@ -46,7 +46,7 @@ Using <b>Direct Numerical Simulations (DNS)</b> with one-way coupled point-parti
 ## 🚀 Selected Work
 
 Explore my projects: 
-- <b>Particle-laden turbulence (DNS)</b>
+- <b>Particle-laden turbulent flow (DNS)</b>
 - <b>Formation flight aerodynamics</b> and optimization  
 - CFD analysis of <b>ice accretion on airfoils</b>     
 - <b>Wind tunnel experiments</b> (forces, wake, PIV)  
