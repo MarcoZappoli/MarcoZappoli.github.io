@@ -277,6 +277,83 @@ figure.zoomable img {
   margin-top: 0;
   margin-bottom: 6px;
 }
+
+/* ── Grid layout ── */
+.hover-grid {
+  display: flex;
+  gap: 16px;
+  margin: 40px 0;
+}
+
+.hover-item {
+  flex: 1;
+  text-align: center;
+}
+
+/* ── Hover effect ── */
+.hover-fade {
+  position: relative;
+  width: 100%;
+}
+
+.hover-fade img {
+  width: 100%;
+  border-radius: 6px;
+  display: block;
+}
+
+.hover-fade .hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.hover-fade:hover .hover {
+  opacity: 1;
+}
+
+/* ── Caption ── */
+.hover-caption {
+  margin-top: 10px;
+  font-size: 0.85em;
+  color: #555;
+}
+
+@media (prefers-color-scheme: dark) {
+  .hover-caption {
+    color: #aaa;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .hover-grid {
+    flex-direction: column;
+  }
+}
+
+/* Left label (before) */
+.label.before {
+  left: 10px;
+  opacity: 1;
+}
+
+/* Right label (after) */
+.label.after {
+  right: 10px;
+  opacity: 0;
+}
+
+/* Hover behavior */
+.hover-fade:hover .label.before {
+  opacity: 0;
+}
+
+.hover-fade:hover .label.after {
+  opacity: 1;
+}
 </style>
 
 <div class="project-hero">
@@ -287,7 +364,7 @@ figure.zoomable img {
     </p>
   </div>
   <div class="project-hero-image">
-    <img src="/images/F18_OGPos.png" alt="F18 formation non optimized">
+    <img src="/images/F18_OGPos_Front.png" alt="F18 formation non optimized">
     <p><b>Image Credit: Marco Zappoli</b></p>
   </div>
 </div>
@@ -324,7 +401,7 @@ figure.zoomable img {
   </p>
 
   <p>
-    However, for fighter aircraft, characterized by <strong>low-aspect-ratio, swept wings</strong>, the effectiveness of formation flight is still not well understood and depends strongly on:
+    However, for fighter aircraft (characterized by <strong>low-aspect-ratio, swept wings</strong>) the effectiveness of formation flight is still not well understood and depends strongly on:
   </p>
 
   <ul>
@@ -404,6 +481,41 @@ figure.zoomable img {
     <li>reduce sensitivity to positioning errors</li>
     <li>expand the region of beneficial interaction</li>
   </ul>
+
+  <div class="hover-grid">
+
+  <div class="hover-item">
+    <div class="hover-fade">
+      <span class="label before">F/A-18C Baseline</span>
+      <span class="label after">F/A-18C Optimized</span>
+      <img src="/images/F18_OGPos.png" class="base">
+      <img src="/images/F18_OptPos.png" class="hover">
+    </div>
+  </div>
+
+  <div class="hover-item">
+    <div class="hover-fade">
+      <span class="label before">F-22A Baseline</span>
+      <span class="label after">F-22A Optimized</span>
+      <img src="/images/F22_OGPos.png" class="base">
+      <img src="/images/F22_OptPos.png" class="hover">
+    </div>
+  </div>
+
+  <div class="hover-item">
+    <div class="hover-fade">
+      <span class="label before">G.91R Baseline</span>
+      <span class="label after">G.91R Optimized</span>
+      <img src="/images/G91_OGPos.png" class="base">
+      <img src="/images/G91_OptPos.png" class="hover">
+    </div>
+  </div>
+  </div>
+
+  <p style="text-align:center; font-size:0.85em; color:#888;">
+    Hover to compare baseline and optimized configurations. 
+    \(\Delta C_{D,i}\) is defined as the difference between the induced drag coefficient of the trailer in formation and the induced drag coefficient of the same aircraft in solo flight with the original wing geometry. Contour slices indicate regions where \(\Delta C_{D,i} < 0\). The floor projection shows the filled contour in the X-Y plane at the optimal Z-position. The black dots represent the Latin Hypercube Sampling studied point, while the red one the reference configuration.
+  </p>
 
   <h2>4. Real operational impact: range extension</h2>
 
