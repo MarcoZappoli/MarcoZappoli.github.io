@@ -319,18 +319,18 @@ figure.zoomable img {
 /* On hover → fully replace */
 .hover-fade:hover .hover {
   opacity: 1;
-  transform: scale(1.01);
+  transform: scale(1);
 }
 
 /* Fine vertical alignment correction */
 .hover-fade .hover {
-  transform: translateY(15px); /* adjust this value */
+  transform: translateY(25px); /* adjust this value */
 }
 
 /* Keep hover animation */
 .hover-fade:hover .hover {
   opacity: 1;
-  transform: translateY(15px) scale(1.01);
+  transform: translateY(25px) scale(1);
 }
 
 /* ── Overlay label (caption-style) ── */
@@ -401,7 +401,7 @@ figure.zoomable img {
   width: fit-content;
   max-width: 100%;
   
-  background: #6f767b; /* grey tone */
+  background: #8c8c8c; /* grey tone */
   color: #fff;
   
   padding: 14px 22px;
@@ -590,7 +590,7 @@ figure.zoomable img {
 
   <p style="text-align:left; font-size:0.85em; color:#888;">
     Figure 2: Hover to compare baseline and optimized configurations. 
-    \(\Delta C_{D,i}\) is defined as the difference between the induced drag coefficient of the trailer in formation and the induced drag coefficient of the same aircraft in solo flight with the original wing geometry. Contour slices indicate regions where \(\Delta C_{D,i} < 0\). The floor projection shows the filled contour in the X-Y plane at the optimal Z-position. The black dots represent the Latin Hypercube Sampling studied point, while the red one the reference configuration.
+    \(\Delta C_{D,i}\) is defined as the difference between the induced drag coefficient of the trailer in formation and the induced drag coefficient of the same aircraft in solo flight with the original wing geometry. Contour slices indicate regions where \(\Delta C_{D,i} < 0\). The floor projection shows the filled contour in the X-Y plane at the optimal Z-position. The black dots represent the Latin Hypercube Sampling studied point, while the red one the reference configuration. <b>Image Credit: Marco Zappoli</b>
   </p>
 
   <h2>4. Real operational impact: range extension</h2>
@@ -641,8 +641,14 @@ figure.zoomable img {
 
   <hr>
 
+  <h1>Technical report 📄</h1>
+
+  <p>
+    The complete report provides a detailed description of the methodology, modeling assumptions, and verification analyses supporting this project.
+  </p>
+
   <a href="/files/Report Progetto Aerodinamico.pdf" target="_blank" class="pdf-button">
-    📄 Download Full Technical Report (PDF)
+    View or download the full technical report (PDF)
   </a>
 
 </div>
