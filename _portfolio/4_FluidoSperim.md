@@ -387,100 +387,13 @@ figure.zoomable img {
     </ul>
 
   <figure class="zoomable">
-    <div style="display: flex; gap: 12px; align-items: center;">
+    <div style="display: flex; flex-direction: column; gap: 12px; width: 40%;">
       <img src="/images/background.png" alt="PIVbackground" style="width: 100%; border-radius: 4px;">
       <img src="/images/PIV_12ms.png" alt="PIV12ms" style="width: 100%; border-radius: 4px;">
     </div>
-    <figcaption><b>Figure 1:</b> Left: Mean background obtained from all the pair images acquired. Right: Mean flow field obtained at 12 m/s using FFT-based algorithm. 
+    <figcaption><b>Figure 1:</b> Top: Mean background obtained from all the pair images acquired. Bottom: Mean flow field obtained at 12 m/s using FFT-based algorithm. 
     <br><b>Image Credit:</b> Marco Zappoli</figcaption>
   </figure>
-
-  <p>
-    The study focuses on quantifying variations in <b>lift</b>, <b>drag</b>, and <b>pitching moment</b> across multiple iced configurations, representative of both <b>rime</b> and <b>glaze ice</b> conditions.
-  </p>
-
-  <hr>
-
-  <h1>Methodology 🖥️</h1>
-
-  <p>
-    The analysis was performed using <b>steady, compressible RANS simulations</b> with the <b>SU2 solver</b>, under representative flight conditions (\(M=0.325\), \(Re=3.8 \cdot 10^6\)).
-  </p>
-
-  <p>
-    A <b>hybrid meshing strategy</b> was adopted to ensure accurate boundary layer resolution (\(y^+ \approx 1\)), combining structured layers near the wall with unstructured elements in the far field. Mesh generation was carried out using <b>Gmsh</b> and <b>Pointwise</b>, alongside the development of a <b>custom MATLAB-based workflow</b> to handle the complexity of iced geometries.
-  </p>
-
-  <figure class="zoomable">
-    <div style="display: flex; gap: 12px; align-items: center;">
-      <img src="/images/MESH251_TREX.png" alt="MESH251 TREX" style="width: 48%; border-radius: 4px;">
-      <img src="/images/MESH251.png" alt="MESH251 CLOSE UP" style="width: 48%; border-radius: 4px;">
-    </div>
-    <figcaption><b>Figure 2:</b> Mesh generation for complex iced geometries. Left: boundary layer resolution using the <b>T-Rex anisotropic extrusion</b> algorithm. Right: detailed view highlighting mesh quality in regions of strong geometric irregularity.
-    <br><b>Image Credit:</b> Marco Zappoli</figcaption>
-  </figure>
-
-  <p>Two turbulence models were considered:</p>
-
-  <ul>
-    <li><b>Spalart–Allmaras (SA)</b></li>
-    <li><b>\(k-\omega\) SST</b></li>
-  </ul>
-
-  <p>
-    <b>Grid convergence studies</b> were performed to assess numerical reliability. The computational setup was validated against experimental wind tunnel data, confirming the robustness of the adopted methodology.
-  </p>
-
-  <hr>
-
-  <h1>Results 📊</h1>
-
-  <p>
-    Ice accretion leads to a <b>substantial degradation of aerodynamic performance</b>, with severity strongly dependent on ice morphology:
-  </p>
-
-  <ul>
-    <li>
-      <b>Rime ice (Case-241):</b> Moderate impact, primarily increasing the effective chord and inducing localized separation. 
-      <br>\(\rightarrow\) Stall angle reduced from \(\approx 15^\circ\) to \(\approx 12^\circ\).
-    </li>
-    <li>
-      <b>Glaze ice (Case-242, Case-251):</b> Severe degradation due to <b>horn-shaped leading-edge formations</b>.
-      <ul>
-        <li>Stall angle reduced below \(5^\circ\) (Case-242)</li>
-        <li>Significant decrease in <b>lift slope</b> and increase in <b>drag</b></li>
-        <li>Early onset of <b>large-scale separation</b> and <b>recirculation</b></li>
-      </ul>
-    </li>
-  </ul>
-
-  <p>
-    Surface roughness further amplifies drag, with <b>skin friction contributions increasing by ~30%</b>, highlighting the combined effect of geometry and near-wall turbulence.
-  </p>
-
-  <figure class="zoomable">
-    <div style="display: flex; gap: 12px; align-items: center;">
-      <img src="/images/confronto_cl.png" alt="CL comparison" style="width: 46%; border-radius: 4px;">
-      <img src="/images/CDP_CDSFC_241_rough.png" alt="Roughness effect" style="width: 50%; border-radius: 4px;">
-    </div>
-    <figcaption><b>Figure 3:</b> Left: comparison of lift curves for all configurations using the SA turbulence model. Right: decomposition of drag into <b>pressure</b> (\(C_{D,P}\)) and <b>skin-friction</b> (\(C_{D,SFC}\)) components for Case-241, with and without surface roughness.
-    <br><b>Image credit:</b> Marco Zappoli</figcaption>
-  </figure>
-
-  <hr>
-
-  <h1>Key Takeaways 🚀</h1>
-
-  <ul>
-    <li><b>Ice accretion alters boundary layer physics</b>, promoting early separation and forced transition.</li>
-    <li><b>Glaze ice</b> produces the most critical degradation due to strong geometric discontinuities.</li>
-    <li>The <b>aerodynamic center shifts toward the leading edge</b>, affecting pitching moment and longitudinal stability.</li>
-    <li><b>Turbulence modeling choices</b> significantly influence predictions in separated flow regimes.</li>
-  </ul>
-
-  <p>
-    Overall, the results demonstrate how ice accretion leads to <b>reduced lift capability</b>, <b>increased drag</b>, and <b>altered stability characteristics</b>, emphasizing the importance of accurate CFD modeling for aeronautical safety applications.
-  </p>
 
   <hr>
 
