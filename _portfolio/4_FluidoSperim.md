@@ -352,21 +352,37 @@ figure.zoomable img {
 
 <div class="project-body">
 
-  <h1>Lab 1 &mdash; Force Measurements</h1>
+  <h1>Wind Tunnel Laboratory Experiments 💨</h1>
 
   <p>
-    To calibrate a strain-gauge balance system and measure aerodynamic forces and moments acting on an airfoil model in a wind tunnel.
-    The experiment aimed to determine lift, drag, and pitching moment coefficients and compare them with theoretical expectations.
+    This series of laboratory activities focuses on the <b>experimental characterization of aerodynamic flows</b>, 
+    combining <b>force measurements</b>, <b>pressure and velocity diagnostics</b>, and <b>advanced flow visualization techniques</b>.
+  </p>
+
+  <p>
+    The objective is to bridge the gap between theoretical aerodynamics and practice, emphasizing <b>measurement techniques</b>, <b>data processing</b>, and <b>physical interpretation</b>.
+  </p>
+
+  <hr>
+
+  <h1>Lab 1 &mdash; Force Measurements 📊</h1>
+
+  <p>
+    This experiment focuses on the measurement of <b>aerodynamic forces and moments</b> acting on an airfoil model using a <b>strain-gauge balance system</b>.
+  </p>
+
+  <p>
+    The goal is to determine the <b>lift</b>, <b>drag</b>, and <b>pitching moment coefficients</b>, and to assess their agreement with theoretical predictions.
   </p>
 
   <p><b>Methodology:</b></p>
-    
+
   <ul>
-    <li>Calibration of the balance using known loads to obtain a calibration matrix</li>
-    <li>Decoupling of force and moment components from sensor signals</li>
-    <li>Measurement of aerodynamic forces at different angles of attack</li>
-    <li>Application of corrections (e.g., blockage and buoyancy effects)</li>
-    <li>Computation of aerodynamic coefficients (CL, CD, CM)</li>
+    <li><b>Calibration</b> of the balance using known loads to obtain the calibration matrix</li>
+    <li><b>Decoupling</b> of force and moment components from sensor signals</li>
+    <li>Measurements across a range of <b>angles of attack</b></li>
+    <li>Application of corrections (e.g., <b>blockage</b>, <b>buoyancy</b>)</li>
+    <li>Computation of aerodynamic coefficients (\(C_L\), \(C_D\), \(C_M\))</li>
   </ul>
 
   <figure class="zoomable">
@@ -377,87 +393,107 @@ figure.zoomable img {
         <img src="/images/momento_xfoil.png" alt="Cm Lab1" style="width: 100%; border-radius: 4px;">
       </div>
     </div>
-    <figcaption><b>Figure 1:</b> Left: Strain gauge balance calibration process. Right: Experimantal point comparison with XFOIL results for (top) lift and (bottom) moment. 
+    <figcaption><b>Figure 1:</b> Left: calibration process of the <b>strain-gauge balance</b>. Right: comparison between experimental measurements and <b>XFOIL predictions</b> for lift (top) and pitching moment (bottom).
     <br><b>Image Credit:</b> Marco Zappoli</figcaption>
   </figure>
 
+  <p>
+    The results show good agreement in the linear regime, while deviations at higher incidence highlight the role of 
+    <b>viscous effects and flow separation</b>.
+  </p>
+
+  <a href="/files/Lab_1_Poleni_Vacca_Visconti_Zappoli.pdf" target="_blank" class="pdf-button">
+    View or download the full technical report (PDF) for Lab 1
+  </a>
+
   <hr>
 
-  <h1>Lab 2 &mdash; Preassure Measurements and Hot-Wire</h1>
+  <h1>Lab 2 &mdash; Pressure Measurements & Hot-Wire Anemometry 🌡️</h1>
 
   <p>
-    To investigate the development of the pressure coefficient over a flat plate using pressure measurements and hot-wire anemometry.
-    The experiment aimed to determine aerodynamic characteristics, velocity deficit in the wake, and turbulence characteristics.
+    This experiment investigates the development of the <b>pressure coefficient</b> and the <b>wake structure</b> behind a lifting surface using pressure probes and hot-wire anemometry.
+  </p>
+
+  <p>
+    The objective is to relate <b>pressure distribution</b>, <b>velocity fields</b>, and <b>turbulence characteristics</b> to aerodynamic performance.
   </p>
 
   <p><b>Methodology:</b></p>
 
   <ul>
-    <li>Measurement of static and total pressure to determine velocity distribution</li>
-    <li>Reconstruction of the pressure coefficient profiles at different streamwise locations</li>
-    <li>Use of hot-wire anemometry to capture velocity deficit in the wake</li>
-    <li>Statistical and spectral analysis of turbulence data in the wake</li>
+    <li>Measurement of <b>static</b> and <b>total pressure</b> to reconstruct velocity distributions</li>
+    <li>Evaluation of <b>pressure coefficient</b> profiles along the flow</li>
+    <li>Hot-wire measurements of <b>wake velocity deficit</b></li>
+    <li><b>Statistical</b> and <b>spectral analysis</b> of turbulent fluctuations</li>
   </ul>
 
   <figure class="zoomable">
-    <div style="display: flex; gap: 12px; align-items: center;">
-      <img src="/images/Cp6.png" alt="-Cp @ 6" style="width: 45%; border-radius: 4px;">
-      <div style="display: flex; flex-direction: column; gap: 12px; width: 50%;">
-        <img src="/images/U_scia2_2.png" alt="U scia" style="width: 100%; border-radius: 4px;">
-        <img src="/images/FFT 110.png" alt="FFT scia" style="width: 100%; border-radius: 4px;">
-      </div>
+    <div style="display: flex; gap: 12px; margin-bottom: 12px;">
+      <img src="/images/Cp6.png" alt="-Cp @ 6" style="width: 48%; border-radius: 4px;">
+      <img src="/images/U_scia2_2.png" alt="U scia" style="width: 48%; border-radius: 4px;">
     </div>
-    <figcaption><b>Figure 2:</b> Left: Strain gauge balance calibration process. Right: Experimantal point comparison with XFOIL results for (top) lift and (bottom) moment. 
+    <div style="display: flex; justify-content: center;">
+      <img src="/images/FFT 110.png" alt="FFT scia" style="width: 100%; border-radius: 4px;">
+    </div>
+    <figcaption><b>Figure 2:</b> Top: pressure coefficient distribution at \(\alpha=6^\circ\) (left) and wake velocity profile at \(\alpha=8^\circ\) (right). Bottom: spectral content of velocity fluctuations (FFT) at \(\alpha=25^\circ\).
     <br><b>Image Credit:</b> Marco Zappoli</figcaption>
   </figure>
 
+  <p>
+    The results highlight the link between <b>wake development</b>, <b>momentum deficit</b>, and <b>turbulent fluctuations</b>, providing insight into the mechanisms governing aerodynamic drag.
+  </p>
+
+  <a href="/files/Lab_2_Poleni_Vacca_Visconti_Zappoli.pdf" target="_blank" class="pdf-button">
+    View or download the full technical report (PDF) for Lab 2
+  </a>
+
   <hr>
 
-  <h1>Lab 3 &mdash; Particle Image Velocimetry (PIV)</h1> 
+  <h1>Lab 3 &mdash; Particle Image Velocimetry (PIV) 🌀</h1> 
 
   <p>
-    Development of a MATLAB-based algorithm for processing PIV data and analysis of the velocity field generated by two side-by-side rotors under vortex ring state conditions.
+    This activity focuses on the development of a <b>MATLAB-based algorithm</b> for processing <b>PIV measurements</b>, applied to the analysis of the flow generated by two side-by-side rotors in vortex ring state conditions.
+  </p>
+
+  <p>
+    The goal is to reconstruct the <b>velocity field</b> and identify coherent flow structures through advanced image processing techniques.
   </p>
 
   <p><b>Methodology:</b></p>
 
   <ul>
-    <li>Calibration to determine magnification factor (px/mm)</li>
-    <li>Pre-processing: alignment, masking, flat-field correction</li>
+    <li><b>Calibration</b> to determine spatial resolution (px/mm)</li>
+    <li>Pre-processing: <b>alignment</b>, <b>masking</b>, <b>background correction</b></li>
     <li>Cross-correlation analysis:
-    <ul>
-      <li>Standard spatial correlation</li>
-      <li>FFT-based correlation (significant speed improvement)</li>
-    </ul>
+      <ul>
+        <li>standard spatial correlation</li>
+        <li><b>FFT-based correlation</b> for improved computational efficiency</li>
+      </ul>
     </li>
-    <li>Subpixel interpolation using Gaussian fitting</li>
+    <li><b>Subpixel interpolation</b> (Gaussian fitting)</li>
     <li>Post-processing:
-    <ul>
-      <li>Outlier removal (median test)</li>
-      <li>Interpolation of missing data</li>
-    </ul>
+      <ul>
+        <li><b>outlier detection</b> (median test)</li>
+        <li>interpolation of missing vectors</li>
+      </ul>
     </li>
-    </ul>
+  </ul>
 
   <figure class="zoomable">
     <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
       <img src="/images/background.png" alt="PIVbackground" style="width: 100%; border-radius: 4px;">
       <img src="/images/PIV_12ms.png" alt="PIV12ms" style="width: 100%; border-radius: 4px;">
     </div>
-    <figcaption><b>Figure 3:</b> Top: Mean background obtained from all the pair images acquired. Bottom: Mean flow field obtained at 12 m/s using FFT-based algorithm. 
+    <figcaption><b>Figure 3:</b> Top: mean background image. Bottom: reconstructed velocity field at 12 m/s obtained using the <b>FFT-based correlation algorithm</b>.
     <br><b>Image Credit:</b> Marco Zappoli</figcaption>
   </figure>
 
-  <hr>
-
-  <h1>Technical report 📄</h1>
-
   <p>
-    The complete report provides a detailed description of the <b>methodology</b>, <b>modeling assumptions</b>, and <b>validation analyses</b> supporting this work.
+    The analysis enables the identification of <b>coherent vortical structures</b> and provides a high-resolution description of the flow field.
   </p>
 
-  <a href="/files/CFD_Project.pdf" target="_blank" class="pdf-button">
-    View or download the full technical report (PDF)
+  <a href="/files/Lab_3_Poleni_Vacca_Visconti_Zappoli.pdf" target="_blank" class="pdf-button">
+    View or download the full technical report (PDF) for Lab 3
   </a>
 
 </div>
