@@ -362,7 +362,8 @@ figure.zoomable img {
     <div style="display: flex; gap: 12px; align-items: center;">
       <img src="/images/collage_geometrie.png" alt="Iced Geometries" style="width: 100%; border-radius: 4px;">
     </div>
-    <figcaption>Figure 1: Comparison of the investigated iced geometries: <b>Case-241</b> (left), <b>Case-242</b> (center), and <b>Case-251</b> (right). These configurations represent different ice accretion regimes with increasing geometric complexity. <b>Image Credit: Marco Zappoli</b></figcaption>
+    <figcaption><b>Figure 1:</b> Comparison of the investigated iced geometries: <b>Case-241</b> (left), <b>Case-242</b> (center), and <b>Case-251</b> (right). These configurations represent different ice accretion regimes with increasing geometric complexity. 
+    <br><b>Image Credit:</b> Marco Zappoli</figcaption>
   </figure>
 
   <p>

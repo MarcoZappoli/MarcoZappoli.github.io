@@ -515,7 +515,8 @@ figure.zoomable img {
       <img src="/images/F-18_top.png" alt="MRG R100 St0.1" style="width: 48%; border-radius: 4px;">
       <img src="/images/F-18_side.png" alt="MRG R10 St1" style="width: 48%; border-radius: 4px;">
     </div>
-    <figcaption>Figure 1: Aircraft configurations are reconstructed from three-view drawings and implemented in AVL. <b>Image Credit: Marco Zappoli</b></figcaption>
+    <figcaption><b>Figure 1:</b> Aircraft configurations are reconstructed from three-view drawings and implemented in AVL. 
+    <br><b>Image Credit:</b> Marco Zappoli</figcaption>
   </figure>
 
   <hr>
@@ -589,8 +590,9 @@ figure.zoomable img {
   </div>
 
   <p style="text-align:left; font-size:0.85em; color:#888;">
-    Figure 2: Hover to compare baseline and optimized configurations. 
-    \(\Delta C_{D,i}\) is defined as the difference between the induced drag coefficient of the trailer in formation and the induced drag coefficient of the same aircraft in solo flight with the original wing geometry. Contour slices indicate regions where \(\Delta C_{D,i} < 0\). The floor projection shows the filled contour in the X-Y plane at the optimal Z-position. The black dots represent the Latin Hypercube Sampling studied point, while the red one the reference configuration. <b>Image Credit: Marco Zappoli</b>
+    <b>Figure 2:</b> Hover to compare baseline and optimized configurations. 
+    \(\Delta C_{D,i}\) is defined as the difference between the induced drag coefficient of the trailer in formation and the induced drag coefficient of the same aircraft in solo flight with the original wing geometry. Contour slices indicate regions where \(\Delta C_{D,i} < 0\). The floor projection shows the filled contour in the X-Y plane at the optimal Z-position. The black dots represent the Latin Hypercube Sampling studied point, while the red one the reference configuration.
+    <br><b>Image Credit:</b> Marco Zappoli
   </p>
 
   <h2>4. Real operational impact: range extension</h2>
@@ -614,7 +616,8 @@ figure.zoomable img {
       <img src="/images/F18_Range.png" alt="F18 Range" style="width: 48%; border-radius: 4px;">
       <img src="/images/F22_Range.png" alt="F22 Range" style="width: 48%; border-radius: 4px;">
     </div>
-    <figcaption>Figure 3: Ferry range comparison for (left) F-22A and (right) F/A-18C. Range contours are computed with the Breguet equation at cruise conditions (\(M=0.56\) at \(25000\) ft), using dry thrust-specific fuel consumption values and a 20% fuel reserve for safe landing. Formation denotes the range when the trailer benefits from wake-induced drag reduction. <b>Image Credit: Marco Zappoli</b></figcaption>
+    <figcaption><b>Figure 3:</b> Ferry range comparison for (left) F-22A and (right) F/A-18C. Range contours are computed with the Breguet equation at cruise conditions (\(M=0.56\) at \(25000\) ft), using dry thrust-specific fuel consumption values and a 20% fuel reserve for safe landing. Formation denotes the range when the trailer benefits from wake-induced drag reduction. 
+    <br><b>Image Credit:</b> Marco Zappoli</figcaption>
   </figure>
 
   <hr>

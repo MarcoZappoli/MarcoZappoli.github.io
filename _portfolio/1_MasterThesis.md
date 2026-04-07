@@ -339,7 +339,8 @@ figure.zoomable img {
 
   <figure class="zoomable">
     <img src="/images/Render.png" alt="Volumetric rendering" style="max-width: 100%;">
-    <figcaption>Figure 1: Volumetric rendering of an instantaneous flow field. Coherent structures are visualized using the \(Q\)-criterion, with shading representing qualitative variations. Dark orange markers denote particle positions, illustrating their preferential localization within strain-dominated regions. <b>Image Credit: Marco Zappoli</b></figcaption>
+    <figcaption><b>Figure 1:</b> Volumetric rendering of an instantaneous flow field. Coherent structures are visualized using the \(Q\)-criterion, with shading representing qualitative variations. Dark orange markers denote particle positions, illustrating their preferential localization within strain-dominated regions.
+    <br><b>Image Credit:</b> Marco Zappoli</figcaption>
   </figure>
 
   <h2>Physical mechanisms ⚙️</h2>
@@ -441,7 +442,8 @@ figure.zoomable img {
       <img src="/images/MRG_R100St0dot1.png" alt="MRG R100 St0.1" style="width: 48%; border-radius: 4px;">
       <img src="/images/MRG_R10St1.png" alt="MRG R10 St1" style="width: 48%; border-radius: 4px;">
     </div>
-    <figcaption>Figure 2: Probability density functions of normalized force contributions \(a_i/a_p\). The main panels are shown on linear scales, while linear–logarithmic insets highlight the tails of the distributions. The left panel corresponds to smaller particles, illustrating qualitative differences in the statistics across cases. <b>Image Credit: Marco Zappoli</b></figcaption>
+    <figcaption><b>Figure 2:</b> Probability density functions of normalized force contributions \(a_i/a_p\). The main panels are shown on linear scales, while linear–logarithmic insets highlight the tails of the distributions. The left panel corresponds to smaller particles, illustrating qualitative differences in the statistics across cases.
+    <br><b>Image Credit:</b> Marco Zappoli</figcaption>
   </figure>
 
   <h2>Spatial distribution and cluster topology</h2>
@@ -455,7 +457,8 @@ figure.zoomable img {
       <img src="/images/R10St0dot1_XZ_2083.png" alt="R10St0dot1_XZ_2083" style="width: 48%; border-radius: 4px;">
       <img src="/images/R10St1_XZ_2083.png" alt="R10St1_XZ_2083" style="width: 48%; border-radius: 4px;">
     </div>
-    <figcaption>Figure 3: Instantaneous particle distributions (white dots) in the \(x\)–\(z\) plane, overlaid on the magnitude of the vorticity component normal to the plane (lighter regions indicate higher vorticity). The left panel corresponds to lower Stokes numbers, while the right corresponds to higher Stokes numbers, illustrating the transition from near-homogeneous dispersion to enhanced clustering. <b>Image Credit: Marco Zappoli</b></figcaption>
+    <figcaption><b>Figure 3:</b> Instantaneous particle distributions (white dots) in the \(x\)–\(z\) plane, overlaid on the magnitude of the vorticity component normal to the plane (lighter regions indicate higher vorticity). The left panel corresponds to lower Stokes numbers, while the right corresponds to higher Stokes numbers, illustrating the transition from near-homogeneous dispersion to enhanced clustering.
+    <br><b>Image Credit:</b> Marco Zappoli</figcaption>
   </figure>
 
   <p>
@@ -475,7 +478,8 @@ figure.zoomable img {
         <img src="/images/Cluster_Acylindricity.png" alt="Cluster_Acylindricity" style="width: 100%; border-radius: 4px;">
       </div>
     </div>
-    <figcaption>Figure 4: Left: example of a coherent particle cluster with its principal axes (primary, secondary, tertiary). Right: probability density functions of normalized asphericity (top) and acylindricity (bottom), quantifying cluster shape. Illustrations below each axis indicate representative geometries associated with the corresponding values. <b>Image Credit: Marco Zappoli</b></figcaption>
+    <figcaption><b>Figure 4:</b> Left: example of a coherent particle cluster with its principal axes (primary, secondary, tertiary). Right: probability density functions of normalized asphericity (top) and acylindricity (bottom), quantifying cluster shape. Illustrations below each axis indicate representative geometries associated with the corresponding values. 
+    <br><b>Image Credit:</b> Marco Zappoli</figcaption>
   </figure>
 
   <hr>
