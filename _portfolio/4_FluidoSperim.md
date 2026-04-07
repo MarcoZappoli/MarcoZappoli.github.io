@@ -440,8 +440,8 @@ figure.zoomable img {
       <img src="/images/Cp6.png" alt="-Cp @ 6" style="width: 48%; border-radius: 4px;">
       <img src="/images/U_scia2_2.png" alt="U scia" style="width: 48%; border-radius: 4px;">
     </div>
-    <div>
-      <img src="/images/FFT 110.png" alt="FFT scia" style="width: 100%; border-radius: 4px;">
+    <div style="display: block; width: 100%;">
+      <img src="/images/FFT 110.png" alt="FFT scia" style="display: block; width: 100%; border-radius: 4px;">
     </div>
     <figcaption><b>Figure 2:</b> Top: pressure coefficient distribution at \(\alpha=6^\circ\) (left) and wake velocity profile at \(\alpha=8^\circ\) (right). Bottom: spectral content of velocity fluctuations (FFT) at \(\alpha=25^\circ\).
     <br><b>Image Credit:</b> Marco Zappoli</figcaption>
