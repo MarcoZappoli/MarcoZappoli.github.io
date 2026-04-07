@@ -290,35 +290,85 @@ figure.zoomable img {
   text-align: center;
 }
 
-/* ── Hover effect ── */
+/* ── Hover container ── */
 .hover-fade {
   position: relative;
   width: 100%;
-}
-
-.hover-fade img {
-  width: 100%;
+  aspect-ratio: 4 / 3; /* adjust if needed */
+  overflow: hidden;
   border-radius: 6px;
-  display: block;
 }
 
-.hover-fade .hover {
+/* ── Stacked images (BOTTOM aligned) ── */
+.hover-fade img {
   position: absolute;
-  top: 0;
+  bottom: 0;   /* key change */
   left: 0;
-  opacity: 0;
-  transition: opacity 0.4s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* use 'cover' if misalignment persists */
+  border-radius: 6px;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
+/* Hover image */
+.hover-fade .hover {
+  opacity: 0;
+}
+
+/* On hover → fully replace */
 .hover-fade:hover .hover {
+  opacity: 1;
+  transform: scale(1.01);
+}
+
+/* ── Overlay label (caption-style) ── */
+.label {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  font-size: 0.75em;
+  font-style: italic;
+  color: #eee;
+  
+  background: rgba(0, 0, 0, 0.65);
+  padding: 4px 10px;
+  border-radius: 4px;
+  
+  letter-spacing: 0.02em;
+  z-index: 3;
+  
+  transition: opacity 0.3s ease;
+}
+
+/* Default = baseline */
+.label.before {
   opacity: 1;
 }
 
-/* ── Caption ── */
+/* Hover = optimized */
+.label.after {
+  opacity: 0;
+}
+
+/* Swap labels */
+.hover-fade:hover .label.before {
+  opacity: 0;
+}
+
+.hover-fade:hover .label.after {
+  opacity: 1;
+}
+
+/* ── Caption under figure ── */
 .hover-caption {
   margin-top: 10px;
   font-size: 0.85em;
   color: #555;
+  font-style: italic;
+  line-height: 1.4;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -332,27 +382,6 @@ figure.zoomable img {
   .hover-grid {
     flex-direction: column;
   }
-}
-
-/* Left label (before) */
-.label.before {
-  left: 10px;
-  opacity: 1;
-}
-
-/* Right label (after) */
-.label.after {
-  right: 10px;
-  opacity: 0;
-}
-
-/* Hover behavior */
-.hover-fade:hover .label.before {
-  opacity: 0;
-}
-
-.hover-fade:hover .label.after {
-  opacity: 1;
 }
 </style>
 
@@ -486,34 +515,31 @@ figure.zoomable img {
 
   <div class="hover-item">
     <div class="hover-fade">
-      <span class="label before">F/A-18C Baseline</span>
-      <span class="label after">F/A-18C Optimized</span>
+      <span class="label before">Baseline</span>
+      <span class="label after">Optimized</span>
       <img src="/images/F18_OGPos.png" class="base">
       <img src="/images/F18_OptPos.png" class="hover">
     </div>
+    <p class="hover-caption">
+      McDonnell Douglas F/A-18C
+    </p>
   </div>
 
   <div class="hover-item">
     <div class="hover-fade">
-      <span class="label before">F-22A Baseline</span>
-      <span class="label after">F-22A Optimized</span>
+      <span class="label before">Baseline</span>
+      <span class="label after">Optimized</span>
       <img src="/images/F22_OGPos.png" class="base">
       <img src="/images/F22_OptPos.png" class="hover">
     </div>
-  </div>
-
-  <div class="hover-item">
-    <div class="hover-fade">
-      <span class="label before">G.91R Baseline</span>
-      <span class="label after">G.91R Optimized</span>
-      <img src="/images/G91_OGPos.png" class="base">
-      <img src="/images/G91_OptPos.png" class="hover">
-    </div>
+    <p class="hover-caption">
+      McDonnell Douglas F-22A
+    </p>
   </div>
   </div>
 
-  <p style="text-align:center; font-size:0.85em; color:#888;">
-    Hover to compare baseline and optimized configurations. 
+  <p style="text-align:left; font-size:0.85em; color:#888;">
+    Figure 2: Hover to compare baseline and optimized configurations. 
     \(\Delta C_{D,i}\) is defined as the difference between the induced drag coefficient of the trailer in formation and the induced drag coefficient of the same aircraft in solo flight with the original wing geometry. Contour slices indicate regions where \(\Delta C_{D,i} < 0\). The floor projection shows the filled contour in the X-Y plane at the optimal Z-position. The black dots represent the Latin Hypercube Sampling studied point, while the red one the reference configuration.
   </p>
 
@@ -532,6 +558,14 @@ figure.zoomable img {
     <li>optimized geometries further amplify this effect</li>
     <li>some missions become feasible without aerial refueling</li>
   </ul>
+
+  <figure class="zoomable">
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <img src="/images/F18_Range.png" alt="F18 Range" style="width: 48%; border-radius: 4px;">
+      <img src="/images/F22_Range.png" alt="F22 Range" style="width: 48%; border-radius: 4px;">
+    </div>
+    <figcaption>Figure 3: Ferry range comparison for (left) F-22A and (right) F/A-18C. Range contours are computed with the Breguet equation at cruise conditions (\(M=0.56\) at \(25000\) ft), using dry thrust-specific fuel consumption values and a 20% fuel reserve for safe landing. Formation denotes the range when the trailer benefits from wake-induced drag reduction. <b>Image Credit: Marco Zappoli</b></figcaption>
+  </figure>
 
   <hr>
 
