@@ -392,23 +392,12 @@ figure.zoomable img {
 
   <div class="equation-block">
   $$
-  \begin{equation*}
-  \begin{split}
-  \rho_pV_p\frac{d\boldsymbol{U_p}}{dt} 
-  &= \underbrace{3\pi d_p \rho_f \nu 
-  \left( \boldsymbol{U}-\boldsymbol{U_p} + \frac{1}{6} \left(\frac{d_p}{2}\right)^2 \nabla^2\boldsymbol{U} \right)}_{\textit{Stokes drag}} + \underbrace{\rho_fV_p\frac{D\boldsymbol{U}}{Dt}}_{\textit{Pressure gradient}} \\[3pt]
-  &\quad + \underbrace{\frac{\rho_fV_p}{2}
-  \left( \frac{D\boldsymbol{U}}{Dt}
-  - \frac{d\boldsymbol{U_p}}{dt}
-  + \frac{1}{10}\left(\frac{d_p}{2}\right)^2
-  \frac{d}{dt}\big(\nabla^2\boldsymbol{U}\big) \right)}_{\textit{Added mass}} \\[3pt]
-  &\quad + \underbrace{\frac{3}{2}d_p^2\rho_f\sqrt{\pi\nu}
-  \int_{-\infty}^t K_B(t-\tau)
-  \left( \frac{d\boldsymbol{U}}{d\tau}-\frac{d\boldsymbol{U_p}}{d\tau}
-  + \frac{1}{6}\left(\frac{d_p}{2}\right)^2
-  \frac{d}{d\tau}\left(\nabla^2\boldsymbol{U}\right) \right) d\tau}_{\textit{Basset history force}}
-  \end{split}
-  \end{equation*}
+\begin{equation*}
+\begin{split}
+\frac{d\boldsymbol{u_p}}{dt} &= \underbrace{\frac{1}{\tau_p} \left( \boldsymbol{u}-\boldsymbol{u}_p + \frac{r_p^2}{6} \nabla^2\boldsymbol{u} \right)}_{\textit{Stokes drag}} + \underbrace{\frac{\rho_f}{2\rho_p} \left( 3\frac{D\boldsymbol{u}}{Dt} - \frac{d\boldsymbol{u}_p}{dt} + \frac{r_p^2}{10} \frac{d}{dt}\left(\nabla^2\boldsymbol{u}\right) \right)}_{\textit{Pressure gradient and added mass}} \\[3pt]
+&+ \underbrace{\frac{1}{\tau_p}\frac{r_p}{\sqrt{\pi\nu}} \int_{-\infty}^t K_B(t-\tau) \frac{d}{d\tau} \left( \boldsymbol{u}-\boldsymbol{u}_p + \frac{r_p^2}{6} \nabla^2\boldsymbol{u} \right) d\tau}_{\textit{Basset history force}},
+\end{split}
+\end{equation*}
   $$
   </div>
 
