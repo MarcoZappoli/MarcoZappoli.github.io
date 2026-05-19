@@ -386,22 +386,22 @@ figure.zoomable img {
   </ul>
 
   <p>
-    Denoting by \(\tau_p=2\rho_p r_p^2/(9\rho_f\nu)\) the particle response time, \(\rho_p\) and \(\rho_f\) the particle and fluid densities, \(\r_p\) the particle radius, \(\boldsymbol{u}_p\) the particle velocity, and \(\boldsymbol{u}\) the undisturbed fluid velocity evaluated at the particle position, the particle motion governing equation reads:
+    Denoting by \(\tau_p = 2\rho_p r_p^2/(9\rho_f\nu)\) the particle response time, where \(\rho_p\) and \(\rho_f\) are the particle and fluid densities, respectively, \(r_p\) is the particle radius, \(\boldsymbol{u}_p\) is the particle velocity, and \(\boldsymbol{u}\) is the undisturbed fluid velocity evaluated at the particle position, the governing equation for particle motion reads:
   </p>
 
   <div class="equation-block">
-  $$
-\begin{equation*}
-\begin{split}
-\frac{d\boldsymbol{u_p}}{dt} &= \underbrace{\frac{1}{\tau_p} \left( \boldsymbol{u}-\boldsymbol{u}_p + \frac{r_p^2}{6} \nabla^2\boldsymbol{u} \right)}_{\textit{Stokes drag}} + \underbrace{\frac{\rho_f}{2\rho_p} \left( 3\frac{D\boldsymbol{u}}{Dt} - \frac{d\boldsymbol{u}_p}{dt} + \frac{r_p^2}{10} \frac{d}{dt}\left(\nabla^2\boldsymbol{u}\right) \right)}_{\textit{Pressure gradient and added mass}} \\[3pt]
-&+ \underbrace{\frac{1}{\tau_p}\frac{r_p}{\sqrt{\pi\nu}} \int_{-\infty}^t K_B(t-\tau) \frac{d}{d\tau} \left( \boldsymbol{u}-\boldsymbol{u}_p + \frac{r_p^2}{6} \nabla^2\boldsymbol{u} \right) d\tau}_{\textit{Basset history force}},
-\end{split}
-\end{equation*}
-  $$
+    $$
+    \begin{equation*}
+    \begin{split}
+    \frac{d\boldsymbol{u}_p}{dt} &= \underbrace{\frac{1}{\tau_p} \left( \boldsymbol{u}-\boldsymbol{u}_p + \frac{r_p^2}{6} \nabla^2\boldsymbol{u} \right)}_{\textit{Stokes drag}} + \underbrace{\frac{\rho_f}{2\rho_p} \left( 3\frac{D\boldsymbol{u}}{Dt} - \frac{d\boldsymbol{u}_p}{dt} + \frac{r_p^2}{10} \frac{d}{dt}\left(\nabla^2\boldsymbol{u}\right) \right)}_{\textit{Pressure gradient and added mass}} \\[3pt]
+    &+ \underbrace{\frac{1}{\tau_p}\frac{r_p}{\sqrt{\pi\nu}} \int_{-\infty}^t K_B(t-\tau) \frac{d}{d\tau} \left( \boldsymbol{u}-\boldsymbol{u}_p + \frac{r_p^2}{6} \nabla^2\boldsymbol{u} \right) d\tau}_{\textit{Basset history force}},
+    \end{split}
+    \end{equation*}
+    $$
   </div>
 
   <p>
-    The parameter space is explored by varying the <b>Stokes number</b> \(St\) and the <b>density ratio</b> \(\rho_p/\rho_f\), with emphasis on how inertia and memory effects influence clustering and force balance.
+    The parameter space is explored by varying the particle <b>Stokes number</b> \(St\) and the particle-to-fluid <b>density ratio</b> \(\rho_p/\rho_f\), with emphasis on how inertia and memory effects influence clustering and force balance.
   </p>
 
   <hr>
@@ -411,15 +411,14 @@ figure.zoomable img {
   <h2>Force balance</h2>
 
   <p>
-    The relative contribution of forces strongly depends on particle properties. In particular, the role of the <b>Basset history force</b> increases with particle size and inertia.
+    The relative contribution of forces strongly depends on particle properties. In particular, the role of the <b>Basset history force</b> increases with particle size and is in first approximation non dependent on the density ratio.
   </p>
 
   <figure class="zoomable">
     <div style="display: flex; gap: 12px; align-items: center;">
-      <img src="/images/MRG_R100St0dot1.png" alt="MRG R100 St0.1" style="width: 48%; border-radius: 4px;">
-      <img src="/images/MRG_R10St1.png" alt="MRG R10 St1" style="width: 48%; border-radius: 4px;">
+      <img src="/images/MRG_term_scale_Combined.png" alt="MRG Forces" style="width: 96%; border-radius: 4px;">
     </div>
-    <figcaption><b>Figure 2:</b> Probability density functions of normalized force contributions (\(a_i/a_p\)). Insets highlight the tails of the distributions, revealing qualitative differences across regimes.
+    <figcaption><b>Figure 2:</b>  Probability density functions of the normalized directional contributions \(\Pi_i = (\boldsymbol{a}_i \cdot \boldsymbol{a}_p)/|\boldsymbol{a}_p|^2\) for a selected Stokes number and two different density ratio. Insets highlight the tails of the distributions.
     <br><b>Image Credit:</b> Marco Zappoli</figcaption>
   </figure>
 
@@ -439,7 +438,7 @@ figure.zoomable img {
   </figure>
 
   <p>
-    At low \(St\), particles closely follow the flow and remain nearly homogeneous. At higher \(St\), inertia induces strong deviations, leading to pronounced clustering.
+    At low \(St\), particles closely follow the flow and remain nearly homogeneous. At \(St=\mathcal{O}(1)\), inertia induces strong deviations, leading to pronounced clustering.
   </p>
 
   <p>
