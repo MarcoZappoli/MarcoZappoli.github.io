@@ -386,8 +386,7 @@ figure.zoomable img {
   </ul>
 
   <p>
-    Denoting by \(\rho_p\) the particle density, \(V_p\) its volume, and \(\boldsymbol{U}_p\) its velocity,
-    the governing equation reads:
+    Denoting by \(\tau_p=2\rho_p r_p^2/(9\rho_f\nu)\) the particle response time, \(\rho_p\) and \(\rho_f\) the particle and fluid densities, \(\r_p\) the particle radius, \(\boldsymbol{u}_p\) the particle velocity, and \(\boldsymbol{u}\) the undisturbed fluid velocity evaluated at the particle position, the particle motion governing equation reads:
   </p>
 
   <div class="equation-block">
