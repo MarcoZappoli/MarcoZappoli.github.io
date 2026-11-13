@@ -26,7 +26,6 @@ const featured = (await getProjects()).filter((p) => p.data.featured).slice(0, 3
         </p>
       </div>
     </div>
-    <p class="eyebrow caption">Live: tracers in the time-periodic double gyre · A = 0.1, ε = 0.25, ω = 2π/10</p>
   </section>
 
   <section class="block">
@@ -83,7 +82,6 @@ const featured = (await getProjects()).filter((p) => p.data.featured).slice(0, 3
   h1 { font-size: clamp(42px, 6.6vw, 86px); line-height: 1.02; margin: 14px 0 22px; }
   .lead { font-size: clamp(18px, 2vw, 21px); color: var(--muted); max-width: 580px; }
   .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
-  .caption { position: absolute; bottom: 16px; right: var(--gutter); font-size: 11px; max-width: calc(100% - 2 * var(--gutter)); text-align: right; }
   .about { display: grid; grid-template-columns: minmax(180px, 300px) 1fr; gap: clamp(24px, 5vw, 64px); align-items: start; }
   .about :global(.photo) { width: 100%; height: auto; border-radius: 6px; filter: grayscale(0.15); }
   .about p { max-width: 64ch; }

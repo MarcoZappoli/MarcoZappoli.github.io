@@ -1,37 +1,113 @@
+---
+/*
+ * Home-page hero: passive tracers and inertial particles in the time-periodic
+ * double gyre (Shadden, Lekien & Marsden 2005), domain [0, 2] x [0, 1].
+ *
+ *   psi = A sin(pi f(x,t)) sin(pi y),  f = a x^2 + b x,
+ *   a = eps sin(omega t),  b = 1 - 2 eps sin(omega t)
+ *
+ * Tracers move with the fluid:   dx/dt = u(x, t)
+ * Inertial particles (minimal Maxey-Riley, Stokes drag only, heavy particles):
+ *   dv/dt = (u(x, t) - v) / St,   dx/dt = v
+ * The drag term is integrated exactly over each step (exponential integrator),
+ * which stays stable for any St and dt:  v <- u + (v - u) exp(-dt / St).
+ *
+ * Edit the values below; the caption under the hero updates automatically.
+ */
+const params = {
+  A: 0.1, // flow amplitude (speed)
+  eps: 0.25, // oscillation of the gyre boundary; 0 = steady flow
+  period: 10, // oscillation period, omega = 2 pi / period
+  St: 0.5, // Stokes number of the inertial particles (response time / flow time)
+  nTracers: 1400, // passive tracers (drawn in the muted colour)
+  nInertial: 1400, // inertial particles (drawn in the accent colour)
+  dt: 0.06, // time step per animation frame
+  reseed: 0.002, // probability per frame that a particle restarts at a random point
+  dotTracer: 1.1, // dot size in px
+  dotInertial: 1.8,
+  tracerAlpha: 0.45, // tracer opacity, so the inertial particles stand out
+};
+const { A, eps, period, St } = params;
+---
 <canvas id="flow" aria-hidden="true"></canvas>
-<script>
-  // Tracers in the time-periodic double gyre, a standard LCS benchmark (Shadden et al. 2005)
-  const c = document.getElementById('flow') as HTMLCanvasElement;
-  const g = c.getContext('2d')!;
-  const A = 0.1, eps = 0.25, om = (2 * Math.PI) / 10;
+<p class="eyebrow flow-caption">
+  Live: double gyre, A = {A}, ε = {eps}, ω = 2π/{period} ·
+  <span class="key tracer"></span> tracers ·
+  <span class="key inertial"></span> inertial particles, St = {St}
+</p>
+<script define:vars={{ params }}>
+  const c = document.getElementById('flow');
+  const g = c.getContext('2d');
+  const { A, eps, period, St, nTracers, nInertial, dt, reseed, dotTracer, dotInertial, tracerAlpha } = params;
+  const om = (2 * Math.PI) / period;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let W = 0, H = 0, t = 0;
-  const N = 2600;
-  const P = Array.from({ length: N }, () => [Math.random() * 2, Math.random()]);
-  function size() { const d = devicePixelRatio || 1; W = c.clientWidth; H = c.clientHeight; c.width = W * d; c.height = H * d; g.setTransform(d, 0, 0, d, 0, 0); }
-  function vel(x: number, y: number, t: number) {
-    const a = eps * Math.sin(om * t), b = 1 - 2 * eps * Math.sin(om * t);
+
+  function vel(x, y, t) {
+    const s = Math.sin(om * t), a = eps * s, b = 1 - 2 * eps * s;
     const f = a * x * x + b * x, fx = 2 * a * x + b;
-    return [-Math.PI * A * Math.sin(Math.PI * f) * Math.cos(Math.PI * y),
-             Math.PI * A * Math.cos(Math.PI * f) * Math.sin(Math.PI * y) * fx];
+    return [
+      -Math.PI * A * Math.sin(Math.PI * f) * Math.cos(Math.PI * y),
+      Math.PI * A * Math.cos(Math.PI * f) * Math.sin(Math.PI * y) * fx,
+    ];
   }
+  // Each particle: [x, y, vx, vy]; inertial particles start at the local fluid velocity.
+  function spawn() {
+    const x = Math.random() * 2, y = Math.random();
+    const [u, v] = vel(x, y, t);
+    return [x, y, u, v];
+  }
+  const tracers = Array.from({ length: nTracers }, spawn);
+  const inertial = Array.from({ length: nInertial }, spawn);
+  const decay = Math.exp(-dt / St);
+
+  function size() {
+    const d = devicePixelRatio || 1;
+    W = c.clientWidth; H = c.clientHeight;
+    c.width = W * d; c.height = H * d;
+    g.setTransform(d, 0, 0, d, 0, 0);
+  }
+  function inside(p) { return p[0] >= 0 && p[0] <= 2 && p[1] >= 0 && p[1] <= 1; }
+
   function step() {
     const css = getComputedStyle(document.documentElement);
-    g.fillStyle = css.getPropertyValue('--hero-fade'); g.fillRect(0, 0, W, H);
-    g.fillStyle = css.getPropertyValue('--accent');
-    const dt = 0.06;
-    for (const p of P) {
+    g.fillStyle = css.getPropertyValue('--hero-fade');
+    g.fillRect(0, 0, W, H);
+
+    g.fillStyle = css.getPropertyValue('--muted');
+    g.globalAlpha = tracerAlpha;
+    for (let i = 0; i < tracers.length; i++) {
+      const p = tracers[i];
       const [u, v] = vel(p[0], p[1], t);
       p[0] += u * dt; p[1] += v * dt;
-      if (Math.random() < 0.002) { p[0] = Math.random() * 2; p[1] = Math.random(); }
-      g.fillRect((p[0] / 2) * W, (1 - p[1]) * H, 1.3, 1.3);
+      if (Math.random() < reseed || !inside(p)) tracers[i] = spawn();
+      g.fillRect((p[0] / 2) * W, (1 - p[1]) * H, dotTracer, dotTracer);
     }
+
+    g.globalAlpha = 1;
+    g.fillStyle = css.getPropertyValue('--accent');
+    for (let i = 0; i < inertial.length; i++) {
+      const p = inertial[i];
+      const [u, v] = vel(p[0], p[1], t);
+      p[2] = u + (p[2] - u) * decay;
+      p[3] = v + (p[3] - v) * decay;
+      p[0] += p[2] * dt; p[1] += p[3] * dt;
+      if (Math.random() < reseed || !inside(p)) inertial[i] = spawn();
+      g.fillRect((p[0] / 2) * W, (1 - p[1]) * H, dotInertial, dotInertial);
+    }
+
     t += dt;
     if (!reduce) requestAnimationFrame(step);
   }
-  size(); addEventListener('resize', size);
-  if (reduce) { for (let i = 0; i < 400; i++) step(); } else step();
+
+  size();
+  addEventListener('resize', size);
+  if (reduce) { for (let i = 0; i < 600; i++) step(); } else step();
 </script>
 <style>
   canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .flow-caption { position: absolute; bottom: 16px; right: var(--gutter); font-size: 11px; max-width: calc(100% - 2 * var(--gutter)); text-align: right; z-index: 1; }
+  .key { display: inline-block; width: 8px; height: 8px; border-radius: 50%; vertical-align: middle; margin-left: 4px; }
+  .key.tracer { background: var(--muted); }
+  .key.inertial { background: var(--accent); }
 </style>
