@@ -133,11 +133,9 @@ At low $St$, particles closely follow the flow and remain nearly homogeneous. At
 
 Cluster topology exhibits a remarkable degree of **universality**, consistent across different flow configurations.
 
-![ClusterPlot](../../../assets/projects/dns-particles-shear-turbulence/ClusterPlot.png)
+![Particle cluster with principal axes](../../../assets/projects/dns-particles-shear-turbulence/ClusterPlot.png "(a)") ![PDF of asphericity](../../../assets/projects/dns-particles-shear-turbulence/Cluster_Asphericity.png "(b)") ![PDF of acylindricity](../../../assets/projects/dns-particles-shear-turbulence/Cluster_Acylindricity.png "(c)")
 
-![Cluster_Asphericity](../../../assets/projects/dns-particles-shear-turbulence/Cluster_Asphericity.png) ![Cluster_Acylindricity](../../../assets/projects/dns-particles-shear-turbulence/Cluster_Acylindricity.png)
-
-**Figure 6:** Left: example of a coherent particle cluster with principal axes. Right: probability density functions of normalized **asphericity** and **acylindricity**, quantifying cluster shape.  
+**Figure 6:** (a) Example of a coherent particle cluster with its principal axes. Probability density functions of normalized (b) **asphericity** and (c) **acylindricity**, quantifying cluster shape.  
 **Image Credit:** Marco Zappoli
 
 

@@ -37,7 +37,12 @@ npm run build        # must finish without errors before you push
    > Text of the banner.
    ```
    Types: `NOTE` (blue), `TIP` (green), `IMPORTANT` (violet), `WARNING` (amber), `CAUTION` (red).
-5. Keep `draft: true` until it is ready to appear.
+5. Figures side by side: put the images on one line, with an optional label in quotes:
+   ```md
+   ![Cluster](../../../assets/projects/my-project/a.png "(a)") ![PDF](../../../assets/projects/my-project/b.png "(b)")
+   ```
+   They become one row with equal heights (stacked on phones). Write the caption in the next paragraph.
+6. Keep `draft: true` until it is ready to appear.
 
 `category` must be one of DNS, CFD, Experimental, Design, Software. A missing or misspelled field stops the build with a message naming the file.
 
