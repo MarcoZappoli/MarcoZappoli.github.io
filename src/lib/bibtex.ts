@@ -134,6 +134,9 @@ export interface Paper {
   id: string;
   type: string;
   title: string;
+  /** Raw LaTeX source of the title and abstract, for math rendering. */
+  titleTex: string;
+  abstractTex?: string;
   authors: string[];
   year?: number;
   venue?: string;
@@ -141,6 +144,7 @@ export interface Paper {
   doi?: string;
   arxiv?: string;
   pdf?: string;
+  image?: string;
   code?: string;
   url?: string;
   abstract?: string;
@@ -189,18 +193,21 @@ export function parseBibtex(raw: string): Paper[] {
     papers.push({
       id, type, status, year,
       title: displayText(f.title),
+      titleTex: f.title.replace(/\s+/g, ' ').trim(),
+      abstractTex: f.abstract?.replace(/\s+/g, ' ').trim(),
       authors: f.author ? splitOutsideBraces(f.author, /\s+and\s+/).map(nameParts).map(displayAuthor) : [],
       venue: text('journal') ?? text('booktitle') ?? text('school') ?? text('howpublished'),
       doi: text('doi')?.replace(/^https?:\/\/(dx\.)?doi\.org\//i, ''),
       arxiv: text('arxiv') ?? text('eprint'),
       pdf: text('pdf'),
+      image: text('image'),
       code: text('code'),
       url: text('url'),
       abstract: text('abstract'),
       selected: text('selected')?.toLowerCase() === 'true',
       bibtex: source
         .split('\n')
-        .filter((line) => !/^\s*(status|selected|pdf|code|preview)\s*=/.test(line))
+        .filter((line) => !/^\s*(status|selected|pdf|code|image|preview)\s*=/.test(line))
         .join('\n'),
     });
   }

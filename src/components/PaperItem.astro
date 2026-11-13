@@ -1,30 +1,52 @@
 ---
 import type { Paper } from '../lib/bibtex';
 import { OWNER } from '../lib/papers';
+import { texToHtml } from '../lib/tex';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+const figures = import.meta.glob<{ default: ImageMetadata }>('../assets/papers/*.{png,jpg,jpeg,webp,avif,gif,svg}', { eager: true });
 interface Props { paper: Paper; }
 const { paper: p } = Astro.props;
+const figure = p.image ? figures[`../assets/papers/${p.image}`]?.default : undefined;
+if (p.image && !figure) throw new Error(`BibTeX entry ${p.id}: image ${p.image} not found in src/assets/papers/`);
 const authors = p.authors.map((a) => ({ name: a, me: a.includes(OWNER) }));
 ---
-<article class="paper">
+<article class:list={["paper", { "has-figure": figure }]}>
+  {figure && (
+    <a class="figure" href={figure.src} aria-label="Enlarge figure">
+      <Image src={figure} alt={`Figure: ${p.title}`} widths={[200, 400]} sizes="(max-width: 640px) 100vw, 200px" loading="lazy" decoding="async" />
+    </a>
+  )}
+  <div class="body">
   <p class="eyebrow">{p.year}{p.status !== 'published' && <> · <span class="status">{p.status}</span></>}</p>
-  <h3>{p.title}</h3>
+  <h3 set:html={texToHtml(p.titleTex)} />
   <p class="authors">
     {authors.map((a, i) => <>{a.me ? <strong>{a.name}</strong> : a.name}{i < authors.length - 1 ? ', ' : ''}</>)}
   </p>
-  {p.venue && <p class="venue">{p.venue}</p>}
+  {p.venue && <p class="venue" set:html={texToHtml(p.venue)} />}
   <p class="links">
     {p.doi && <a href={`https://doi.org/${p.doi}`}>DOI</a>}
     {p.arxiv && <a href={`https://arxiv.org/abs/${p.arxiv}`}>arXiv</a>}
     {p.pdf && <a href={`/pdf/${p.pdf}`}>PDF</a>}
     {p.code && <a href={p.code}>Code</a>}
     {p.url && <a href={p.url}>Link</a>}
-    {p.abstract && (
-      <details><summary>Abstract</summary><p>{p.abstract}</p></details>
+    {p.abstractTex && (
+      <details><summary>Abstract</summary><p set:html={texToHtml(p.abstractTex)} /></details>
     )}
     <details><summary>BibTeX</summary><pre>{p.bibtex}</pre></details>
   </p>
+  </div>
 </article>
 <style>
+  .has-figure { display: grid; grid-template-columns: 1fr 200px; gap: 28px; align-items: start; }
+  .figure { grid-column: 2; grid-row: 1; display: block; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; background: #fff; margin-top: 26px; }
+  .figure img { display: block; width: 100%; height: auto; }
+  .has-figure .body { grid-column: 1; grid-row: 1; min-width: 0; }
+  @media (max-width: 640px) {
+    .has-figure { grid-template-columns: 1fr; gap: 14px; }
+    .figure { grid-row: 2; grid-column: 1; max-width: 360px; margin-top: 0; }
+    .has-figure .body { grid-row: 1; }
+  }
   .paper { padding: 22px 0; border-bottom: 1px solid var(--rule); max-width: 860px; }
   h3 { font-size: 21px; margin: 4px 0 6px; }
   .authors, .venue { margin: 0; color: var(--muted); font-size: 15.5px; }
