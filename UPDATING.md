@@ -18,7 +18,7 @@ npm run build        # must finish without errors before you push
    - `selected = {true}` to show it on the home page
    - `pdf = {file.pdf}` and put the file in `public/pdf/`
    - `code = {https://github.com/...}`
-   - `image = {file.png}` and put the figure in `src/assets/papers/` (any size; shown as a small thumbnail, click to enlarge)
+   - `image = {file.png}` and put the figure in `src/assets/papers/` (any size; shown as a small thumbnail). The title and the thumbnail link to the DOI, else `url`, arXiv or PDF; with none of these they are not clickable
    - Math in titles and abstracts: `$Re_\lambda$` inline; LaTeX accents (`Fax\'en`) and `--` dashes are converted.
 3. When a paper moves from submitted to published, change `status` and add `doi`.
 
