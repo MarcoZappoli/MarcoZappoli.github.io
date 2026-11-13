@@ -103,7 +103,7 @@ The parameter space is explored by varying the particle **Stokes number** $St$ a
 
 Each term of the particle solver was checked against analytical solutions before production runs, including a sedimenting particle with the full history force and a particle on a circular trajectory in a steady, space-dependent flow.
 
-![Verification](../../../assets/projects/dns-particles-shear-turbulence/thesis_validation.png)
+![Verification position](../../../assets/projects/dns-particles-shear-turbulence/Validazione_circular_posizione.png "(a)") ![Verification velocity](../../../assets/projects/dns-particles-shear-turbulence/Validazione_circular_velocita.png "(b)") ![Verification Material Derivative](../../../assets/projects/dns-particles-shear-turbulence/Validazione_circular_Mdufdt.png "(c)")
 
 **Figure 3:** Circular-trajectory test. Errors in (a) particle position, (b) particle velocity and (c) material derivative $D\boldsymbol{u}/Dt$ against the time step. Without the history force the scheme converges at second order; with the window–tail Basset term the error levels off where the exponential kernel fit dominates.  
 **Image Credit:** Marco Zappoli, MSc thesis
