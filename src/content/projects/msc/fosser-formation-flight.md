@@ -77,18 +77,27 @@ AVL gives only induced drag. Assuming a parabolic polar and that the trim point 
 
 In the reference formation, most trailing aircraft fly with less induced drag than when flying solo, while the leader changes little:
 
-| Aircraft | $\Delta C_{D,i}$ leader | $\Delta C_{D,i}$ trailer |
-|---|---|---|
-| Aermacchi MB-339A | −0.5 % | −5.4 % |
-| Fiat G.91R | −8.3 % | −34.4 % |
-| Northrop F-5E Tiger II | −24.3 % | −27.5 % |
-| McDonnell Douglas F-4E Phantom II | −1.6 % | −6.5 % |
-| McDonnell Douglas F-15A Eagle | −1.3 % | −7.0 % |
-| Lockheed Martin F-16A Fighting Falcon | −1.5 % | −5.3 % |
-| McDonnell Douglas F/A-18C Hornet | −6.3 % | −13.0 % |
-| Lockheed Martin/Boeing F-22A Raptor | +2.5 % | −2.8 % |
+<div class="table-wrap">
+<table class="gen-table">
+<thead><tr><th>Aircraft</th><th>ΔC<sub>D,i</sub> leader</th><th>ΔC<sub>D,i</sub> trailer</th></tr></thead>
+<tbody>
+<tr class="gen-trainer"><td>Aermacchi MB-339A</td><td>−0.5 %</td><td>−5.4 %</td></tr>
+<tr class="gen-g1"><td>Fiat G.91R</td><td>−8.3 %</td><td>−34.4 %</td></tr>
+<tr class="gen-g2"><td>North American F-100 Super Sabre</td><td>+11.5 %</td><td>+7.3 %</td></tr>
+<tr class="gen-g2"><td>McDonnell F-101A Voodoo</td><td>−1.6 %</td><td>−8.1 %</td></tr>
+<tr class="gen-g2"><td>Lockheed F-104G Starfighter</td><td>+32.9 %</td><td>+27.7 %</td></tr>
+<tr class="gen-g3"><td>McDonnell Douglas F-4E Phantom II</td><td>−1.6 %</td><td>−6.5 %</td></tr>
+<tr class="gen-g3"><td>Northrop F-5E Tiger II</td><td>−24.3 %</td><td>−27.5 %</td></tr>
+<tr class="gen-g3"><td>Convair F-106 Delta Dart</td><td>+17.3 %</td><td>+13.7 %</td></tr>
+<tr class="gen-g4"><td>McDonnell Douglas F-15A Eagle</td><td>−1.3 %</td><td>−7.0 %</td></tr>
+<tr class="gen-g4"><td>Lockheed Martin F-16A Fighting Falcon</td><td>−1.5 %</td><td>−5.3 %</td></tr>
+<tr class="gen-g4"><td>McDonnell Douglas F/A-18C Hornet</td><td>−6.3 %</td><td>−13.0 %</td></tr>
+<tr class="gen-g5"><td>Lockheed Martin/Boeing F-22A Raptor</td><td>+2.5 %</td><td>−2.8 %</td></tr>
+</tbody>
+</table>
+</div>
 
-**Table 1:** Change in induced drag with respect to solo flight, in the reference formation position, for a selection of the twelve aircraft studied. The full table is in the report.
+**Table 1:** Change in induced drag with respect to solo flight, in the reference formation position. Rows are coloured by generation: <span class="gen-key gen-trainer">trainer</span> <span class="gen-key gen-g1">1st</span> <span class="gen-key gen-g2">2nd</span> <span class="gen-key gen-g3">3rd</span> <span class="gen-key gen-g4">4th</span> <span class="gen-key gen-g5">5th</span>. The F-100, F-104 and F-106 results look anomalous and may be affected by numerical issues in the geometry models.
 
 In the best position found later, the F/A-18 trailer gains about **46 %**, close to the 40 % measured in flight by the AFF programme under the same conditions.
 
@@ -151,9 +160,3 @@ Using the **Breguet range equation**, the study shows that:
 
 > [!WARNING] Limits of the model
 > The vortex-lattice method is inviscid and linear, so viscous and unsteady wake effects are not captured. The optimized wings, especially those with forward sweep, would also need structural, aeroelastic and flight-control studies before being applied to a real aircraft.
-
-## Technical report
-
-The complete report provides a detailed description of the **methodology**, **modeling assumptions**, and **validation analyses** supporting this work.
-
-[View or download the full technical report (PDF)](/pdf/Report_Progetto_Aerodinamico.pdf)
