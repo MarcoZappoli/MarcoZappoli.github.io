@@ -6,7 +6,8 @@ Routine updates need no code changes. For each one: edit, preview, push, merge, 
 
 ```bash
 cd ~/projects/website
-npm run dev          # http://localhost:4321, reloads on save
+npm run dev          # http://localhost:4321, reloads on save (clears the content cache at start)
+npm run dev:stop     # stop a dev server left running; do this after git pull, then npm run dev again
 npm run build        # must finish without errors before you push
 ```
 
