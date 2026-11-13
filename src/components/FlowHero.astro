@@ -22,16 +22,16 @@
  * Edit the values below; the caption under the hero updates automatically.
  */
 const params = {
-  A: 1.0, // flow amplitude (speed)
+  A: 1, // flow amplitude (speed)
   eps: 1, // oscillation of the gyre boundary; 0 = steady flow
-  period: 2, // oscillation period, omega = 2 pi / period
-  St: 1, // Stokes number, St = tau_p / T_flow with tau_p = 2 rho_p r^2 / (9 rho_f nu)
-  R: 0.001, // density ratio rho_p / rho_f (1000 heavy, 1 neutrally buoyant, < 1 bubbles)
-  nTracers: 5000, // passive tracers (drawn in --flow-tracer)
-  nInertial: 15000, // inertial particles (drawn in --flow-inertial)
-  dt: 0.002, // time step per animation frame
-  reseed: 0.002, // probability per frame that a particle restarts at a random point
-  dotTracer: 0.7, // dot size in px
+  period: 5, // oscillation period, omega = 2 pi / period
+  St: 0.5, // Stokes number, St = tau_p / T_flow with tau_p = 2 rho_p r^2 / (9 rho_f nu)
+  R: 0.01, // density ratio rho_p / rho_f (1000 heavy, 1 neutrally buoyant, < 1 bubbles)
+  nTracers: 3000, // passive tracers (drawn in --flow-tracer)
+  nInertial: 17000, // inertial particles (drawn in --flow-inertial)
+  dt: 0.0015, // time step per animation frame
+  reseed: 0.0001, // probability per frame that a particle restarts at a random point
+  dotTracer: 0.6, // dot size in px
   dotInertial: 0.5,
   tracerAlpha: 1.0, // tracer opacity
   maxPixelRatio: 2, // caps canvas resolution on high-density screens (saves memory)

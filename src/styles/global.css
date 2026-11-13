@@ -7,8 +7,8 @@
   --accent: #0e6f8a;
   --rule: #dcd8cf;
   --hero-fade: rgba(246, 244, 239, 0.08);
-  --flow-tracer: #7f909c; /* cool slate: the carrier flow */
-  --flow-inertial: #d2320f; /* red of the dark theme, deepened for contrast on light */
+  --flow-tracer: #545d64; /* cool slate: the carrier flow */
+  --flow-inertial: #0fd20f; /* red of the dark theme, deepened for contrast on light */
   --scrim: rgba(246, 244, 239, 0.72);
   --serif: 'Fraunces Variable', Georgia, serif;
   --sans: 'Inter Variable', system-ui, sans-serif;
@@ -25,8 +25,8 @@
   --accent: #5cc8e0;
   --rule: #253039;
   --hero-fade: rgba(13, 17, 20, 0.08);
-  --flow-tracer: #4e6878; /* cool steel blue, recedes behind the particles */
-  --flow-inertial: #f23602; /* Marco's red */
+  --flow-tracer: #7f909c; /* cool steel blue, recedes behind the particles */
+  --flow-inertial: #d2320f; /* Marco's red */
   --scrim: rgba(13, 17, 20, 0.6);
   color-scheme: dark;
 }
