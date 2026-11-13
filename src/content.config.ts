@@ -21,6 +21,7 @@ const projects = defineCollection({
       cover: image().optional(),
       repo: z.url().optional(),
       report: z.string().optional(),
+      reportLabel: z.string().default('Technical report (PDF)'),
       paper: z.string().optional(), // BibTeX key of the related publication
     }),
 });
