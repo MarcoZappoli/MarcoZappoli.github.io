@@ -6,11 +6,18 @@
  *   psi = A sin(pi f(x,t)) sin(pi y),  f = a x^2 + b x,
  *   a = eps sin(omega t),  b = 1 - 2 eps sin(omega t)
  *
- * Tracers move with the fluid:   dx/dt = u(x, t)
- * Inertial particles (minimal Maxey-Riley, Stokes drag only, heavy particles):
- *   dv/dt = (u(x, t) - v) / St,   dx/dt = v
- * The drag term is integrated exactly over each step (exponential integrator),
- * which stays stable for any St and dt:  v <- u + (v - u) exp(-dt / St).
+ * Tracers move with the fluid (explicit Euler):  dx/dt = u(x, t)
+ * Inertial particles, Maxey-Riley with drag, pressure gradient and added mass:
+ *   dv/dt = (u - v) / St_eff + beta Du/Dt,   dx/dt = v
+ *   beta = 3 / (1 + 2R),  St_eff = St (1 + 1/(2R)),  R = rho_p / rho_f
+ * Du/Dt = du/dt + (u . grad) u is evaluated analytically. The drag term is
+ * integrated exactly over each step, so it is stable for any St and dt:
+ *   v <- v* + (v - v*) exp(-dt / St_eff),  v* = u + beta St_eff Du/Dt
+ * and the position uses the mean of old and new velocity (trapezoidal).
+ *
+ * Performance: state lives in typed arrays and nothing is allocated per frame;
+ * sin(omega t) is computed once per frame; colours are read once (and again
+ * when the theme changes); the animation pauses when the hero is off-screen.
  *
  * Edit the values below; the caption under the hero updates automatically.
  */
@@ -20,13 +27,14 @@ const params = {
   period: 2, // oscillation period, omega = 2 pi / period
   St: 1, // Stokes number, St = tau_p / T_flow with tau_p = 2 rho_p r^2 / (9 rho_f nu)
   R: 0.001, // density ratio rho_p / rho_f (1000 heavy, 1 neutrally buoyant, < 1 bubbles)
-  nTracers: 5000, // passive tracers (drawn in the muted colour)
-  nInertial: 15000, // inertial particles (drawn in the accent colour)
+  nTracers: 5000, // passive tracers (drawn in --flow-tracer)
+  nInertial: 15000, // inertial particles (drawn in --flow-inertial)
   dt: 0.002, // time step per animation frame
   reseed: 0.002, // probability per frame that a particle restarts at a random point
   dotTracer: 0.7, // dot size in px
   dotInertial: 0.5,
-  tracerAlpha: 1.0, // tracer opacity, so the inertial particles stand out
+  tracerAlpha: 1.0, // tracer opacity
+  maxPixelRatio: 2, // caps canvas resolution on high-density screens (saves memory)
 };
 const { A, eps, period, St, R } = params;
 ---
@@ -38,102 +46,126 @@ const { A, eps, period, St, R } = params;
 </p>
 <script define:vars={{ params }}>
   const c = document.getElementById('flow');
-  const g = c.getContext('2d');
-  const { A, eps, period, St, nTracers, nInertial, dt, reseed, dotTracer, dotInertial, tracerAlpha, R } = params;
-  const om = (2 * Math.PI) / period;
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let W = 0, H = 0, t = 0;
-
-  function vel(x, y, t) {
-    const s = Math.sin(om * t), a = eps * s, b = 1 - 2 * eps * s;
-    const f = a * x * x + b * x, fx = 2 * a * x + b;
-    return [
-      -Math.PI * A * Math.sin(Math.PI * f) * Math.cos(Math.PI * y),
-      Math.PI * A * Math.cos(Math.PI * f) * Math.sin(Math.PI * y) * fx,
-    ];
-  }
-  // Each particle: [x, y, vx, vy]; inertial particles start at the local fluid velocity.
-  function spawn() {
-    const x = Math.random() * 2, y = Math.random();
-    const [u, v] = vel(x, y, t);
-    return [x, y, u, v];
-  }
-  const tracers = Array.from({ length: nTracers }, spawn);
-  const inertial = Array.from({ length: nInertial }, spawn);
-  // Maxey-Riley with drag, pressure gradient and added mass:
-  //   dv/dt = (u - v) / St_eff + beta Du/Dt
-  //   beta = 3 / (1 + 2R),  St_eff = St (1 + 1/(2R))
+  const g = c.getContext('2d', { alpha: false });
+  const { A, eps, period, St, R, nTracers, nInertial, dt, reseed, dotTracer, dotInertial, tracerAlpha, maxPixelRatio } = params;
+  const PI = Math.PI, PA = PI * A, P2A = PI * PI * A;
+  const om = (2 * PI) / period;
   const beta = 3 / (1 + 2 * R);
   const StEff = St * (1 + 1 / (2 * R));
   const decay = Math.exp(-dt / StEff);
-  // Material derivative of the fluid velocity, Du/Dt = du/dt + (u . grad) u, by central differences.
-  function accel(x, y, t) {
-    const h = 1e-4;
-    const [u, v] = vel(x, y, t);
-    const [uxp, vxp] = vel(x + h, y, t), [uxm, vxm] = vel(x - h, y, t);
-    const [uyp, vyp] = vel(x, y + h, t), [uym, vym] = vel(x, y - h, t);
-    const [utp, vtp] = vel(x, y, t + h), [utm, vtm] = vel(x, y, t - h);
-    return [
-      (utp - utm) / (2 * h) + u * (uxp - uxm) / (2 * h) + v * (uyp - uym) / (2 * h),
-      (vtp - vtm) / (2 * h) + u * (vxp - vxm) / (2 * h) + v * (vyp - vym) / (2 * h),
-    ];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Particle state: no per-particle objects.
+  const tx = new Float32Array(nTracers), ty = new Float32Array(nTracers);
+  const ix = new Float32Array(nInertial), iy = new Float32Array(nInertial);
+  const ivx = new Float32Array(nInertial), ivy = new Float32Array(nInertial);
+
+  // Per-frame flow coefficients and per-call outputs (scalars, no allocations).
+  let t = 0, a = 0, b = 1, at = 0, bt = 0;
+  let U = 0, V = 0, AX = 0, AY = 0;
+  function setTime(time) {
+    const s = Math.sin(om * time), co = Math.cos(om * time);
+    a = eps * s; b = 1 - 2 * eps * s;
+    at = eps * om * co; bt = -2 * at; // time derivatives of a and b
   }
-
-  function size() {
-    const d = devicePixelRatio || 1;
-    W = c.clientWidth; H = c.clientHeight;
-    c.width = W * d; c.height = H * d;
-    g.setTransform(d, 0, 0, d, 0, 0);
+  function velocity(x, y) {
+    const f = a * x * x + b * x, fx = 2 * a * x + b;
+    const S = Math.sin(PI * f), C = Math.cos(PI * f), Sy = Math.sin(PI * y), Cy = Math.cos(PI * y);
+    U = -PA * S * Cy;
+    V = PA * C * Sy * fx;
   }
-  function inside(p) { return p[0] >= 0 && p[0] <= 2 && p[1] >= 0 && p[1] <= 1; }
+  // Velocity and material acceleration Du/Dt, analytic, sharing the same trig values.
+  function velocityAccel(x, y) {
+    const f = a * x * x + b * x, fx = 2 * a * x + b, fxx = 2 * a;
+    const ft = at * x * x + bt * x, fxt = 2 * at * x + bt;
+    const S = Math.sin(PI * f), C = Math.cos(PI * f), Sy = Math.sin(PI * y), Cy = Math.cos(PI * y);
+    U = -PA * S * Cy;
+    V = PA * C * Sy * fx;
+    const ux = -P2A * C * fx * Cy, uy = P2A * S * Sy, ut = -P2A * C * ft * Cy;
+    const vx = PA * Sy * (C * fxx - PI * S * fx * fx), vy = P2A * C * Cy * fx;
+    const vt = PA * Sy * (C * fxt - PI * S * ft * fx);
+    AX = ut + U * ux + V * uy;
+    AY = vt + U * vx + V * vy;
+  }
+  function spawnTracer(i) { tx[i] = Math.random() * 2; ty[i] = Math.random(); }
+  function spawnInertial(i) {
+    const x = Math.random() * 2, y = Math.random();
+    velocity(x, y);
+    ix[i] = x; iy[i] = y; ivx[i] = U; ivy[i] = V; // start at the local fluid velocity
+  }
+  setTime(0);
+  for (let i = 0; i < nTracers; i++) spawnTracer(i);
+  for (let i = 0; i < nInertial; i++) spawnInertial(i);
 
-  function rk4(x, y, t, h) {
-  const [k1u, k1v] = vel(x, y, t);
-  const [k2u, k2v] = vel(x + 0.5*h*k1u, y + 0.5*h*k1v, t + 0.5*h);
-  const [k3u, k3v] = vel(x + 0.5*h*k2u, y + 0.5*h*k2v, t + 0.5*h);
-  const [k4u, k4v] = vel(x + h*k3u, y + h*k3v, t + h);
-  return [x + h/6*(k1u + 2*k2u + 2*k3u + k4u),
-          y + h/6*(k1v + 2*k2v + 2*k3v + k4v)];
-}
-
-  function step() {
+  // Colours: read once, re-read only when the theme attribute changes.
+  let colFade = '', colTracer = '', colInertial = '', colBg = '';
+  function readColours() {
     const css = getComputedStyle(document.documentElement);
-    g.fillStyle = css.getPropertyValue('--hero-fade');
-    g.fillRect(0, 0, W, H);
-
-    g.fillStyle = css.getPropertyValue('--flow-tracer');
-    g.globalAlpha = tracerAlpha;
-    for (let i = 0; i < tracers.length; i++) {
-      const p = tracers[i];
-      const [u, v] = vel(p[0], p[1], t);
-      [p[0], p[1]] = rk4(p[0], p[1], t, dt);
-      if (Math.random() < reseed || !inside(p)) tracers[i] = spawn();
-      g.fillRect((p[0] / 2) * W, (1 - p[1]) * H, dotTracer, dotTracer);
-    }
-
-    g.globalAlpha = 1;
-    g.fillStyle = css.getPropertyValue('--flow-inertial');
-    for (let i = 0; i < inertial.length; i++) {
-      const p = inertial[i];
-      const [u, v] = vel(p[0], p[1], t);
-      const [ax, ay] = accel(p[0], p[1], t);
-      // exact step for fixed u and Du/Dt: v relaxes towards u + beta St_eff Du/Dt
-      const vx = u + beta * StEff * ax, vy = v + beta * StEff * ay;
-      const ox = p[2], oy = p[3];
-      p[2] = vx + (p[2] - vx) * decay;
-      p[3] = vy + (p[3] - vy) * decay;
-      p[0] += 0.5 * (ox + p[2]) * dt; p[1] += 0.5 * (oy + p[3]) * dt;
-      if (Math.random() < reseed || !inside(p)) inertial[i] = spawn();
-      g.fillRect((p[0] / 2) * W, (1 - p[1]) * H, dotInertial, dotInertial);
-    }
-
-    t += dt;
-    if (!reduce) requestAnimationFrame(step);
+    colFade = css.getPropertyValue('--hero-fade').trim();
+    colTracer = css.getPropertyValue('--flow-tracer').trim();
+    colInertial = css.getPropertyValue('--flow-inertial').trim();
+    colBg = css.getPropertyValue('--bg').trim();
   }
+  readColours();
+  new MutationObserver(() => { readColours(); clear(); if (!running) draw(); })
+    .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+  let W = 0, H = 0;
+  function clear() { g.globalAlpha = 1; g.fillStyle = colBg; g.fillRect(0, 0, W, H); }
+  function size() {
+    const d = Math.min(devicePixelRatio || 1, maxPixelRatio);
+    W = c.clientWidth; H = c.clientHeight;
+    c.width = Math.round(W * d); c.height = Math.round(H * d);
+    g.setTransform(d, 0, 0, d, 0, 0);
+    clear();
+  }
+
+  function advance() {
+    setTime(t);
+    for (let i = 0; i < nTracers; i++) {
+      velocity(tx[i], ty[i]);
+      const x = tx[i] + U * dt, y = ty[i] + V * dt;
+      if (Math.random() < reseed || x < 0 || x > 2 || y < 0 || y > 1) spawnTracer(i);
+      else { tx[i] = x; ty[i] = y; }
+    }
+    for (let i = 0; i < nInertial; i++) {
+      velocityAccel(ix[i], iy[i]);
+      const sx = U + beta * StEff * AX, sy = V + beta * StEff * AY; // drag equilibrium velocity
+      const ox = ivx[i], oy = ivy[i];
+      const nx = sx + (ox - sx) * decay, ny = sy + (oy - sy) * decay;
+      const x = ix[i] + 0.5 * (ox + nx) * dt, y = iy[i] + 0.5 * (oy + ny) * dt;
+      if (Math.random() < reseed || x < 0 || x > 2 || y < 0 || y > 1) spawnInertial(i);
+      else { ix[i] = x; iy[i] = y; ivx[i] = nx; ivy[i] = ny; }
+    }
+    t += dt;
+  }
+
+  // One path per population: far fewer canvas calls than one fillRect per dot.
+  function draw() {
+    const sx = W / 2;
+    g.globalAlpha = 1; g.fillStyle = colFade; g.fillRect(0, 0, W, H);
+    g.globalAlpha = tracerAlpha; g.fillStyle = colTracer; g.beginPath();
+    for (let i = 0; i < nTracers; i++) g.rect(tx[i] * sx, (1 - ty[i]) * H, dotTracer, dotTracer);
+    g.fill();
+    g.globalAlpha = 1; g.fillStyle = colInertial; g.beginPath();
+    for (let i = 0; i < nInertial; i++) g.rect(ix[i] * sx, (1 - iy[i]) * H, dotInertial, dotInertial);
+    g.fill();
+  }
+
+  // Run only while the hero is on screen (and the tab is visible: rAF pauses itself).
+  let running = false, visible = true;
+  function frame() {
+    if (!visible) { running = false; return; }
+    advance(); draw();
+    requestAnimationFrame(frame);
+  }
+  function start() { if (!running && !reduce) { running = true; requestAnimationFrame(frame); } }
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) start(); }).observe(c);
 
   size();
-  addEventListener('resize', size);
-  if (reduce) { for (let i = 0; i < 600; i++) step(); } else step();
+  addEventListener('resize', () => { size(); if (!running) draw(); });
+  if (reduce) { for (let i = 0; i < 600; i++) { advance(); draw(); } }
+  else start();
 </script>
 <style>
   canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
