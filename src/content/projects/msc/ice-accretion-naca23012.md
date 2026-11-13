@@ -7,16 +7,17 @@ field: "Aerodynamics, icing"
 tools: "SU2 (RANS), Pointwise, Gmsh, MATLAB"
 year: 2024
 order: 4
-featured: false
+featured: true
 cover: ../../../assets/projects/ice-accretion-naca23012/bubble_251_nuova.png
-report: /pdf/CFD_Project.pdf
-reportLabel: "Technical report (PDF)"
+reports:
+  - { label: "Technical report (PDF)", href: /pdf/CFD_Project.pdf }
+collaborators: [Giorgia Pallara, Federico Poleni, Alberto Vacca, Giacomo Visconti]
 ---
 ## The problem: ice accretion on airfoil
 
 This project investigates the aerodynamic consequences of **ice accretion** on the NACA 23012 airfoil through **Computational Fluid Dynamics (CFD)** simulations. Ice formation alters the airfoil geometry, particularly at the **leading edge**, introducing complex flow phenomena that lead to a significant degradation in aerodynamic performance.
 
-The clean airfoil is compared with three iced geometries taken from the test cases of the **1st AIAA Ice Prediction Workshop**: one **rime ice** shape (Case-241) and two **glaze ice** shapes with leading-edge horns (Case-242 and Case-251). The work was carried out with Giorgia Pallara, Federico Poleni, Alberto Vacca and Giacomo Visconti.
+The clean airfoil is compared with three iced geometries taken from the test cases of the **1st AIAA Ice Prediction Workshop**: one **rime ice** shape (Case-241) and two **glaze ice** shapes with leading-edge horns (Case-242 and Case-251).
 
 ![Iced Geometries](../../../assets/projects/ice-accretion-naca23012/collage_geometrie.png)
 

@@ -20,8 +20,9 @@ const projects = defineCollection({
       draft: z.boolean().default(false),
       cover: image().optional(),
       repo: z.url().optional(),
-      report: z.string().optional(),
-      reportLabel: z.string().default('Technical report (PDF)'),
+      // PDF buttons in the header; lang (e.g. "Italian") adds a note next to the button
+      reports: z.array(z.object({ label: z.string(), href: z.string(), lang: z.string().optional() })).default([]),
+      collaborators: z.array(z.string()).default([]), // names; profile links in src/data/people.ts
       paper: z.string().optional(), // BibTeX key of the related publication
     }),
 });

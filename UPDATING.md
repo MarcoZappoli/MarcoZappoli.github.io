@@ -30,7 +30,9 @@ npm run build        # must finish without errors before you push
    - `src/content/projects/independent/`: personal projects and code done on your own
    Moving a file between folders moves it to another section without changing its URL.
 2. Put figures in `src/assets/projects/my-new-code/` (PNG or JPG, any size; the build makes web versions).
-3. Fill in the header (`title`, `summary`, `category`, `type`, `field`, `tools`, `year`, optional `repo`, `cover`, `featured`, and `paper = <BibTeX key>` to add a "Related publication" button) and write the page in Markdown. Equations: `$...$` inline, `$$...$$` for display.
+3. Fill in the header (`title`, `summary`, `category`, `type`, `field`, `tools`, `year`, optional `repo`, `cover`, `featured`, `paper: <BibTeX key>` to add a "Related publication" button) and write the page in Markdown.
+   - PDF buttons: `reports:` with one line per file, e.g. `- { label: "Lab 1 (PDF)", href: /pdf/file.pdf, lang: Italian }` (`lang` is optional and shows "in Italian" next to the button).
+   - Co-authors: `collaborators: [Name One, Name Two]`. Put their LinkedIn URLs in `src/data/people.ts` once and every page links them. Equations: `$...$` inline, `$$...$$` for display.
 4. Coloured banners: start a quote with a type, for example
    ```md
    > [!WARNING] Optional title

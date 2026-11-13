@@ -9,8 +9,8 @@ year: 2026
 order: 1
 featured: true
 paper: zappoli2026clustering
-report: /pdf/MSc_Thesis_Marco_Zappoli.pdf
-reportLabel: "MSc thesis (PDF)"
+reports:
+  - { label: "MSc thesis (PDF)", href: /pdf/MSc_Thesis_Marco_Zappoli.pdf }
 cover: ../../../assets/papers/R10St1_XZ_2083.png
 ---
 ## The problem: inertial particles in turbulence

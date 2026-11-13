@@ -9,8 +9,9 @@ year: 2025
 order: 3
 featured: true
 cover: ../../../assets/projects/fosser-formation-flight/F18_OptPos.png
-report: /pdf/Report_Progetto_Aerodinamico.pdf
-reportLabel: "Technical report (PDF)"
+reports:
+  - { label: "Technical report (PDF)", href: /pdf/Report_Progetto_Aerodinamico.pdf }
+collaborators: [Federico Poleni, Giacomo Visconti]
 ---
 ## The problem: formation flight
 
@@ -26,7 +27,7 @@ However, for fighter aircraft, characterized by **low aspect ratio** and **swept
 
 ### Objective
 
-This project, carried out with Federico Poleni and Giacomo Visconti, evaluates how different fighter aircraft configurations benefit from two-ship formation flight, and whether **aerodynamic optimization** can enhance these effects. It is deliberately low-fidelity: one vortex-lattice evaluation takes seconds, so thousands of geometries and positions can be explored.
+This project evaluates how different fighter aircraft configurations benefit from two-ship formation flight, and whether **aerodynamic optimization** can enhance these effects. It is deliberately low-fidelity: one vortex-lattice evaluation takes seconds, so thousands of geometries and positions can be explored.
 
 The analysis is structured into four stages:
 
