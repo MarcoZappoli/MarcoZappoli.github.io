@@ -3,7 +3,9 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const projects = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects',
+    // URL = file name only, so moving a file between folders keeps its link
+    generateId: ({ entry }) => entry.replace(/^.*\//, '').replace(/\.mdx?$/, '') }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -19,6 +21,7 @@ const projects = defineCollection({
       cover: image().optional(),
       repo: z.url().optional(),
       report: z.string().optional(),
+      paper: z.string().optional(), // BibTeX key of the related publication
     }),
 });
 

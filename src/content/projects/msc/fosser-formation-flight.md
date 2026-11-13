@@ -8,7 +8,7 @@ tools: "VLM/PSO"
 year: 2025
 order: 3
 featured: true
-cover: ../../assets/projects/fosser-formation-flight/F18_OptPos.png
+cover: ../../../assets/projects/fosser-formation-flight/F18_OptPos.png
 ---
 ## The problem: formation flight
 
@@ -34,7 +34,7 @@ The analysis is structured into three main stages:
 
 The ultimate goal is to quantify improvements in **drag reduction**, **aerodynamic efficiency**, and **operational range**.
 
-![MRG R100 St0.1](../../assets/projects/fosser-formation-flight/F-18_top.png) ![MRG R10 St1](../../assets/projects/fosser-formation-flight/F-18_side.png)
+![MRG R100 St0.1](../../../assets/projects/fosser-formation-flight/F-18_top.png) ![MRG R10 St1](../../../assets/projects/fosser-formation-flight/F-18_side.png)
 
 **Figure 1:** Aircraft geometries reconstructed from three-view drawings and implemented in **AVL** for aerodynamic analysis.  
 **Image Credit:** Marco Zappoli
@@ -64,11 +64,11 @@ Optimized configurations:
 - reduce sensitivity to positioning errors
 - expand the region of beneficial wake interaction
 
-Baseline Optimized ![](../../assets/projects/fosser-formation-flight/F18_OGPos.png) ![](../../assets/projects/fosser-formation-flight/F18_OptPos.png)
+Baseline Optimized ![](../../../assets/projects/fosser-formation-flight/F18_OGPos.png) ![](../../../assets/projects/fosser-formation-flight/F18_OptPos.png)
 
 McDonnell Douglas F/A-18C
 
-Baseline Optimized ![](../../assets/projects/fosser-formation-flight/F22_OGPos.png) ![](../../assets/projects/fosser-formation-flight/F22_OptPos.png)
+Baseline Optimized ![](../../../assets/projects/fosser-formation-flight/F22_OGPos.png) ![](../../../assets/projects/fosser-formation-flight/F22_OptPos.png)
 
 McDonnell Douglas F-22A
 
@@ -85,7 +85,7 @@ Using the **Breguet range equation**, the study shows that:
 - aerodynamic optimization further amplifies this effect
 - some missions become feasible without **aerial refueling**
 
-![F18 Range](../../assets/projects/fosser-formation-flight/F18_Range.png) ![F22 Range](../../assets/projects/fosser-formation-flight/F22_Range.png)
+![F18 Range](../../../assets/projects/fosser-formation-flight/F18_Range.png) ![F22 Range](../../../assets/projects/fosser-formation-flight/F22_Range.png)
 
 **Figure 3:** Ferry range comparison for the **F-22A** (left) and **F/A-18C** (right). Range contours are computed using the Breguet equation under cruise conditions ($M=0.56$, 25,000 ft), assuming dry thrust-specific fuel consumption and a 20% fuel reserve. “Formation” denotes conditions where the trailing aircraft benefits from wake-induced drag reduction.  
 **Image credit:** Marco Zappoli

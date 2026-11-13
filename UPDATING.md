@@ -24,9 +24,13 @@ npm run build        # must finish without errors before you push
 
 ## Add a project or new code
 
-1. Copy an existing file in `src/content/projects/` and rename it, for example `my-new-code.md`. The file name becomes the URL: `/projects/my-new-code/`.
+1. Copy an existing file into the folder for its section and rename it, for example `my-new-code.md`. The file name becomes the URL: `/projects/my-new-code/`.
+   - `src/content/projects/research/`: thesis and research work (the MSc thesis; later the PhD work)
+   - `src/content/projects/msc/`: MSc course projects
+   - `src/content/projects/independent/`: personal projects and code done on your own
+   Moving a file between folders moves it to another section without changing its URL.
 2. Put figures in `src/assets/projects/my-new-code/` (PNG or JPG, any size; the build makes web versions).
-3. Fill in the header (`title`, `summary`, `category`, `type`, `field`, `tools`, `year`, optional `repo`, `cover`, `featured`) and write the page in Markdown. Equations: `$...$` inline, `$$...$$` for display.
+3. Fill in the header (`title`, `summary`, `category`, `type`, `field`, `tools`, `year`, optional `repo`, `cover`, `featured`, and `paper = <BibTeX key>` to add a "Related publication" button) and write the page in Markdown. Equations: `$...$` inline, `$$...$$` for display.
 4. Keep `draft: true` until it is ready to appear.
 
 `category` must be one of DNS, CFD, Experimental, Design, Software. A missing or misspelled field stops the build with a message naming the file.

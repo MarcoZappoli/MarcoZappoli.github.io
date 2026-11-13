@@ -8,13 +8,13 @@ tools: "RANS"
 year: 2024
 order: 4
 featured: false
-cover: ../../assets/projects/ice-accretion-naca23012/bubble_251_nuova.png
+cover: ../../../assets/projects/ice-accretion-naca23012/bubble_251_nuova.png
 ---
 ## The problem: ice accretion on airfoil
 
 This project investigates the aerodynamic consequences of **ice accretion** on the NACA 23012 airfoil through high-fidelity **Computational Fluid Dynamics (CFD)** simulations. Ice formation alters the airfoil geometry, particularly at the **leading edge**, introducing complex flow phenomena that lead to a significant degradation in aerodynamic performance.
 
-![Iced Geometries](../../assets/projects/ice-accretion-naca23012/collage_geometrie.png)
+![Iced Geometries](../../../assets/projects/ice-accretion-naca23012/collage_geometrie.png)
 
 **Figure 1:** Comparison of the investigated iced geometries: **Case-241** (left), **Case-242** (center), and **Case-251** (right). These configurations represent different ice accretion regimes with increasing geometric complexity.  
 **Image Credit:** Marco Zappoli
@@ -28,7 +28,7 @@ The analysis was performed using **steady, compressible RANS simulations** with 
 
 A **hybrid meshing strategy** was adopted to ensure accurate boundary layer resolution ($y^+ \approx 1$), combining structured layers near the wall with unstructured elements in the far field. Mesh generation was carried out using **Gmsh** and **Pointwise**, alongside the development of a **custom MATLAB-based workflow** to handle the complexity of iced geometries.
 
-![MESH251 TREX](../../assets/projects/ice-accretion-naca23012/MESH251_TREX.png) ![MESH251 CLOSE UP](../../assets/projects/ice-accretion-naca23012/MESH251.png)
+![MESH251 TREX](../../../assets/projects/ice-accretion-naca23012/MESH251_TREX.png) ![MESH251 CLOSE UP](../../../assets/projects/ice-accretion-naca23012/MESH251.png)
 
 **Figure 2:** Mesh generation for complex iced geometries. Left: boundary layer resolution using the **T-Rex anisotropic extrusion** algorithm. Right: detailed view highlighting mesh quality in regions of strong geometric irregularity.  
 **Image Credit:** Marco Zappoli
@@ -54,7 +54,7 @@ Ice accretion leads to a **substantial degradation of aerodynamic performance**,
 
 Surface roughness further amplifies drag, with **skin friction contributions increasing by ~30%**, highlighting the combined effect of geometry and near-wall turbulence.
 
-![CL comparison](../../assets/projects/ice-accretion-naca23012/confronto_cl.png) ![Roughness effect](../../assets/projects/ice-accretion-naca23012/CDP_CDSFC_241_rough.png)
+![CL comparison](../../../assets/projects/ice-accretion-naca23012/confronto_cl.png) ![Roughness effect](../../../assets/projects/ice-accretion-naca23012/CDP_CDSFC_241_rough.png)
 
 **Figure 3:** Left: comparison of lift curves for all configurations using the SA turbulence model. Right: decomposition of drag into **pressure** ($C_{D,P}$) and **skin-friction** ($C_{D,SFC}$) components for Case-241, with and without surface roughness.  
 **Image credit:** Marco Zappoli

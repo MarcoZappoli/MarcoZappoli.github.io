@@ -22,6 +22,7 @@ const facts = [['Type', d.type], ['Field', d.field], ['Methods', d.tools], ['Yea
       <dl class="facts">{facts.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
       <p class="actions">
         {d.repo && <a class="btn" href={d.repo}>Code repository</a>}
+        {d.paper && <a class="btn" href={`/publications/#${d.paper}`}>Related publication</a>}
         {d.report && <a class="btn" href={d.report}>Technical report (PDF)</a>}
       </p>
     </header>

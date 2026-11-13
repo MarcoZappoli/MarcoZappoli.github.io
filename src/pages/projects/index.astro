@@ -1,8 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
-import { getProjects } from '../../lib/projects';
+import { getProjects, groupOf, GROUPS } from '../../lib/projects';
 const projects = await getProjects();
+const sections = GROUPS.map((g) => ({ ...g, items: projects.filter((p) => groupOf(p) === g.folder) })).filter((s) => s.items.length);
 const categories = ['All', ...new Set(projects.map((p) => p.data.category))];
 ---
 <Base title="Projects" description="Research and engineering projects: DNS, CFD, experiments, aircraft design and scientific software.">
@@ -14,9 +15,15 @@ const categories = ['All', ...new Set(projects.map((p) => p.data.category))];
         {categories.map((c, i) => <button type="button" data-cat={c} aria-pressed={i === 0 ? 'true' : 'false'}>{c}</button>)}
       </div>
     </header>
-    <div class="grid">
-      {projects.map((p) => <div class="item" data-cat={p.data.category}><ProjectCard project={p} /></div>)}
-    </div>
+    {sections.map((s) => (
+      <section class="group" id={s.folder}>
+        <h2 class="eyebrow">{s.label}</h2>
+        <p class="blurb">{s.blurb}</p>
+        <div class="grid">
+          {s.items.map((p) => <div class="item" data-cat={p.data.category}><ProjectCard project={p} /></div>)}
+        </div>
+      </section>
+    ))}
   </div>
 </Base>
 <script>
@@ -25,6 +32,7 @@ const categories = ['All', ...new Set(projects.map((p) => p.data.category))];
   buttons.forEach((b) => b.addEventListener('click', () => {
     buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
     items.forEach((it) => { it.hidden = b.dataset.cat !== 'All' && it.dataset.cat !== b.dataset.cat; });
+    document.querySelectorAll<HTMLElement>('.group').forEach((g) => { g.hidden = !g.querySelector('.item:not([hidden])'); });
   }));
 </script>
 <style>
@@ -33,5 +41,8 @@ const categories = ['All', ...new Set(projects.map((p) => p.data.category))];
   .filters { display: flex; gap: 8px; flex-wrap: wrap; }
   .filters button { font: 500 14px var(--sans); padding: 6px 14px; border-radius: 999px; border: 1px solid var(--rule); background: none; color: var(--ink); cursor: pointer; }
   .filters button[aria-pressed='true'] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .group { padding: 28px 0 40px; border-top: 1px solid var(--rule); }
+  .group h2 { color: var(--accent); margin: 0; }
+  .blurb { color: var(--muted); margin: 6px 0 24px; }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px 36px; }
 </style>

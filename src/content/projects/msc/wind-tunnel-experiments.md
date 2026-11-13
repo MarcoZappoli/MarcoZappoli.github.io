@@ -8,7 +8,7 @@ tools: "WT/PIV"
 year: 2024
 order: 5
 featured: false
-cover: ../../assets/projects/wind-tunnel-experiments/PIV_cover.png
+cover: ../../../assets/projects/wind-tunnel-experiments/PIV_cover.png
 ---
 ## Wind Tunnel Laboratory Experiments
 
@@ -35,9 +35,9 @@ The goal is to determine the **lift**, **drag**, and **pitching moment coefficie
 - Application of corrections (e.g., **blockage**, **buoyancy**)
 - Computation of aerodynamic coefficients ($C_L$, $C_D$, $C_M$)
 
-![SetupLab1](../../assets/projects/wind-tunnel-experiments/carico_13_rit_ps1.png)
+![SetupLab1](../../../assets/projects/wind-tunnel-experiments/carico_13_rit_ps1.png)
 
-![CL Lab1](../../assets/projects/wind-tunnel-experiments/portanza_xfoil.png) ![Cm Lab1](../../assets/projects/wind-tunnel-experiments/momento_xfoil.png)
+![CL Lab1](../../../assets/projects/wind-tunnel-experiments/portanza_xfoil.png) ![Cm Lab1](../../../assets/projects/wind-tunnel-experiments/momento_xfoil.png)
 
 **Figure 1:** Left: calibration process of the **strain-gauge balance**. Right: comparison between experimental measurements and **XFOIL predictions** for lift (top) and pitching moment (bottom).  
 **Image Credit:** Marco Zappoli
@@ -60,9 +60,9 @@ The objective is to relate **pressure distribution**, **velocity fields**, and *
 - Hot-wire measurements of **wake velocity deficit**
 - **Statistical** and **spectral analysis** of turbulent fluctuations
 
-![-Cp @ 6](../../assets/projects/wind-tunnel-experiments/Cp6.png) ![U scia](../../assets/projects/wind-tunnel-experiments/U_scia2_2.png)
+![-Cp @ 6](../../../assets/projects/wind-tunnel-experiments/Cp6.png) ![U scia](../../../assets/projects/wind-tunnel-experiments/U_scia2_2.png)
 
-![FFT scia](../../assets/projects/wind-tunnel-experiments/FFT_110.png)
+![FFT scia](../../../assets/projects/wind-tunnel-experiments/FFT_110.png)
 
 **Figure 2:** Top: pressure coefficient distribution at $\alpha=6^\circ$ (left) and wake velocity profile at $\alpha=8^\circ$ (right). Bottom: spectral content of velocity fluctuations (FFT) at $\alpha=25^\circ$.  
 **Image Credit:** Marco Zappoli
@@ -90,7 +90,7 @@ The goal is to reconstruct the **velocity field** and identify coherent flow str
   - **outlier detection** (median test)
   - interpolation of missing vectors
 
-![PIVbackground](../../assets/projects/wind-tunnel-experiments/background.png) ![PIV12ms](../../assets/projects/wind-tunnel-experiments/PIV_12ms.png)
+![PIVbackground](../../../assets/projects/wind-tunnel-experiments/background.png) ![PIV12ms](../../../assets/projects/wind-tunnel-experiments/PIV_12ms.png)
 
 **Figure 3:** Top: mean background image. Bottom: reconstructed velocity field at 12 m/s obtained using the **FFT-based correlation algorithm**.  
 **Image Credit:** Marco Zappoli

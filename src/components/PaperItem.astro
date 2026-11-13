@@ -11,7 +11,7 @@ const figure = p.image ? figures[`../assets/papers/${p.image}`]?.default : undef
 if (p.image && !figure) throw new Error(`BibTeX entry ${p.id}: image ${p.image} not found in src/assets/papers/`);
 const authors = p.authors.map((a) => ({ name: a, me: a.includes(OWNER) }));
 ---
-<article class:list={["paper", { "has-figure": figure }]}>
+<article id={p.id} class:list={["paper", { "has-figure": figure }]}>
   {figure && (
     <a class="figure" href={figure.src} aria-label="Enlarge figure">
       <Image src={figure} alt={`Figure: ${p.title}`} widths={[200, 400]} sizes="(max-width: 640px) 100vw, 200px" loading="lazy" decoding="async" />
@@ -48,7 +48,7 @@ const authors = p.authors.map((a) => ({ name: a, me: a.includes(OWNER) }));
     .figure { grid-row: 2; grid-column: 1; max-width: 360px; margin-top: 0; }
     .has-figure .body { grid-row: 1; }
   }
-  .paper { padding: 22px 0; border-bottom: 1px solid var(--rule); max-width: 1000px; }
+  .paper { scroll-margin-top: 90px; padding: 22px 0; border-bottom: 1px solid var(--rule); max-width: 1000px; }
   h3 { font-size: 21px; margin: 4px 0 6px; }
   .authors, .venue { margin: 0; color: var(--muted); font-size: 15.5px; }
   .venue { font-style: italic; }

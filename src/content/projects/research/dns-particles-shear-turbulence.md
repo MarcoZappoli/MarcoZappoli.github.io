@@ -8,7 +8,8 @@ tools: "DNS/HPC"
 year: 2026
 order: 1
 featured: true
-cover: ../../assets/projects/dns-particles-shear-turbulence/R10St1_XZ_2083.png
+paper: zappoli2026clustering
+cover: ../../../assets/projects/dns-particles-shear-turbulence/R10St1_XZ_2083.png
 ---
 ## The problem: inertial particles in turbulence
 
@@ -22,7 +23,7 @@ This phenomenon, known as **preferential concentration**, plays a central role i
 
 Understanding *where particles accumulate*, and more importantly *why*, remains a fundamental challenge in turbulence research.
 
-![Volumetric rendering](../../assets/projects/dns-particles-shear-turbulence/Render.png)
+![Volumetric rendering](../../../assets/projects/dns-particles-shear-turbulence/Render.png)
 
 **Figure 1:** Instantaneous flow field visualization. Coherent structures are identified using the **$Q$-criterion**, while particles (dark orange) highlight preferential accumulation within **strain-dominated regions**.  
 **Image Credit:** Marco Zappoli
@@ -73,7 +74,7 @@ The parameter space is explored by varying the particle **Stokes number** $St$ a
 
 The relative contribution of forces strongly depends on particle properties. In particular, the role of the **Basset history force** increases with particle size and is in first approximation non dependent on the density ratio.
 
-![MRG Forces](../../assets/projects/dns-particles-shear-turbulence/MRG_term_scale_Combined.png)
+![MRG Forces](../../../assets/projects/dns-particles-shear-turbulence/MRG_term_scale_Combined.png)
 
 **Figure 2:** Probability density functions of the normalized directional contributions $\Pi_i = (\boldsymbol{a}_i \cdot \boldsymbol{a}_p)/|\boldsymbol{a}_p|^2$ for a selected Stokes number and two different density ratio. Insets highlight the tails of the distributions.  
 **Image Credit:** Marco Zappoli
@@ -82,7 +83,7 @@ The relative contribution of forces strongly depends on particle properties. In 
 
 Particle organization is primarily governed by the **Stokes number**, which sets the response time to turbulent fluctuations.
 
-![R10St0dot1_XZ_2083](../../assets/projects/dns-particles-shear-turbulence/R10St0dot1_XZ_2083.png) ![R10St1_XZ_2083](../../assets/projects/dns-particles-shear-turbulence/R10St1_XZ_2083.png)
+![R10St0dot1_XZ_2083](../../../assets/projects/dns-particles-shear-turbulence/R10St0dot1_XZ_2083.png) ![R10St1_XZ_2083](../../../assets/projects/dns-particles-shear-turbulence/R10St1_XZ_2083.png)
 
 **Figure 3:** Instantaneous particle distributions (white dots) in the $x$–$z$ plane, overlaid on the magnitude of the vorticity component normal to the plane (lighter regions indicate higher vorticity). Increasing $St$ leads from near-homogeneous dispersion to pronounced clustering and segregation.  
 **Image Credit:** Marco Zappoli
@@ -91,9 +92,9 @@ At low $St$, particles closely follow the flow and remain nearly homogeneous. At
 
 Cluster topology exhibits a remarkable degree of **universality**, consistent across different flow configurations.
 
-![ClusterPlot](../../assets/projects/dns-particles-shear-turbulence/ClusterPlot.png)
+![ClusterPlot](../../../assets/projects/dns-particles-shear-turbulence/ClusterPlot.png)
 
-![Cluster_Asphericity](../../assets/projects/dns-particles-shear-turbulence/Cluster_Asphericity.png) ![Cluster_Acylindricity](../../assets/projects/dns-particles-shear-turbulence/Cluster_Acylindricity.png)
+![Cluster_Asphericity](../../../assets/projects/dns-particles-shear-turbulence/Cluster_Asphericity.png) ![Cluster_Acylindricity](../../../assets/projects/dns-particles-shear-turbulence/Cluster_Acylindricity.png)
 
 **Figure 4:** Left: example of a coherent particle cluster with principal axes. Right: probability density functions of normalized **asphericity** and **acylindricity**, quantifying cluster shape.  
 **Image Credit:** Marco Zappoli
