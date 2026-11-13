@@ -7,6 +7,8 @@
   --accent: #0e6f8a;
   --rule: #dcd8cf;
   --hero-fade: rgba(246, 244, 239, 0.08);
+  --flow-tracer: #5b6168;
+  --flow-inertial: #0e6f8a;
   --scrim: rgba(246, 244, 239, 0.72);
   --serif: 'Fraunces Variable', Georgia, serif;
   --sans: 'Inter Variable', system-ui, sans-serif;
@@ -23,6 +25,8 @@
   --accent: #5cc8e0;
   --rule: #253039;
   --hero-fade: rgba(13, 17, 20, 0.08);
+  --flow-tracer: #9aa3ab;
+  --flow-inertial: #5cc8e0;
   --scrim: rgba(13, 17, 20, 0.6);
   color-scheme: dark;
 }

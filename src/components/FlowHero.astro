@@ -18,7 +18,8 @@ const params = {
   A: 0.1, // flow amplitude (speed)
   eps: 0.25, // oscillation of the gyre boundary; 0 = steady flow
   period: 10, // oscillation period, omega = 2 pi / period
-  St: 0.5, // Stokes number of the inertial particles (response time / flow time)
+  St: 0.5, // Stokes number, St = tau_p / T_flow with tau_p = 2 rho_p r^2 / (9 rho_f nu)
+  R: 1000, // density ratio rho_p / rho_f (1000 heavy, 1 neutrally buoyant, < 1 bubbles)
   nTracers: 1400, // passive tracers (drawn in the muted colour)
   nInertial: 1400, // inertial particles (drawn in the accent colour)
   dt: 0.06, // time step per animation frame
@@ -27,18 +28,18 @@ const params = {
   dotInertial: 1.8,
   tracerAlpha: 0.45, // tracer opacity, so the inertial particles stand out
 };
-const { A, eps, period, St } = params;
+const { A, eps, period, St, R } = params;
 ---
 <canvas id="flow" aria-hidden="true"></canvas>
 <p class="eyebrow flow-caption">
   Live: double gyre, A = {A}, ε = {eps}, ω = 2π/{period} ·
   <span class="key tracer"></span> tracers ·
-  <span class="key inertial"></span> inertial particles, St = {St}
+  <span class="key inertial"></span> inertial particles, St = {St}, ρp/ρf = {R}
 </p>
 <script define:vars={{ params }}>
   const c = document.getElementById('flow');
   const g = c.getContext('2d');
-  const { A, eps, period, St, nTracers, nInertial, dt, reseed, dotTracer, dotInertial, tracerAlpha } = params;
+  const { A, eps, period, St, nTracers, nInertial, dt, reseed, dotTracer, dotInertial, tracerAlpha, R } = params;
   const om = (2 * Math.PI) / period;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let W = 0, H = 0, t = 0;
@@ -59,7 +60,24 @@ const { A, eps, period, St } = params;
   }
   const tracers = Array.from({ length: nTracers }, spawn);
   const inertial = Array.from({ length: nInertial }, spawn);
-  const decay = Math.exp(-dt / St);
+  // Maxey-Riley with drag, pressure gradient and added mass:
+  //   dv/dt = (u - v) / St_eff + beta Du/Dt
+  //   beta = 3 / (1 + 2R),  St_eff = St (1 + 1/(2R))
+  const beta = 3 / (1 + 2 * R);
+  const StEff = St * (1 + 1 / (2 * R));
+  const decay = Math.exp(-dt / StEff);
+  // Material derivative of the fluid velocity, Du/Dt = du/dt + (u . grad) u, by central differences.
+  function accel(x, y, t) {
+    const h = 1e-4;
+    const [u, v] = vel(x, y, t);
+    const [uxp, vxp] = vel(x + h, y, t), [uxm, vxm] = vel(x - h, y, t);
+    const [uyp, vyp] = vel(x, y + h, t), [uym, vym] = vel(x, y - h, t);
+    const [utp, vtp] = vel(x, y, t + h), [utm, vtm] = vel(x, y, t - h);
+    return [
+      (utp - utm) / (2 * h) + u * (uxp - uxm) / (2 * h) + v * (uyp - uym) / (2 * h),
+      (vtp - vtm) / (2 * h) + u * (vxp - vxm) / (2 * h) + v * (vyp - vym) / (2 * h),
+    ];
+  }
 
   function size() {
     const d = devicePixelRatio || 1;
@@ -74,7 +92,7 @@ const { A, eps, period, St } = params;
     g.fillStyle = css.getPropertyValue('--hero-fade');
     g.fillRect(0, 0, W, H);
 
-    g.fillStyle = css.getPropertyValue('--muted');
+    g.fillStyle = css.getPropertyValue('--flow-tracer');
     g.globalAlpha = tracerAlpha;
     for (let i = 0; i < tracers.length; i++) {
       const p = tracers[i];
@@ -85,12 +103,15 @@ const { A, eps, period, St } = params;
     }
 
     g.globalAlpha = 1;
-    g.fillStyle = css.getPropertyValue('--accent');
+    g.fillStyle = css.getPropertyValue('--flow-inertial');
     for (let i = 0; i < inertial.length; i++) {
       const p = inertial[i];
       const [u, v] = vel(p[0], p[1], t);
-      p[2] = u + (p[2] - u) * decay;
-      p[3] = v + (p[3] - v) * decay;
+      const [ax, ay] = accel(p[0], p[1], t);
+      // exact step for fixed u and Du/Dt: v relaxes towards u + beta St_eff Du/Dt
+      const vx = u + beta * StEff * ax, vy = v + beta * StEff * ay;
+      p[2] = vx + (p[2] - vx) * decay;
+      p[3] = vy + (p[3] - vy) * decay;
       p[0] += p[2] * dt; p[1] += p[3] * dt;
       if (Math.random() < reseed || !inside(p)) inertial[i] = spawn();
       g.fillRect((p[0] / 2) * W, (1 - p[1]) * H, dotInertial, dotInertial);
@@ -106,8 +127,8 @@ const { A, eps, period, St } = params;
 </script>
 <style>
   canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .flow-caption { position: absolute; bottom: 16px; right: var(--gutter); font-size: 11px; max-width: calc(100% - 2 * var(--gutter)); text-align: right; z-index: 1; }
+  .flow-caption { text-transform: none; letter-spacing: 0.03em; position: absolute; bottom: 16px; right: var(--gutter); font-size: 11px; max-width: calc(100% - 2 * var(--gutter)); text-align: right; z-index: 1; }
   .key { display: inline-block; width: 8px; height: 8px; border-radius: 50%; vertical-align: middle; margin-left: 4px; }
-  .key.tracer { background: var(--muted); }
-  .key.inertial { background: var(--accent); }
+  .key.tracer { background: var(--flow-tracer); }
+  .key.inertial { background: var(--flow-inertial); }
 </style>
