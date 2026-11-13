@@ -12,7 +12,9 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const d = project.data;
 const { Content } = await render(project);
-for (const n of d.collaborators) if (!(n in people)) throw new Error(`Project ${project.id}: add "${n}" to src/data/people.ts`);
+const team = d.collaborators ?? [];
+const reports = d.reports ?? [];
+for (const n of team) if (!(n in people)) throw new Error(`Project ${project.id}: add "${n}" to src/data/people.ts`);
 const facts = [['Type', d.type], ['Field', d.field], ['Methods', d.tools], ['Year', String(d.year)]];
 ---
 <Base title={d.title} description={d.summary}>
@@ -23,14 +25,14 @@ const facts = [['Type', d.type], ['Field', d.field], ['Methods', d.tools], ['Yea
       <p class="lead">{d.summary}</p>
       <dl class="facts">
         {facts.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
-        {d.collaborators.length > 0 && (
-          <div class="team"><dt>With</dt><dd>{d.collaborators.map((n, i) => <>{people[n] ? <a href={people[n]} rel="noopener">{n}</a> : n}{i < d.collaborators.length - 1 ? ', ' : ''}</>)}</dd></div>
+        {team.length > 0 && (
+          <div class="team"><dt>With</dt><dd>{team.map((n, i) => <>{people[n] ? <a href={people[n]} rel="noopener">{n}</a> : n}{i < team.length - 1 ? ', ' : ''}</>)}</dd></div>
         )}
       </dl>
       <p class="actions">
         {d.repo && <a class="btn" href={d.repo}>Code repository</a>}
         {d.paper && <a class="btn" href={`/publications/#${d.paper}`}>Related publication</a>}
-        {d.reports.map((r) => <span class="report"><a class="btn" href={r.href}>{r.label}</a>{r.lang && <span class="lang">in {r.lang}</span>}</span>)}
+        {reports.map((r) => <span class="report"><a class="btn" href={r.href}>{r.label}</a>{r.lang && <span class="lang">in {r.lang}</span>}</span>)}
       </p>
     </header>
     {d.cover && (
