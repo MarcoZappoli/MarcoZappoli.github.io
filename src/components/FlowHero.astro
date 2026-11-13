@@ -15,18 +15,18 @@
  * Edit the values below; the caption under the hero updates automatically.
  */
 const params = {
-  A: 0.1, // flow amplitude (speed)
-  eps: 0.25, // oscillation of the gyre boundary; 0 = steady flow
-  period: 10, // oscillation period, omega = 2 pi / period
-  St: 0.5, // Stokes number, St = tau_p / T_flow with tau_p = 2 rho_p r^2 / (9 rho_f nu)
-  R: 1000, // density ratio rho_p / rho_f (1000 heavy, 1 neutrally buoyant, < 1 bubbles)
-  nTracers: 1400, // passive tracers (drawn in the muted colour)
-  nInertial: 1400, // inertial particles (drawn in the accent colour)
-  dt: 0.06, // time step per animation frame
+  A: 1.0, // flow amplitude (speed)
+  eps: 1, // oscillation of the gyre boundary; 0 = steady flow
+  period: 2, // oscillation period, omega = 2 pi / period
+  St: 1, // Stokes number, St = tau_p / T_flow with tau_p = 2 rho_p r^2 / (9 rho_f nu)
+  R: 0.001, // density ratio rho_p / rho_f (1000 heavy, 1 neutrally buoyant, < 1 bubbles)
+  nTracers: 5000, // passive tracers (drawn in the muted colour)
+  nInertial: 15000, // inertial particles (drawn in the accent colour)
+  dt: 0.002, // time step per animation frame
   reseed: 0.002, // probability per frame that a particle restarts at a random point
-  dotTracer: 1.1, // dot size in px
-  dotInertial: 1.8,
-  tracerAlpha: 0.45, // tracer opacity, so the inertial particles stand out
+  dotTracer: 0.7, // dot size in px
+  dotInertial: 0.5,
+  tracerAlpha: 1.0, // tracer opacity, so the inertial particles stand out
 };
 const { A, eps, period, St, R } = params;
 ---
@@ -87,6 +87,15 @@ const { A, eps, period, St, R } = params;
   }
   function inside(p) { return p[0] >= 0 && p[0] <= 2 && p[1] >= 0 && p[1] <= 1; }
 
+  function rk4(x, y, t, h) {
+  const [k1u, k1v] = vel(x, y, t);
+  const [k2u, k2v] = vel(x + 0.5*h*k1u, y + 0.5*h*k1v, t + 0.5*h);
+  const [k3u, k3v] = vel(x + 0.5*h*k2u, y + 0.5*h*k2v, t + 0.5*h);
+  const [k4u, k4v] = vel(x + h*k3u, y + h*k3v, t + h);
+  return [x + h/6*(k1u + 2*k2u + 2*k3u + k4u),
+          y + h/6*(k1v + 2*k2v + 2*k3v + k4v)];
+}
+
   function step() {
     const css = getComputedStyle(document.documentElement);
     g.fillStyle = css.getPropertyValue('--hero-fade');
@@ -97,7 +106,7 @@ const { A, eps, period, St, R } = params;
     for (let i = 0; i < tracers.length; i++) {
       const p = tracers[i];
       const [u, v] = vel(p[0], p[1], t);
-      p[0] += u * dt; p[1] += v * dt;
+      [p[0], p[1]] = rk4(p[0], p[1], t, dt);
       if (Math.random() < reseed || !inside(p)) tracers[i] = spawn();
       g.fillRect((p[0] / 2) * W, (1 - p[1]) * H, dotTracer, dotTracer);
     }
@@ -110,9 +119,10 @@ const { A, eps, period, St, R } = params;
       const [ax, ay] = accel(p[0], p[1], t);
       // exact step for fixed u and Du/Dt: v relaxes towards u + beta St_eff Du/Dt
       const vx = u + beta * StEff * ax, vy = v + beta * StEff * ay;
+      const ox = p[2], oy = p[3];
       p[2] = vx + (p[2] - vx) * decay;
       p[3] = vy + (p[3] - vy) * decay;
-      p[0] += p[2] * dt; p[1] += p[3] * dt;
+      p[0] += 0.5 * (ox + p[2]) * dt; p[1] += 0.5 * (oy + p[3]) * dt;
       if (Math.random() < reseed || !inside(p)) inertial[i] = spawn();
       g.fillRect((p[0] / 2) * W, (1 - p[1]) * H, dotInertial, dotInertial);
     }
