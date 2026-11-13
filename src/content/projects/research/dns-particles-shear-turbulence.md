@@ -9,13 +9,9 @@ year: 2026
 order: 1
 featured: true
 paper: zappoli2026clustering
-<<<<<<< HEAD
-cover: ../../../assets/papers/R10St1_XZ_2083.png
-=======
 report: /pdf/MSc_Thesis_Marco_Zappoli.pdf
 reportLabel: "MSc thesis (PDF)"
-cover: ../../../assets/projects/dns-particles-shear-turbulence/R10St1_XZ_2083.png
->>>>>>> ad40a6d696d89102957781877e90126ae603dbaf
+cover: ../../../assets/papers/R10St1_XZ_2083.png
 ---
 ## The problem: inertial particles in turbulence
 
@@ -145,18 +141,14 @@ Cluster topology exhibits a remarkable degree of **universality**, consistent ac
 **Image Credit:** Marco Zappoli
 
 
-## Key Takeaways
+> [!TIP] Key takeaways
+> Clustering in turbulent shear flows is a **robust and highly structured phenomenon**, emerging from the interplay between **turbulence**, **particle inertia**, and **memory effects**.
+>
+> Particle distributions exhibit **organized, anisotropic, and scale-dependent patterns** that critically influence transport, mixing, and collision processes.
 
-Clustering in turbulent shear flows is a **robust and highly structured phenomenon**, emerging from the interplay between **turbulence**, **particle inertia**, and **memory effects**.
+> [!NOTE] Computational scope
+> This work relies on extensive **High-Performance Computing (HPC)** resources. Only a subset of the methodology and representative results are presented here.
 
-Particle distributions exhibit **organized, anisotropic, and scale-dependent patterns** that critically influence transport, mixing, and collision processes.
-
-
-### Computational Scope
-
-This work relies on extensive **High-Performance Computing (HPC)** resources. Only a subset of the methodology and representative results are presented here.
-
-### Copyright & Publication Status
-
-The full method and results of this work are in the [MSc thesis (PDF)](/pdf/MSc_Thesis_Marco_Zappoli.pdf). A follow-up article, extending the study to neutrally buoyant particles, a wider range of Stokes numbers and companion simulations without the history force, has been submitted to the *Journal of Fluid Mechanics* ([publication entry](/publications/#zappoli2026clustering)). The material presented here is intended for **qualitative illustration only**; quantitative values and parameters have been partially omitted or modified.  
-**Copyright © Marco Zappoli. All rights reserved.**
+> [!WARNING] Copyright & publication status
+> The full method and results of this work are in the [MSc thesis (PDF)](/pdf/MSc_Thesis_Marco_Zappoli.pdf). A follow-up article, extending the study to neutrally buoyant particles, a wider range of Stokes numbers and companion simulations without the history force, has been submitted to the *Journal of Fluid Mechanics* ([publication entry](/publications/#zappoli2026clustering)). The material presented here is intended for **qualitative illustration only**; quantitative values and parameters have been partially omitted or modified.  
+> **Copyright © Marco Zappoli. All rights reserved.**

@@ -31,7 +31,13 @@ npm run build        # must finish without errors before you push
    Moving a file between folders moves it to another section without changing its URL.
 2. Put figures in `src/assets/projects/my-new-code/` (PNG or JPG, any size; the build makes web versions).
 3. Fill in the header (`title`, `summary`, `category`, `type`, `field`, `tools`, `year`, optional `repo`, `cover`, `featured`, and `paper = <BibTeX key>` to add a "Related publication" button) and write the page in Markdown. Equations: `$...$` inline, `$$...$$` for display.
-4. Keep `draft: true` until it is ready to appear.
+4. Coloured banners: start a quote with a type, for example
+   ```md
+   > [!WARNING] Optional title
+   > Text of the banner.
+   ```
+   Types: `NOTE` (blue), `TIP` (green), `IMPORTANT` (violet), `WARNING` (amber), `CAUTION` (red).
+5. Keep `draft: true` until it is ready to appear.
 
 `category` must be one of DNS, CFD, Experimental, Design, Software. A missing or misspelled field stops the build with a message naming the file.
 
