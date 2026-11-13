@@ -12,7 +12,7 @@ export const groups: { label: string; items: Paper[] }[] = [
   { label: 'Submitted', items: papers.filter((p) => p.status === 'submitted') },
   { label: 'In preparation', items: papers.filter((p) => p.status === 'in preparation') },
   { label: 'Conference contributions', items: papers.filter((p) => p.status === 'published' && isConference(p)) },
-  { label: 'Theses', items: papers.filter((p) => p.status === 'published' && isThesis(p)) },
+  { label: 'Thesis', items: papers.filter((p) => p.status === 'published' && isThesis(p)) },
 ].filter((g) => g.items.length > 0);
 
 /** Surname shown in bold in author lists. */
