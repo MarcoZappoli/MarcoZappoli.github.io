@@ -34,12 +34,13 @@ const facts = [['Type', d.type], ['Field', d.field], ['Methods', d.tools], ['Yea
 </Base>
 <style>
   .head { padding: 64px var(--gutter) 24px; }
-  h1 { font-size: clamp(32px, 4.6vw, 56px); margin: 10px 0 16px; max-width: 24ch; }
-  .lead { font-size: 19px; color: var(--muted); max-width: 66ch; }
-  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 16px 0; margin: 28px 0 0; max-width: 860px; }
+  h1 { font-size: clamp(32px, 4.6vw, 56px); margin: 10px 0 16px; max-width: 30ch; }
+  .lead { font-size: 19px; color: var(--muted); max-width: 78ch; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 16px 0; margin: 28px 0 0; max-width: 1200px; }
   dt { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
   dd { margin: 2px 0 0; font-weight: 500; }
   .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
   .cover { margin: 16px auto 8px; }
   .cover :global(img) { width: 100%; max-height: 560px; object-fit: contain; border-radius: 6px; }
+  .prose { max-width: 100ch; }
 </style>

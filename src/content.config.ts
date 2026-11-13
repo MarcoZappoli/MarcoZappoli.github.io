@@ -10,7 +10,7 @@ const projects = defineCollection({
     z.object({
       title: z.string(),
       summary: z.string(),
-      category: z.enum(['DNS', 'CFD', 'Experimental', 'Design', 'Software']),
+      category: z.enum(['Turbulence', 'CFD', 'Experimental', 'Design', 'Software']),
       type: z.string(),
       field: z.string(),
       tools: z.string(),

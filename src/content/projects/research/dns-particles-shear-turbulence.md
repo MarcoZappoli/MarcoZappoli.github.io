@@ -1,7 +1,7 @@
 ---
 title: "Clustering and preferential sampling in homogeneous shear turbulence"
-summary: "Master's thesis project on one-way coupled point-particle simulations of inertial particles in homogeneous shear turbulence, using direct numerical simulation (DNS) to quantify clustering and preferential concentration mechanisms."
-category: DNS
+summary: "Master's thesis project on one-way coupled point-particle simulations of inertial particles in homogeneous shear turbulence, using direct numerical simulation to quantify clustering and preferential concentration mechanisms."
+category: Turbulence
 type: "Master's Thesis"
 field: "Turbulence"
 tools: "DNS/HPC"
@@ -9,7 +9,7 @@ year: 2026
 order: 1
 featured: true
 paper: zappoli2026clustering
-cover: ../../../assets/projects/dns-particles-shear-turbulence/R10St1_XZ_2083.png
+cover: ../../../assets/papers/R10St1_XZ_2083.png
 ---
 ## The problem: inertial particles in turbulence
 
