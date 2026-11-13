@@ -44,7 +44,7 @@ npm run build        # must finish without errors before you push
    They become one row with equal heights (stacked on phones). Write the caption in the next paragraph.
 6. Keep `draft: true` until it is ready to appear.
 
-`category` must be one of DNS, CFD, Experimental, Design, Software. A missing or misspelled field stops the build with a message naming the file.
+`category` must be one of Turbulence, CFD, Experimental, Aerodynamic design, Software (edit the list in `src/content.config.ts`). A missing or misspelled field stops the build with a message naming the file.
 
 ## Replace the CV
 
