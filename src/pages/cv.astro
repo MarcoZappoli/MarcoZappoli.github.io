@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import { cv } from '../data/cv';
+import { site } from '../data/site';
+---
+<Base title="CV" description="Curriculum vitae of Marco Zappoli: education, research experience, skills.">
+  <div class="wrap">
+    <header class="head">
+      <p class="eyebrow">Curriculum vitae</p>
+      <h1>CV</h1>
+      <p><a class="btn" href={site.cv}>Download PDF</a></p>
+    </header>
+    <section><h2>Education</h2>
+      {cv.education.map((e) => (
+        <div class="row"><p class="when">{e.dates}</p><div><h3>{e.degree}</h3><p class="where">{e.institution}</p><ul>{e.details.map((x) => <li>{x}</li>)}</ul></div></div>
+      ))}
+    </section>
+    <section><h2>Research experience</h2>
+      {cv.research.map((e) => (
+        <div class="row"><p class="when">{e.dates}</p><div><h3>{e.title}</h3><p class="where">{e.place}</p><ul>{e.details.map((x) => <li>{x}</li>)}</ul></div></div>
+      ))}
+    </section>
+    <section><h2>Technical skills</h2>
+      <dl class="skills">{cv.skills.map((s) => <div><dt>{s.area}</dt><dd>{s.items}</dd></div>)}</dl>
+    </section>
+    <section><h2>Awards and certifications</h2><ul>{cv.awards.map((a) => <li>{a}</li>)}</ul></section>
+    <section><h2>Languages</h2><p>{cv.languages}</p></section>
+  </div>
+</Base>
+<style>
+  .head { padding: 64px 0 8px; }
+  h1 { font-size: clamp(36px, 5vw, 60px); margin: 10px 0 16px; }
+  section { margin-top: 44px; max-width: 900px; }
+  h2 { font-size: 15px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); font-weight: 500; border-bottom: 1px solid var(--rule); padding-bottom: 10px; }
+  .row { display: grid; grid-template-columns: 170px 1fr; gap: 24px; padding: 14px 0; }
+  .when { font-family: var(--mono); font-size: 13px; color: var(--muted); margin: 4px 0 0; }
+  h3 { font-size: 20px; margin: 0; }
+  .where { margin: 2px 0 6px; color: var(--muted); }
+  ul { margin: 6px 0 0; padding-left: 18px; }
+  li { margin: 3px 0; }
+  .skills div { display: grid; grid-template-columns: 170px 1fr; gap: 24px; padding: 8px 0; }
+  dt { font-weight: 500; } dd { margin: 0; color: var(--muted); }
+  @media (max-width: 640px) { .row, .skills div { grid-template-columns: 1fr; gap: 4px; } }
+</style>

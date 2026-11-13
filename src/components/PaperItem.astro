@@ -1,0 +1,40 @@
+---
+import type { Paper } from '../lib/bibtex';
+import { OWNER } from '../lib/papers';
+interface Props { paper: Paper; }
+const { paper: p } = Astro.props;
+const authors = p.authors.map((a) => ({ name: a, me: a.includes(OWNER) }));
+---
+<article class="paper">
+  <p class="eyebrow">{p.year}{p.status !== 'published' && <> · <span class="status">{p.status}</span></>}</p>
+  <h3>{p.title}</h3>
+  <p class="authors">
+    {authors.map((a, i) => <>{a.me ? <strong>{a.name}</strong> : a.name}{i < authors.length - 1 ? ', ' : ''}</>)}
+  </p>
+  {p.venue && <p class="venue">{p.venue}</p>}
+  <p class="links">
+    {p.doi && <a href={`https://doi.org/${p.doi}`}>DOI</a>}
+    {p.arxiv && <a href={`https://arxiv.org/abs/${p.arxiv}`}>arXiv</a>}
+    {p.pdf && <a href={`/pdf/${p.pdf}`}>PDF</a>}
+    {p.code && <a href={p.code}>Code</a>}
+    {p.url && <a href={p.url}>Link</a>}
+    {p.abstract && (
+      <details><summary>Abstract</summary><p>{p.abstract}</p></details>
+    )}
+    <details><summary>BibTeX</summary><pre>{p.bibtex}</pre></details>
+  </p>
+</article>
+<style>
+  .paper { padding: 22px 0; border-bottom: 1px solid var(--rule); max-width: 860px; }
+  h3 { font-size: 21px; margin: 4px 0 6px; }
+  .authors, .venue { margin: 0; color: var(--muted); font-size: 15.5px; }
+  .venue { font-style: italic; }
+  .status { color: var(--accent); }
+  .links { display: flex; gap: 16px; flex-wrap: wrap; align-items: baseline; margin: 10px 0 0; font-size: 14.5px; font-weight: 500; }
+  details { flex-basis: 100%; }
+  details:first-of-type { flex-basis: auto; }
+  summary { cursor: pointer; color: var(--accent); }
+  details[open] { flex-basis: 100%; }
+  details p, pre { font-weight: 400; font-size: 14px; color: var(--muted); }
+  pre { background: var(--surface); padding: 12px; border-radius: 4px; overflow-x: auto; font-family: var(--mono); font-size: 12.5px; border: 1px solid var(--rule); }
+</style>

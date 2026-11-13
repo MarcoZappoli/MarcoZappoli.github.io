@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import cluster from '../assets/projects/dns-particles-shear-turbulence/R10St1_XZ_2083.png';
+import render from '../assets/projects/dns-particles-shear-turbulence/Render.png';
+import piv from '../assets/projects/wind-tunnel-experiments/PIV_12ms.png';
+---
+<Base title="Research" description="Research themes: inertial particles in homogeneous shear turbulence, Lagrangian coherent structures, and applied aerodynamics.">
+  <div class="wrap head">
+    <p class="eyebrow">Research</p>
+    <h1>How turbulence organises what it carries</h1>
+    <p class="lead">My work connects the dynamics of small inertial particles to the coherent structures of the flows that carry them, using direct numerical simulation, Lagrangian diagnostics and experiments.</p>
+  </div>
+
+  <section class="block theme">
+    <div class="wrap two">
+      <div class="prose">
+        <p class="eyebrow">Theme 1 · Current</p>
+        <h2>Inertial particles in homogeneous shear turbulence</h2>
+        <p>Heavy particles do not follow the carrier flow. They leave vortical regions, gather in strain-dominated zones and form clusters and voids. In homogeneous shear turbulence these clusters become anisotropic and tilt with the mean shear.</p>
+        <p>I study this with one-way coupled point-particle DNS based on the Maxey–Riley–Gatignol equation, including the Basset history force, across Stokes numbers and density ratios.</p>
+        <p><a href="/projects/dns-particles-shear-turbulence/">Project page →</a> · <a href="/publications/">Manuscript in preparation (JFM) →</a></p>
+      </div>
+      <figure>
+        <Image src={cluster} alt="Particle positions in a slice of homogeneous shear turbulence showing elongated clusters" widths={[600, 1000]} sizes="(max-width: 900px) 100vw, 520px" />
+        <figcaption>Particle clustering in an x–z slice of homogeneous shear turbulence.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block theme">
+    <div class="wrap two">
+      <div class="prose">
+        <p class="eyebrow">Theme 2 · Current</p>
+        <h2>Lagrangian coherent structures</h2>
+        <p>Finite-time Lyapunov exponent fields reveal the material lines that organise transport in unsteady flows. Backward-time FTLE ridges mark attracting structures, which is where tracers and inertial particles collect.</p>
+        <p>I have developed a backward FTLE tool for the wake of a circular cylinder, as a step towards linking particle clustering to Lagrangian structures in turbulence.</p>
+      </div>
+      <figure>
+        <Image src={render} alt="Volumetric rendering of vortical structures with particles" widths={[600, 1000]} sizes="(max-width: 900px) 100vw, 520px" />
+        <figcaption>Vortical structures (Q-criterion) and particles accumulating in strain-dominated regions.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block theme">
+    <div class="wrap two">
+      <div class="prose">
+        <p class="eyebrow">Theme 3 · Previous</p>
+        <h2>Applied aerodynamics: CFD and experiments</h2>
+        <p>RANS simulations of ice-accretion effects on the NACA 23012 airfoil, vortex-lattice and optimisation studies of fighter formation flight, and wind-tunnel campaigns with force balance, hot-wire and PIV measurements.</p>
+        <p><a href="/projects/">All projects →</a></p>
+      </div>
+      <figure>
+        <Image src={piv} alt="PIV velocity field of a side-by-side propeller system" widths={[600, 1000]} sizes="(max-width: 900px) 100vw, 520px" />
+        <figcaption>PIV velocity field of a side-by-side eVTOL propeller system.</figcaption>
+      </figure>
+    </div>
+  </section>
+</Base>
+<style>
+  .head { padding: 64px var(--gutter) 40px; }
+  h1 { font-size: clamp(36px, 5vw, 60px); margin: 10px 0 18px; max-width: 18ch; }
+  .lead { font-size: 20px; color: var(--muted); max-width: 62ch; }
+  .two { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(24px, 5vw, 64px); align-items: center; }
+  .prose h2 { margin-top: 8px; }
+  figure { margin: 0; }
+  figure :global(img) { width: 100%; height: auto; border-radius: 6px; background: #fff; }
+  figcaption { font-size: 14px; color: var(--muted); margin-top: 8px; }
+  @media (max-width: 900px) { .two { grid-template-columns: 1fr; } }
+</style>

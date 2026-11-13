@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import PaperItem from '../components/PaperItem.astro';
+import { groups } from '../lib/papers';
+import { site } from '../data/site';
+const scholar = site.links.find((l) => l.label === 'Google Scholar');
+---
+<Base title="Publications" description="Journal articles, manuscripts in preparation, conference contributions and theses by Marco Zappoli.">
+  <div class="wrap">
+    <header class="head">
+      <p class="eyebrow">Publications</p>
+      <h1>Publications</h1>
+      {scholar && <p><a href={scholar.href}>Full list on Google Scholar →</a></p>}
+    </header>
+    {groups.map((g) => (
+      <section class="group">
+        <h2>{g.label}</h2>
+        {g.items.map((p) => <PaperItem paper={p} />)}
+      </section>
+    ))}
+  </div>
+</Base>
+<style>
+  .head { padding: 64px 0 8px; }
+  h1 { font-size: clamp(36px, 5vw, 60px); margin: 10px 0 12px; }
+  .group { margin-top: 40px; }
+  .group h2 { font-size: 15px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); font-weight: 500; border-bottom: 1px solid var(--rule); padding-bottom: 10px; margin: 0; }
+</style>
