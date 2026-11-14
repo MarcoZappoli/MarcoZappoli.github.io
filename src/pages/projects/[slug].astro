@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { getProjects } from '../../lib/projects';
@@ -15,6 +15,7 @@ const { Content } = await render(project);
 const team = d.collaborators ?? [];
 const reports = d.reports ?? [];
 for (const n of team) if (!(n in people)) throw new Error(`Project ${project.id}: add "${n}" to src/data/people.ts`);
+const poster = d.coverVideo && d.cover ? await getImage({ src: d.cover, width: 1400, format: 'webp' }) : undefined;
 const facts = [['Type', d.type], ['Year', String(d.year)], ['Field', d.field], ['Methods', d.tools]];
 ---
 <Base title={d.title} description={d.summary}>
@@ -35,7 +36,12 @@ const facts = [['Type', d.type], ['Year', String(d.year)], ['Field', d.field], [
         {reports.map((r) => <span class="report"><a class="btn" href={r.href}>{r.label}</a>{r.lang && <span class="lang">in {r.lang}</span>}</span>)}
       </p>
     </header>
-    {d.cover && (
+    {d.coverVideo ? (
+      <div class="wrap cover"><video autoplay loop muted playsinline poster={poster?.src} aria-label={`Animation: ${d.title}`}>
+        <source src={`${d.coverVideo}.webm`} type="video/webm" />
+        <source src={`${d.coverVideo}.mp4`} type="video/mp4" />
+      </video></div>
+    ) : d.cover && (
       <div class="wrap cover"><Image src={d.cover} alt="" widths={[800, 1400]} sizes="(max-width: 1200px) 100vw, 1100px" loading="eager" /></div>
     )}
     <div class="wrap"><div class="prose"><Content /></div></div>
@@ -54,6 +60,7 @@ const facts = [['Type', d.type], ['Year', String(d.year)], ['Field', d.field], [
   .lang { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); border: 1px solid var(--rule); border-radius: 4px; padding: 2px 6px; }
   .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
   .cover { margin: 16px auto 8px; }
+  .cover video { display: block; width: 100%; height: auto; border-radius: 6px; }
   .cover :global(img) { width: 100%; max-height: 560px; object-fit: contain; border-radius: 6px; }
   .prose { max-width: 100ch; }
 </style>

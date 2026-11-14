@@ -65,3 +65,12 @@ Open a pull request into `master` on GitHub, merge it, then approve the waiting 
 ## Versions
 
 Every dependency is pinned in `package.json` and `package-lock.json`, and Node is pinned in `.nvmrc`. Nothing needs upgrading. If you ever choose to upgrade Astro, do it on a separate branch and read its upgrade guide first.
+
+## Animated cover (video)
+
+A project can show a looping video instead of its cover image on the project page. Put `name.webm` and `name.mp4` in `public/media/` and add `coverVideo: /media/name` (no extension) to the front matter. Keep `cover:` too: it is the poster frame and the thumbnail on the Projects grid. To convert a GIF:
+
+```bash
+ffmpeg -i in.gif -vf "scale=2400:-2:flags=lanczos,format=yuv420p" -c:v libx264 -crf 22 -movflags +faststart public/media/name.mp4
+ffmpeg -i in.gif -vf "scale=2400:-2:flags=lanczos" -c:v libvpx-vp9 -crf 34 -b:v 0 public/media/name.webm
+```

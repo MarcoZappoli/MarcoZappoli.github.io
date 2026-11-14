@@ -19,6 +19,8 @@ const projects = defineCollection({
       featured: z.boolean().default(false),
       draft: z.boolean().default(false),
       cover: image().optional(),
+      // looping video shown instead of the cover on the project page (paths under public/, without extension: .webm and .mp4 must both exist)
+      coverVideo: z.string().optional(),
       repo: z.url().optional(),
       // PDF buttons in the header; lang (e.g. "Italian") adds a note next to the button
       reports: z.array(z.object({ label: z.string(), href: z.string(), lang: z.string().optional() })).default([]),
