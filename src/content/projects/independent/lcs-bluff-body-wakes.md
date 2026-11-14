@@ -7,7 +7,7 @@ field: "Lagrangian analysis"
 tools: "SU2, NumbaCS, Python (NumPy, Numba)"
 year: 2026
 order: 2
-featured: true
+featured: false
 cover: ../../../assets/projects/lcs-bluff-body-wakes/barc_AR9_bFTLE_poster.png
 coverVideo: /media/barc_AR9_bFTLE
 ---
