@@ -8,7 +8,7 @@
   --rule: #dcd8cf;
   --hero-fade: rgba(246, 244, 239, 0.08);
   --flow-tracer: #545d64; /* cool slate: the carrier flow */
-  --flow-inertial: #0f9bd2; /* red of the dark theme, deepened for contrast on light */
+  --flow-inertial: #0fd222; /* red of the dark theme, deepened for contrast on light */
   --scrim: rgba(246, 244, 239, 0.72);
   --note: #1f6fb2; --tip: #237a4b; --important: #7048c4; --warning: #a86400; --caution: #c0362c; /* callouts */
   --serif: 'Fraunces Variable', Georgia, serif;

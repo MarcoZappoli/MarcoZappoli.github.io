@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 import cluster from '../assets/projects/dns-particles-shear-turbulence/R10St1_XZ_2083.png';
 import fluxes from '../assets/projects/edqnm-reduced-vortex-stretching/fluxes.png';
 import cylinder from '../assets/projects/lcs-bluff-body-wakes/cylinder_bFTLE.png';
-import piv from '../assets/projects/wind-tunnel-experiments/PIV_12ms.png';
+import cfd_bubble from '../assets/projects/ice-accretion-naca23012/bubble_251_nuova.png';
 
 // Research themes: the question, how it is tackled, where it stands, and where the evidence is.
 const themes = [
@@ -12,7 +12,7 @@ const themes = [
     tag: 'Current',
     title: 'Vortex stretching and the turbulent energy cascade',
     question: 'How much of the forward energy cascade, of small-scale dynamics and of intermittency is owed to vortex stretching?',
-    approach: 'Remove vortex stretching gradually with a one-parameter model and follow how spectra, fluxes and dissipation respond, using an EDQNM spectral closure that reaches Reynolds numbers far beyond DNS.',
+    approach: 'Remove vortex stretching gradually with a one-parameter model and follow how spectra, fluxes and dissipation respond, using both DNS and an EDQNM spectral closure that reaches Reynolds numbers far beyond DNS.',
     status: 'Ongoing since October 2026. Closure code validated against Bos (2026).',
     links: [['EDQNM project', '/projects/edqnm-reduced-vortex-stretching/']],
     img: fluxes,
@@ -28,7 +28,7 @@ const themes = [
     links: [['Project page', '/projects/dns-particles-shear-turbulence/'], ['MSc thesis (PDF)', '/pdf/MSc_Thesis_Marco_Zappoli.pdf'], ['Submitted article', '/publications/#zappoli2026clustering']],
     img: cluster,
     alt: 'Particle positions in a slice of homogeneous shear turbulence showing elongated clusters',
-    caption: 'Particle clustering in an x–z slice of homogeneous shear turbulence.',
+    caption: 'Particle clustering in an x-z slice of homogeneous shear turbulence.',
   },
   {
     tag: 'Current',
@@ -39,7 +39,7 @@ const themes = [
     links: [['LCS project', '/projects/lcs-bluff-body-wakes/']],
     img: cylinder,
     alt: 'Backward FTLE field in the wake of a circular cylinder',
-    caption: 'Attracting structures (backward FTLE) in a circular-cylinder wake at Re = 120.',
+    caption: 'Attracting structures in a circular-cylinder wake at Re = 120.',
   },
   {
     tag: 'Previous',
@@ -48,9 +48,9 @@ const themes = [
     approach: 'RANS simulations of iced airfoils, vortex-lattice and optimisation studies of fighter formation flight, and wind-tunnel campaigns.',
     status: 'MSc projects, 2024/25.',
     links: [['Ice accretion', '/projects/ice-accretion-naca23012/'], ['FOSSER', '/projects/fosser-formation-flight/'], ['Wind tunnel', '/projects/wind-tunnel-experiments/']],
-    img: piv,
-    alt: 'PIV velocity field of a side-by-side propeller system',
-    caption: 'PIV velocity field of a side-by-side eVTOL propeller system.',
+    img: cfd_bubble,
+    alt: 'Streamlines around the iced NACA 23012 airfoil, Case 251, showing the separation bubble behind the ice horn',
+    caption: 'RANS streamlines around the iced NACA 23012 (Case 251): the ice horn triggers a leading-edge separation bubble.',
   },
 ];
 
