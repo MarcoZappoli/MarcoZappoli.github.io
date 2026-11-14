@@ -1,0 +1,82 @@
+---
+import { Image, getImage } from 'astro:assets';
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { getProjects } from '../../lib/projects';
+import { people } from '../../data/people';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+const { project } = Astro.props;
+const d = project.data;
+const { Content } = await render(project);
+const team = d.collaborators ?? [];
+const reports = d.reports ?? [];
+for (const n of team) if (!(n in people)) throw new Error(`Project ${project.id}: add "${n}" to src/data/people.ts`);
+const poster = d.coverVideo && d.cover ? await getImage({ src: d.cover, width: 1400, format: 'webp' }) : undefined;
+const facts = [['Type', d.type], ['Year', String(d.year)], ['Field', d.field], ['Methods', d.tools]];
+---
+<Base title={d.title} description={d.summary}>
+  <article>
+    <header class="wrap head">
+      <p class="eyebrow"><a href="/projects/">Projects</a> · {d.category}</p>
+      <h1>{d.title}</h1>
+      <p class="lead">{d.summary}</p>
+      <dl class="facts">
+        {facts.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+        {team.length > 0 && (
+          <div class="team"><dt>With</dt><dd>{team.map((n, i) => <>{people[n] ? <a href={people[n]} rel="noopener">{n}</a> : n}{i < team.length - 1 ? ', ' : ''}</>)}</dd></div>
+        )}
+      </dl>
+      <p class="actions">
+        {d.repo && <a class="btn" href={d.repo}>Code repository</a>}
+        {d.paper && <a class="btn" href={`/publications/#${d.paper}`}>Related publication</a>}
+        {reports.map((r) => <span class="report"><a class="btn" href={r.href}>{r.label}</a>{r.lang && <span class="lang">in {r.lang}</span>}</span>)}
+      </p>
+    </header>
+    {d.coverVideo ? (
+      <div class="wrap cover"><video class="cover-video" autoplay loop muted playsinline preload="auto" poster={poster?.src} aria-label={`Animation: ${d.title}`}>
+        <source src={`${d.coverVideo}.mp4`} type="video/mp4" />
+        <source src={`${d.coverVideo}.webm`} type="video/webm" />
+        <img src={`${d.coverVideo}.gif`} alt={`Animation: ${d.title}`} />
+      </video></div>
+    ) : d.cover && (
+      <div class="wrap cover"><Image src={d.cover} alt="" widths={[800, 1400]} sizes="(max-width: 1200px) 100vw, 1100px" loading="eager" /></div>
+    )}
+    <div class="wrap"><div class="prose"><Content /></div></div>
+  </article>
+</Base>
+<script>
+  // Some browsers block autoplay or fail to decode: retry, then fall back to the GIF.
+  for (const v of document.querySelectorAll<HTMLVideoElement>('video.cover-video')) {
+    const toGif = () => {
+      const img = v.querySelector('img');
+      if (img && v.parentNode) v.parentNode.replaceChild(img, v);
+    };
+    v.muted = true;
+    // only the last <source> failing means no format could be played
+    v.querySelector('source:last-of-type')?.addEventListener('error', toGif);
+    v.addEventListener('error', toGif);
+    const tryPlay = () => v.play().catch(toGif);
+    if (v.readyState >= 2) tryPlay(); else v.addEventListener('loadeddata', tryPlay, { once: true });
+  }
+</script>
+<style>
+  .head { padding: 64px var(--gutter) 24px; }
+  h1 { font-size: clamp(32px, 4.6vw, 56px); margin: 10px 0 16px; max-width: 30ch; }
+  .lead { font-size: 19px; color: var(--muted); max-width: 78ch; }
+  .facts { display: flex; flex-wrap: wrap; gap: 14px 40px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 16px 0; margin: 28px 0 0; max-width: 1200px; }
+  dt { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
+  dd { margin: 2px 0 0; font-weight: 500; }
+  .facts > div { flex: 0 1 auto; min-width: 110px; max-width: 60ch; }
+  .facts > .team { flex-basis: 100%; max-width: none; }
+  .report { display: inline-flex; align-items: center; gap: 8px; }
+  .lang { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); border: 1px solid var(--rule); border-radius: 4px; padding: 2px 6px; }
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .cover { margin: 16px auto 8px; }
+  .cover video { display: block; width: 100%; height: auto; border-radius: 6px; }
+  .cover :global(img) { width: 100%; max-height: 560px; object-fit: contain; border-radius: 6px; }
+  .prose { max-width: 100ch; }
+</style>

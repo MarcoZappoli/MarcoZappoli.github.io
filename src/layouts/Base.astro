@@ -1,0 +1,90 @@
+---
+import 'katex/dist/katex.min.css';
+import '@fontsource-variable/fraunces';
+import '@fontsource-variable/inter';
+import '@fontsource/jetbrains-mono';
+import '../styles/global.css';
+import { site } from '../data/site';
+
+interface Props { title?: string; description?: string; }
+const { title, description = site.description } = Astro.props;
+const fullTitle = title ? `${title} · ${site.name}` : `${site.name} · ${site.role}`;
+const nav = [
+  { href: '/research/', label: 'Research' },
+  { href: '/publications/', label: 'Publications' },
+  { href: '/projects/', label: 'Projects' },
+  { href: '/cv/', label: 'CV' },
+];
+const path = Astro.url.pathname;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(path, Astro.site)} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <script is:inline>
+      (() => {
+        let t = null;
+        try { t = localStorage.getItem('theme'); } catch {}
+        if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="sr-only" href="#main">Skip to content</a>
+    <header class="nav">
+      <a class="brand" href="/">{site.name}</a>
+      <nav aria-label="Main">
+        {nav.map((n) => (
+          <a href={n.href} aria-current={path.startsWith(n.href) ? 'page' : undefined}>{n.label}</a>
+        ))}
+        <button id="theme" type="button" aria-label="Toggle dark mode">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z" /></svg>
+        </button>
+      </nav>
+    </header>
+    <main id="main"><slot /></main>
+    <footer class="foot">
+      <div class="wrap foot-inner">
+        <div>
+          <p class="brand">{site.name}</p>
+          <p class="eyebrow">{site.role} · {site.affiliation}</p>
+        </div>
+        <ul>
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          {site.links.map((l) => <li><a href={l.href} rel="me">{l.label}</a></li>)}
+          <li><a href={site.cv}>CV (PDF)</a></li>
+        </ul>
+      </div>
+    </footer>
+    <script is:inline>
+      document.getElementById('theme').addEventListener('click', () => {
+        const t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = t;
+        try { localStorage.setItem('theme', t); } catch {}
+      });
+    </script>
+  </body>
+</html>
+<style>
+  .nav { position: sticky; top: 0; z-index: 20; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px var(--gutter); background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid color-mix(in srgb, var(--rule) 60%, transparent); }
+  .brand { font-family: var(--serif); font-size: 20px; color: var(--ink); margin: 0; }
+  nav { display: flex; align-items: center; gap: clamp(12px, 2.4vw, 28px); flex-wrap: wrap; justify-content: flex-end; }
+  nav a { color: var(--ink); font-size: 15px; }
+  nav a[aria-current='page'] { color: var(--accent); }
+  #theme { background: none; border: 0; color: var(--ink); cursor: pointer; padding: 6px; display: grid; place-items: center; }
+  .foot { border-top: 1px solid var(--rule); padding: 40px 0 56px; margin-top: 40px; }
+  .foot-inner { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .foot ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 20px; flex-wrap: wrap; align-items: center; font-size: 15px; }
+  @media (max-width: 560px) { .nav { flex-direction: column; align-items: flex-start; } nav { justify-content: flex-start; } }
+</style>

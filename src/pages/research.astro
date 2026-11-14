@@ -1,0 +1,132 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import cluster from '../assets/projects/dns-particles-shear-turbulence/R10St1_XZ_2083.png';
+import fluxes from '../assets/projects/edqnm-reduced-vortex-stretching/fluxes.png';
+import cylinder from '../assets/projects/lcs-bluff-body-wakes/cylinder_bFTLE.png';
+import cfd_bubble from '../assets/projects/ice-accretion-naca23012/bubble_251_nuova.png';
+
+// Research themes: the question, how it is tackled, where it stands, and where the evidence is.
+const themes = [
+  {
+    tag: 'Current',
+    title: 'Vortex stretching and the turbulent energy cascade',
+    question: 'How much of the forward energy cascade, of small-scale dynamics and of intermittency is owed to vortex stretching?',
+    approach: 'Remove vortex stretching gradually with a one-parameter model and follow how spectra, fluxes and dissipation respond, using both DNS and an EDQNM spectral closure that reaches Reynolds numbers far beyond DNS.',
+    status: 'Ongoing since October 2026. Closure code validated against Bos (2026).',
+    links: [['EDQNM project', '/projects/edqnm-reduced-vortex-stretching/']],
+    img: fluxes,
+    alt: 'Normalised fluxes of energy, enstrophy and mesostrophy across wavenumbers',
+    caption: 'Fluxes of energy, enstrophy and mesostrophy as vortex stretching is removed.',
+  },
+  {
+    tag: 'Current',
+    title: 'Inertial particles in homogeneous shear turbulence',
+    question: 'How do heavy particles cluster and sample the flow when the turbulence is sheared and anisotropic, and which forces matter?',
+    approach: 'One-way coupled point-particle DNS based on the Maxey–Riley–Gatignol equation, including the Basset history force, across Stokes numbers and density ratios; HPC runs on CINECA.',
+    status: 'MSc thesis completed (2026). Article submitted to the Journal of Fluid Mechanics.',
+    links: [['Project page', '/projects/dns-particles-shear-turbulence/'], ['MSc thesis (PDF)', '/pdf/MSc_Thesis_Marco_Zappoli.pdf'], ['Submitted article', '/publications/#zappoli2026clustering']],
+    img: cluster,
+    alt: 'Particle positions in a slice of homogeneous shear turbulence showing elongated clusters',
+    caption: 'Particle clustering in an x-z slice of homogeneous shear turbulence.',
+  },
+  {
+    tag: 'Current',
+    title: 'Lagrangian coherent structures',
+    question: 'Which material lines organise transport in unsteady flows, and do inertial particles collect along them?',
+    approach: 'Backward finite-time Lyapunov exponent fields computed from CFD snapshots, with automatic mesh masking and far-field treatment for tracers that leave the domain.',
+    status: 'Tools built and applied to bluff-body wakes (rectangular and circular cylinders, flat plate, fluidic pinball).',
+    links: [['LCS project', '/projects/lcs-bluff-body-wakes/']],
+    img: cylinder,
+    alt: 'Backward FTLE field in the wake of a circular cylinder',
+    caption: 'Attracting structures in a circular-cylinder wake at Re = 120.',
+  },
+  {
+    tag: 'Previous',
+    title: 'Applied aerodynamics: CFD and experiments',
+    question: 'How do geometry and operating conditions change the performance of wings, airfoils and propellers?',
+    approach: 'RANS simulations of iced airfoils, vortex-lattice and optimisation studies of fighter formation flight, and wind-tunnel campaigns.',
+    status: 'MSc projects, 2024/25.',
+    links: [['Ice accretion', '/projects/ice-accretion-naca23012/'], ['FOSSER', '/projects/fosser-formation-flight/'], ['Wind tunnel', '/projects/wind-tunnel-experiments/']],
+    img: cfd_bubble,
+    alt: 'Streamlines around the iced NACA 23012 airfoil, Case 251, showing the separation bubble behind the ice horn',
+    caption: 'RANS streamlines around the iced NACA 23012 (Case 251): the ice horn triggers a leading-edge separation bubble.',
+  },
+];
+
+// Methods and tools: what I can do, with what, and where it was used.
+const tools = [
+  { method: 'Direct numerical simulation', with: 'Point-particle DNS, Maxey–Riley–Gatignol with Basset force, HPC (CINECA)', used: [['Particles in HST', '/projects/dns-particles-shear-turbulence/']] },
+  { method: 'Spectral closures', with: 'EDQNM, Python with Numba', used: [['EDQNM', '/projects/edqnm-reduced-vortex-stretching/']] },
+  { method: 'Lagrangian analysis', with: 'Backward FTLE, NumbaCS, custom Python toolkit', used: [['LCS', '/projects/lcs-bluff-body-wakes/']] },
+  { method: 'RANS and unsteady CFD', with: 'SU2, Gmsh, SA and k-ω SST, transition models', used: [['Ice accretion', '/projects/ice-accretion-naca23012/'], ['LCS', '/projects/lcs-bluff-body-wakes/']] },
+  { method: 'Low-order aerodynamics and optimisation', with: 'AVL (vortex lattice), PSO, Kriging, MATLAB', used: [['FOSSER', '/projects/fosser-formation-flight/']] },
+  { method: 'Experiments', with: 'Wind-tunnel testing, force balance, pressure taps, hot-wire, PIV', used: [['Wind tunnel', '/projects/wind-tunnel-experiments/']] },
+];
+---
+<Base title="Research" description="Research questions, approach and status: vortex stretching and the energy cascade, inertial particles in shear turbulence, Lagrangian coherent structures; plus methods and tools.">
+  <div class="wrap head">
+    <p class="eyebrow">Research</p>
+    <h1>How turbulence moves energy and what it carries</h1>
+    <p class="lead">I study how turbulence transfers energy across scales and how it organises the particles it transports, combining direct numerical simulation, spectral closures, Lagrangian diagnostics and experiments.</p>
+  </div>
+
+  {themes.map((t, i) => (
+    <section class="block theme">
+      <div class="wrap two">
+        <div class="prose">
+          <p class="eyebrow">Theme {i + 1} · {t.tag}</p>
+          <h2>{t.title}</h2>
+          <dl class="qas">
+            <div><dt>Question</dt><dd>{t.question}</dd></div>
+            <div><dt>Approach</dt><dd>{t.approach}</dd></div>
+            <div><dt>Status</dt><dd>{t.status}</dd></div>
+          </dl>
+          <p class="links">{t.links.map(([l, h]) => <a href={h}>{l} →</a>)}</p>
+        </div>
+        <figure>
+          <Image src={t.img} alt={t.alt} widths={[600, 1000]} sizes="(max-width: 900px) 100vw, 520px" />
+          <figcaption>{t.caption}</figcaption>
+        </figure>
+      </div>
+    </section>
+  ))}
+
+  <section class="block">
+    <div class="wrap">
+      <p class="eyebrow">Toolbox</p>
+      <h2>Methods and tools</h2>
+      <div class="tools">
+        {tools.map((m) => (
+          <div class="tool">
+            <h3>{m.method}</h3>
+            <p>{m.with}</p>
+            <p class="used">Used in: {m.used.map(([l, h], j) => <>{j > 0 && ', '}<a href={h}>{l}</a></>)}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .head { padding: 64px var(--gutter) 40px; }
+  h1 { font-size: clamp(36px, 5vw, 60px); margin: 10px 0 18px; max-width: 18ch; }
+  .lead { font-size: 20px; color: var(--muted); max-width: 62ch; }
+  .two { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(24px, 5vw, 64px); align-items: center; }
+  .prose h2 { margin-top: 8px; }
+  .qas { margin: 18px 0 0; }
+  .qas div { display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 8px 0; border-top: 1px solid var(--rule); }
+  .qas dt { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); padding-top: 4px; }
+  .qas dd { margin: 0; }
+  .links { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 16px; }
+  figure { margin: 0; }
+  figure :global(img) { width: 100%; height: auto; border-radius: 6px; background: #fff; }
+  figcaption { font-size: 14px; color: var(--muted); margin-top: 8px; }
+  .tools { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 24px; }
+  .tool { border: 1px solid var(--rule); border-radius: 8px; padding: 18px 20px; }
+  .tool h3 { font-size: 18px; margin: 0 0 6px; }
+  .tool p { margin: 0; color: var(--muted); font-size: 15px; }
+  .tool .used { margin-top: 10px; font-size: 14px; }
+  @media (max-width: 900px) { .two { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) { .qas div { grid-template-columns: 1fr; gap: 2px; } }
+</style>

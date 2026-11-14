@@ -1,0 +1,92 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import FlowHero from '../components/FlowHero.astro';
+import PaperItem from '../components/PaperItem.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { site } from '../data/site';
+import { selectedPapers } from '../lib/papers';
+import { getProjects } from '../lib/projects';
+import profile from '../assets/profile.jpg';
+
+const featured = (await getProjects()).filter((p) => p.data.featured).slice(0, 3);
+---
+<Base>
+  <section class="hero">
+    <FlowHero />
+    <div class="wrap hero-inner">
+      <div class="hero-text">
+        <p class="eyebrow">{site.role} · {site.affiliation}</p>
+        <h1>{site.tagline}</h1>
+        <p class="lead">{site.intro}</p>
+        <p class="cta">
+          <a class="btn" href="/publications/">Publications</a>
+          <a class="btn" href="/projects/">Projects</a>
+          <a class="btn" href={site.cv}>CV (PDF)</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap about">
+      <Image class="photo" src={profile} alt={`Portrait of ${site.name}`} width={360} />
+      <div>
+        <p class="eyebrow">About</p>
+        <h2>From aerodynamics to turbulence</h2>
+        <p>
+          I hold an MSc in Aeronautical Engineering from Politecnico di Milano. 
+          My thesis used direct numerical simulation of homogeneous shear turbulence to study how inertial particles cluster and preferentially sample the flow, including the role of the Basset history force.
+          I am currently studying how turbulence changes when vortex stretching is removed from the dynamics in homogeneous isotropic turbulence.
+          During my MSc, I also worked on CFD simulations of icing effects on the NACA 23012 airfoil, aerodynamic optimisation of formation flight, and experimental wind-tunnel testing.
+        </p>
+        <ul class="tags">{site.interests.map((i) => <li>{i}</li>)}</ul>
+      </div>
+    </div>
+  </section>
+
+  {selectedPapers.length > 0 && (
+    <section class="block">
+      <div class="wrap">
+        <p class="eyebrow">Selected publications</p>
+        <h2>Papers</h2>
+        {selectedPapers.map((p) => <PaperItem paper={p} />)}
+        <p><a href="/publications/">All publications →</a></p>
+      </div>
+    </section>
+  )}
+
+  <section class="block">
+    <div class="wrap">
+      <p class="eyebrow">Selected projects</p>
+      <h2>Projects</h2>
+      <div class="grid">{featured.map((p) => <ProjectCard project={p} />)}</div>
+      <p><a href="/projects/">All projects →</a></p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap contact">
+      <p class="eyebrow">Contact</p>
+      <h2>Get in touch</h2>
+      <p><a href={`mailto:${site.email}`}>{site.email}</a> · {site.location}</p>
+      <p class="cta">{site.links.map((l) => <a class="btn" href={l.href}>{l.label}</a>)}</p>
+    </div>
+  </section>
+</Base>
+<style>
+  .hero { position: relative; min-height: min(88vh, 860px); display: flex; align-items: center; overflow: hidden; }
+  .hero-inner { position: relative; width: 100%; }
+  .hero-text { max-width: 900px; padding: 20px 0; }
+  .hero-text::before { content: ''; position: absolute; inset: 0 -40px; max-width: 940px; background: radial-gradient(closest-side, var(--scrim), transparent); z-index: -1; }
+  h1 { font-size: clamp(42px, 6.6vw, 86px); line-height: 1.02; margin: 14px 0 22px; }
+  .lead { font-size: clamp(18px, 2vw, 21px); color: var(--muted); max-width: 700px; }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+  .about { display: grid; grid-template-columns: minmax(180px, 280px) 1fr; gap: clamp(24px, 5vw, 64px); align-items: start; }
+  .about :global(.photo) { width: 100%; height: auto; border-radius: 6px; filter: grayscale(0.15); }
+  .about p { max-width: 70ch; }
+  .tags { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .tags li { font-size: 14px; padding: 4px 12px; border: 1px solid var(--rule); border-radius: 999px; color: var(--muted); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 36px; margin-bottom: 24px; }
+  @media (max-width: 700px) { .hero-text::before { inset: -12px -16px; max-width: none; background: var(--scrim); backdrop-filter: blur(2px); border-radius: 8px; } .about { grid-template-columns: 1fr; } .about :global(.photo) { max-width: 220px; } }
+</style>
