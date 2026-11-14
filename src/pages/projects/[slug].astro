@@ -37,9 +37,10 @@ const facts = [['Type', d.type], ['Year', String(d.year)], ['Field', d.field], [
       </p>
     </header>
     {d.coverVideo ? (
-      <div class="wrap cover"><video autoplay loop muted playsinline poster={poster?.src} aria-label={`Animation: ${d.title}`}>
-        <source src={`${d.coverVideo}.webm`} type="video/webm" />
+      <div class="wrap cover"><video class="cover-video" autoplay loop muted playsinline preload="auto" poster={poster?.src} aria-label={`Animation: ${d.title}`}>
         <source src={`${d.coverVideo}.mp4`} type="video/mp4" />
+        <source src={`${d.coverVideo}.webm`} type="video/webm" />
+        <img src={`${d.coverVideo}.gif`} alt={`Animation: ${d.title}`} />
       </video></div>
     ) : d.cover && (
       <div class="wrap cover"><Image src={d.cover} alt="" widths={[800, 1400]} sizes="(max-width: 1200px) 100vw, 1100px" loading="eager" /></div>
@@ -47,6 +48,21 @@ const facts = [['Type', d.type], ['Year', String(d.year)], ['Field', d.field], [
     <div class="wrap"><div class="prose"><Content /></div></div>
   </article>
 </Base>
+<script>
+  // Some browsers block autoplay or fail to decode: retry, then fall back to the GIF.
+  for (const v of document.querySelectorAll<HTMLVideoElement>('video.cover-video')) {
+    const toGif = () => {
+      const img = v.querySelector('img');
+      if (img && v.parentNode) v.parentNode.replaceChild(img, v);
+    };
+    v.muted = true;
+    // only the last <source> failing means no format could be played
+    v.querySelector('source:last-of-type')?.addEventListener('error', toGif);
+    v.addEventListener('error', toGif);
+    const tryPlay = () => v.play().catch(toGif);
+    if (v.readyState >= 2) tryPlay(); else v.addEventListener('loadeddata', tryPlay, { once: true });
+  }
+</script>
 <style>
   .head { padding: 64px var(--gutter) 24px; }
   h1 { font-size: clamp(32px, 4.6vw, 56px); margin: 10px 0 16px; max-width: 30ch; }

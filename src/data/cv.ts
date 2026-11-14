@@ -66,7 +66,7 @@ export const cv = {
     },
     {
       "area": "Programming",
-      "items": "Python (NumPy, Numba), MATLAB, Fortran, CPL"
+      "items": "Python, MATLAB, Fortran, CPL"
     },
     {
       "area": "Experimental",
